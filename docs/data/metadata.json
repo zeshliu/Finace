@@ -1,0 +1,12 @@
+{
+  "latest_trade_date": null,
+  "last_updated": null,
+  "success": false,
+  "scanned_stocks": 0,
+  "candidate_count": 0,
+  "last_job": null,
+  "sections": {},
+  "data_sources": ["AKShare", "BaoStock"],
+  "notice": "尚未运行更新；网站只用于技术研究，不构成投资建议。"
+}
+

@@ -1,0 +1,55 @@
+site:
+  title: "A股技术筛选"
+  timezone: "Asia/Shanghai"
+  history_retention: 60
+
+data:
+  history_lookback_days: 420
+  chart_days: 120
+  overnight_stat_days: 60
+  recent_gap_results: 20
+  adjust: "qfq"
+  max_workers: 4
+  request_retries: 3
+  retry_seconds: 2
+  request_timeout: 15
+  intraday_period_minutes: 5
+  intraday_shortlist: 120
+  min_spot_rows: 1000
+  min_history_coverage: 0.70
+  min_intraday_coverage: 0.50
+
+screening:
+  price_min: 10.0
+  price_max: 20.0
+  min_listing_trading_days: 120
+  min_avg_amount_20: 50000000
+  exclude_st: true
+  exclude_suspended: true
+  near_limit_ratio:
+    main: 0.095
+    growth: 0.195
+    beijing: 0.295
+  max_3d_return: 0.12
+
+oversold:
+  score_threshold: 65
+  min_conditions: 2
+  max_drawdown_20: -0.12
+  return_10: -0.08
+  kdj_low: 20
+  j_low: 0
+  rsi6_low: 25
+  volume_ratio_min: 1.15
+  volume_ratio_max: 2.5
+
+overnight:
+  score_threshold: 70
+  min_samples: 40
+  change_min: -0.02
+  change_max: 0.04
+  max_low_open_probability: 0.30
+  tail_drop_limit: -0.015
+  min_range_position: 0.50
+  long_upper_shadow_ratio: 0.45
+  abnormal_volume_ratio: 2.5

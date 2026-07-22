@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="免费 A 股技术筛选：超跌反弹初期与隔夜高开候选。">
+  <title>A股技术筛选</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="返回首页">
+      <span class="brand-mark">A</span>
+      <span><strong>A股技术筛选</strong><small>免费数据 · 每日更新</small></span>
+    </a>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="切换深色模式">◐</button>
+  </header>
+
+  <main class="home-shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="live-dot"></span> 技术研究仪表盘</div>
+      <h1>把复杂指标，收束成<br><span>两组清晰观察名单</span></h1>
+      <p>基于公开免费行情，追踪超跌后的早期改善与尾盘隔夜统计。所有结果仅用于研究，不构成投资建议。</p>
+      <div class="market-status" id="marketStatus">
+        <div><span>最新交易日</span><strong id="latestTradeDate">—</strong></div>
+        <div><span>最后更新</span><strong id="lastUpdated">等待首次运行</strong></div>
+        <div><span>数据状态</span><strong id="dataStatus">尚未生成</strong></div>
+      </div>
+    </section>
+
+    <section class="strategy-grid" aria-label="策略入口">
+      <a class="strategy-card oversold-card" href="oversold.html">
+        <div class="card-topline"><span class="strategy-index">01</span><span class="status-pill">收盘后更新</span></div>
+        <div class="strategy-icon">↗</div>
+        <h2>超跌反弹初期</h2>
+        <p>寻找此前明显回撤、技术指标刚开始转暖的股票。</p>
+        <div class="strategy-metrics">
+          <div><strong id="oversoldCount">—</strong><span>当前候选</span></div>
+          <div><strong>65+</strong><span>默认评分</span></div>
+        </div>
+        <span class="card-action">查看观察名单 <b>→</b></span>
+      </a>
+
+      <a class="strategy-card overnight-card" href="overnight.html">
+        <div class="card-topline"><span class="strategy-index">02</span><span class="status-pill">尾盘多次更新</span></div>
+        <div class="strategy-icon">⌁</div>
+        <h2>隔夜高开候选</h2>
+        <p>结合60日开盘统计与尾盘量价质量，形成次日观察样本。</p>
+        <div class="strategy-metrics">
+          <div><strong id="overnightCount">—</strong><span>当前候选</span></div>
+          <div><strong>70+</strong><span>默认评分</span></div>
+        </div>
+        <span class="card-action">查看观察名单 <b>→</b></span>
+      </a>
+    </section>
+
+    <section class="method-strip">
+      <div><span>01</span><p><strong>公开数据</strong>AKShare + BaoStock 双源</p></div>
+      <div><span>02</span><p><strong>规则透明</strong>指标、阈值与评分均可配置</p></div>
+      <div><span>03</span><p><strong>自动更新</strong>GitHub Actions 定时生成</p></div>
+    </section>
+  </main>
+
+  <footer><p>数据可能存在延迟或接口波动。网站仅用于技术研究，不构成任何投资建议。</p></footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

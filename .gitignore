@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+
+# 行情缓存由 GitHub Actions cache 保存，不提交到仓库
+data/cache/daily/*.csv
+data/cache/snapshots/*.json
+!data/cache/daily/.gitkeep
+!data/cache/snapshots/.gitkeep
+
+# 本地中间结果
+data/output/*.json
+!data/output/.gitkeep
+

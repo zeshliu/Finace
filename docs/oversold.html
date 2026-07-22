@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A股超跌反弹初期技术筛选结果。">
+  <title>超跌反弹初期 · A股技术筛选</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="oversold">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span><strong>A股技术筛选</strong><small>超跌反弹初期</small></span></a>
+    <nav><a href="oversold.html" class="active">超跌反弹</a><a href="overnight.html">隔夜高开</a></nav>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="切换深色模式">◐</button>
+  </header>
+
+  <main class="list-shell">
+    <section class="page-heading">
+      <a class="back-link" href="index.html">← 返回总览</a>
+      <div class="heading-row">
+        <div><div class="eyebrow">OVERSOLD REVERSAL</div><h1>超跌反弹初期</h1><p>至少满足两项超跌条件，并出现技术面早期改善；默认展示综合评分65分以上。</p></div>
+        <div class="score-orbit"><strong id="candidateCount">—</strong><span>只候选</span></div>
+      </div>
+      <div class="update-line"><span class="live-dot"></span><span id="updateText">正在读取最新数据…</span></div>
+    </section>
+
+    <section class="toolbar" aria-label="筛选工具">
+      <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索名称或代码" autocomplete="off"></label>
+      <label>最低价<input id="minPrice" type="number" min="0" step="0.1" placeholder="10"></label>
+      <label>最高价<input id="maxPrice" type="number" min="0" step="0.1" placeholder="20"></label>
+      <label>排序<select id="sortSelect"><option value="score-desc">评分从高到低</option><option value="price-asc">价格从低到高</option><option value="change-desc">涨幅从高到低</option></select></label>
+      <button class="refresh-button" id="refreshButton" type="button">↻ 刷新数据</button>
+    </section>
+
+    <section class="results-panel">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>股票</th><th>最新价</th><th>涨跌幅</th><th>评分</th><th>MACD</th><th>KDJ</th><th>均线</th><th>5日量比</th><th>20日跌幅</th><th>RSI6</th><th>入选原因</th><th>风险提示</th></tr></thead>
+          <tbody id="resultTable"></tbody>
+        </table>
+      </div>
+      <div class="card-list" id="resultCards"></div>
+      <div class="empty-state" id="emptyState" hidden><span>⌁</span><h2>暂无符合条件的股票</h2><p>这通常代表当前市场没有达到阈值的信号，或数据尚未更新。</p></div>
+    </section>
+  </main>
+
+  <div class="modal" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel"><button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button><div id="detailContent"></div><div id="stockChart" class="stock-chart" aria-label="股票技术图表"></div></article>
+  </div>
+  <footer><p>技术信号可能失效。请独立判断并控制风险；本页面不构成投资建议。</p></footer>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

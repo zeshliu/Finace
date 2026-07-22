@@ -1,0 +1,76 @@
+name: 盘中隔夜候选更新
+
+on:
+  schedule:
+    # 北京时间 13:30、14:00、14:30、14:45（UTC+8）
+    - cron: "30 5 * * 1-5"
+    - cron: "0 6 * * 1-5"
+    - cron: "30 6 * * 1-5"
+    - cron: "45 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: market-data-update
+  cancel-in-progress: false
+
+jobs:
+  update-intraday:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: 恢复日线缓存
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+            data/output
+          key: market-cache-${{ github.run_id }}
+          restore-keys: |
+            market-cache-
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 更新隔夜高开候选
+        run: python main.py intraday
+
+      - name: 提交有效结果
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/overnight_latest.json docs/data/metadata.json docs/data/history
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: 更新盘中隔夜候选"
+          git pull --rebase
+          git push
+
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传静态网站
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: 部署 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,11 @@
+{
+  "strategy": "overnight",
+  "title": "隔夜高开候选",
+  "trade_date": null,
+  "generated_at": null,
+  "score_threshold": 70,
+  "scanned_stocks": 0,
+  "candidates": [],
+  "disclaimer": "尚未生成行情数据，请先运行 python main.py intraday。"
+}
+
