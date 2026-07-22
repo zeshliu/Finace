@@ -1,12 +1,23 @@
 {
-  "latest_trade_date": null,
-  "last_updated": null,
-  "success": false,
-  "scanned_stocks": 0,
-  "candidate_count": 0,
-  "last_job": null,
-  "sections": {},
-  "data_sources": ["AKShare", "BaoStock"],
-  "notice": "尚未运行更新；网站只用于技术研究，不构成投资建议。"
+  "latest_trade_date": "2026-07-22",
+  "last_updated": "2026-07-22T14:31:08+08:00",
+  "success": true,
+  "scanned_stocks": 1440,
+  "candidate_count": 214,
+  "last_job": "oversold",
+  "sections": {
+    "oversold": {
+      "latest_trade_date": "2026-07-22",
+      "last_updated": "2026-07-22T14:31:08+08:00",
+      "success": true,
+      "scanned_stocks": 1440,
+      "candidate_count": 214,
+      "failed_stocks": 78
+    }
+  },
+  "data_sources": [
+    "AKShare",
+    "BaoStock"
+  ],
+  "notice": "免费数据可能延迟或短暂不可用；内容仅供技术研究，不构成投资建议。"
 }
-
