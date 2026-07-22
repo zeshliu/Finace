@@ -35,6 +35,7 @@ def build_provider(config: dict) -> MarketDataProvider:
         retries=data.get("request_retries", 3),
         retry_seconds=data.get("retry_seconds", 2),
         timeout=data.get("request_timeout", 15),
+        history_sources=data.get("history_sources"),
     )
 
 
@@ -90,6 +91,7 @@ def refresh_histories(
                 failures.append(f"{code}: {error}")
             if completed % 100 == 0 or completed == len(codes):
                 LOGGER.info("日线进度 %s/%s，可用 %s", completed, len(codes), len(histories))
+    provider.close()
     return histories, failures
 
 

@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 from src.indicators import add_indicators, kdj, macd, macd_negative_bars_shrinking, moving_averages, rsi, safe_divide
+from src.providers import normalize_tencent_history
 
 
 def test_macd_calculation_has_expected_start_and_direction():
@@ -41,3 +42,19 @@ def test_empty_data_and_divide_by_zero():
     values = safe_divide(pd.Series([1.0, 2.0]), pd.Series([0.0, 2.0]), default=0)
     assert values.tolist() == [0.0, 1.0]
 
+
+def test_tencent_history_normalizes_volume_and_estimated_amount():
+    raw = pd.DataFrame(
+        {
+            "date": ["2026-07-20", "2026-07-21"],
+            "open": [10.0, 10.5],
+            "close": [10.4, 10.8],
+            "high": [10.6, 11.0],
+            "low": [9.9, 10.4],
+            "amount": [1000, 2000],
+        }
+    )
+    result = normalize_tencent_history(raw, "600000")
+    assert result["volume"].tolist() == [1000, 2000]
+    assert result["amount"].iloc[0] == 1000 * 100 * ((10.0 + 10.4 + 10.6 + 9.9) / 4)
+    assert result["code"].iloc[-1] == "600000"

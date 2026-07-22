@@ -4,15 +4,20 @@ site:
   history_retention: 60
 
 data:
-  history_lookback_days: 420
+  # 220个自然日通常覆盖约145-155个交易日，满足120日图表并留出停牌/节假日缓冲
+  history_lookback_days: 220
   chart_days: 120
   overnight_stat_days: 60
   recent_gap_results: 20
   adjust: "qfq"
-  max_workers: 4
-  request_retries: 3
-  retry_seconds: 2
-  request_timeout: 15
+  max_workers: 8
+  request_retries: 1
+  retry_seconds: 1
+  request_timeout: 8
+  history_sources:
+    - tencent
+    - eastmoney
+    - baostock
   intraday_period_minutes: 5
   intraday_shortlist: 120
   min_spot_rows: 1000
