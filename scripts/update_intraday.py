@@ -38,12 +38,13 @@ def run(config_path=None) -> dict:
 
     eligible = []
     min_samples = int(config["overnight"]["min_samples"])
+    apply_return_limits = bool(config["overnight"].get("basic_return_filter_enabled", False))
     for _, row in spot.iterrows():
         code = str(row["code"]).zfill(6)
         history = histories.get(code)
         if history is None:
             continue
-        passed, _ = passes_basic_filters(row, history, config)
+        passed, _ = passes_basic_filters(row, history, config, apply_return_limits=apply_return_limits)
         if not passed:
             continue
         stats = calculate_gap_statistics(history, int(config["data"]["overnight_stat_days"]), int(config["data"]["recent_gap_results"]))

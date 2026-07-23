@@ -33,8 +33,14 @@ def is_st_name(name: str) -> bool:
     return normalized.startswith("ST") or normalized.startswith("*ST")
 
 
-def passes_basic_filters(spot: dict | pd.Series, history: pd.DataFrame, config: dict) -> tuple[bool, list[str]]:
-    """基础范围过滤；返回是否通过以及未通过原因。价格边界为闭区间。"""
+def passes_basic_filters(
+    spot: dict | pd.Series,
+    history: pd.DataFrame,
+    config: dict,
+    *,
+    apply_return_limits: bool = True,
+) -> tuple[bool, list[str]]:
+    """基础范围过滤；可按策略关闭涨跌幅相关限制，价格边界为闭区间。"""
     reasons: list[str] = []
     screening = config["screening"]
     price = _number(spot.get("price"), np.nan)
@@ -62,7 +68,7 @@ def passes_basic_filters(spot: dict | pd.Series, history: pd.DataFrame, config: 
         if pd.isna(avg_amount) or avg_amount < float(screening["min_avg_amount_20"]):
             reasons.append("近20日平均成交额不足")
 
-    if len(valid_history) >= 2:
+    if apply_return_limits and len(valid_history) >= 2:
         previous_close = _number(valid_history["close"].iloc[-2], 0)
         current_close = _number(valid_history["close"].iloc[-1], price)
         # 日线已包含今天时，最新收盘应与快照几乎一致；否则盘中用快照价参与计算。
@@ -73,7 +79,7 @@ def passes_basic_filters(spot: dict | pd.Series, history: pd.DataFrame, config: 
             reasons.append("当天涨停或接近涨停")
 
     closes = pd.to_numeric(valid_history["close"], errors="coerce").dropna()
-    if len(closes) >= 4:
+    if apply_return_limits and len(closes) >= 4:
         if abs(closes.iloc[-1] - price) / max(price, 0.01) <= 0.001:
             return_3d = closes.iloc[-1] / closes.iloc[-4] - 1
         else:

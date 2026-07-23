@@ -47,9 +47,29 @@ def test_oversold_conditions_detect_decline(config, history_factory):
 def test_overnight_scope_and_relaxed_thresholds(config):
     assert config["data"]["intraday_shortlist"] == 300
     assert config["overnight"]["score_threshold"] == 65
-    assert config["overnight"]["change_min"] == -0.03
-    assert config["overnight"]["change_max"] == 0.05
-    assert config["overnight"]["min_range_position"] == 0.45
+    assert config["overnight"]["basic_return_filter_enabled"] is False
+    assert config["overnight"]["change_filter_enabled"] is False
+    assert config["overnight"]["tail_drop_filter_enabled"] is False
+    assert config["overnight"]["range_position_filter_enabled"] is False
+
+
+def test_overnight_basic_filter_allows_large_price_moves(config, history_factory):
+    history = history_factory(close=12.0)
+    history.loc[history.index[-1], ["open", "high", "low", "close"]] = [14.5, 15.1, 14.4, 15.0]
+    spot = {"code": "600000", "name": "示例股票", "price": 15.0, "volume": 1_000_000}
+
+    regular_passed, regular_reasons = passes_basic_filters(spot, history, config)
+    overnight_passed, overnight_reasons = passes_basic_filters(
+        spot,
+        history,
+        config,
+        apply_return_limits=False,
+    )
+
+    assert not regular_passed
+    assert "当天涨停或接近涨停" in regular_reasons
+    assert "近3日累计涨幅过大" in regular_reasons
+    assert overnight_passed, overnight_reasons
 
 
 def test_risk_deduction_reduces_score_and_floors_at_zero():

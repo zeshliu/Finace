@@ -99,10 +99,15 @@ def evaluate_overnight(
     generated_at: str,
 ) -> dict | None:
     history = add_indicators(raw_history)
-    passed, _ = passes_basic_filters(spot, history, config)
+    cfg = config["overnight"]
+    passed, _ = passes_basic_filters(
+        spot,
+        history,
+        config,
+        apply_return_limits=bool(cfg.get("basic_return_filter_enabled", False)),
+    )
     if not passed:
         return None
-    cfg = config["overnight"]
     stats = calculate_gap_statistics(history, int(config["data"]["overnight_stat_days"]), int(config["data"]["recent_gap_results"]))
     if stats.get("sample_count", 0) < int(cfg["min_samples"]):
         return None
@@ -116,11 +121,13 @@ def evaluate_overnight(
     if pd.to_datetime(history["date"].iloc[-1]).date() == pd.to_datetime(minute["datetime"].iloc[-1]).date() and len(history) >= 2:
         previous_close = float(history["close"].iloc[-2])
     day_change = tail["current"] / previous_close - 1 if previous_close else 0
-    if not (float(cfg["change_min"]) <= day_change <= float(cfg["change_max"])):
+    if bool(cfg.get("change_filter_enabled", False)) and not (
+        float(cfg["change_min"]) <= day_change <= float(cfg["change_max"])
+    ):
         return None
-    if tail["last_30_return"] <= float(cfg["tail_drop_limit"]):
+    if bool(cfg.get("tail_drop_filter_enabled", False)) and tail["last_30_return"] <= float(cfg["tail_drop_limit"]):
         return None
-    if tail["range_position"] < float(cfg["min_range_position"]):
+    if bool(cfg.get("range_position_filter_enabled", False)) and tail["range_position"] < float(cfg["min_range_position"]):
         return None
     if tail["upper_shadow_ratio"] > float(cfg["long_upper_shadow_ratio"]) and tail["volume_ratio"] > float(cfg["abnormal_volume_ratio"]):
         return None
@@ -175,4 +182,3 @@ def evaluate_overnight(
             "gap_stats": stats,
         },
     }
-

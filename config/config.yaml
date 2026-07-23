@@ -51,6 +51,11 @@ oversold:
 overnight:
   score_threshold: 65
   min_samples: 40
+  # 隔夜板块不按当日/近3日涨跌幅、尾盘跌幅或区间位置做硬性排除
+  basic_return_filter_enabled: false
+  change_filter_enabled: false
+  tail_drop_filter_enabled: false
+  range_position_filter_enabled: false
   change_min: -0.03
   change_max: 0.05
   max_low_open_probability: 0.35
