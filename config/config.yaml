@@ -19,7 +19,7 @@ data:
     - eastmoney
     - baostock
   intraday_period_minutes: 5
-  intraday_shortlist: 120
+  intraday_shortlist: 300
   min_spot_rows: 1000
   min_history_coverage: 0.70
   min_intraday_coverage: 0.50
@@ -49,12 +49,12 @@ oversold:
   volume_ratio_max: 2.5
 
 overnight:
-  score_threshold: 70
+  score_threshold: 65
   min_samples: 40
-  change_min: -0.02
-  change_max: 0.04
-  max_low_open_probability: 0.30
-  tail_drop_limit: -0.015
-  min_range_position: 0.50
-  long_upper_shadow_ratio: 0.45
-  abnormal_volume_ratio: 2.5
+  change_min: -0.03
+  change_max: 0.05
+  max_low_open_probability: 0.35
+  tail_drop_limit: -0.02
+  min_range_position: 0.45
+  long_upper_shadow_ratio: 0.50
+  abnormal_volume_ratio: 3.0

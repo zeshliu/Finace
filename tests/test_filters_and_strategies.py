@@ -44,9 +44,16 @@ def test_oversold_conditions_detect_decline(config, history_factory):
     assert sum(conditions.values()) >= 2
 
 
+def test_overnight_scope_and_relaxed_thresholds(config):
+    assert config["data"]["intraday_shortlist"] == 300
+    assert config["overnight"]["score_threshold"] == 65
+    assert config["overnight"]["change_min"] == -0.03
+    assert config["overnight"]["change_max"] == 0.05
+    assert config["overnight"]["min_range_position"] == 0.45
+
+
 def test_risk_deduction_reduces_score_and_floors_at_zero():
     score, risks = apply_risk_deductions(80, [("长上影", 5), ("跳水", 10)])
     assert score == 65
     assert risks == ["长上影", "跳水"]
     assert apply_risk_deductions(5, [("严重风险", 20)])[0] == 0
-

@@ -116,7 +116,7 @@ oversold:
   score_threshold: 65
 
 overnight:
-  score_threshold: 70
+  score_threshold: 65
 ```
 
 所有阈值集中在 `config/config.yaml`，包括流动性、上市天数、成交量倍数、尾盘跳水和历史低开风险等。
@@ -248,4 +248,3 @@ pytest
 - 盘中分钟线只对历史统计优先级较高的有限候选获取，数量由 `data.intraday_shortlist` 控制。
 - 复权方式、行情修订和不同数据源的成交量单位可能存在差异；程序已做标准化和安全除法，但仍建议抽样核对。
 - 所有评分只是透明、可重复的技术规则，不是收益保证，也不是投资建议。
-
