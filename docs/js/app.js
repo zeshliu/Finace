@@ -49,9 +49,10 @@
   function renderOversoldRow(item) {
     return `<tr data-code="${escapeHtml(item.code)}">
       <td class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></td>
+      <td><span class="industry-pill">${escapeHtml(item.industry || '未分类')}</span></td>
       <td><strong>${value(item.price, '', 2)}</strong></td><td class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</td>
       <td><span class="score-badge">${value(item.score, '', 1)}</span></td>
-      <td>${escapeHtml(item.macd_state)}</td><td>${escapeHtml(item.kdj_state)}</td><td>${escapeHtml(item.ma_state)}</td>
+      <td>${escapeHtml(item.ma_state)}</td>
       <td>${value(item.volume_ratio_5, '×', 2)}</td><td class="${directionClass(item.return_20_pct)}">${signed(item.return_20_pct)}</td><td>${value(item.rsi6, '', 1)}</td>
       <td>${(item.reasons || []).slice(0, 3).map((text) => `<span class="tag">${escapeHtml(text)}</span>`).join('')}</td>
       <td><span class="risk-text">${escapeHtml((item.risks || []).join('；'))}</span></td></tr>`;
@@ -69,7 +70,7 @@
 
   function renderCard(item) {
     const metrics = page === 'oversold'
-      ? [['MACD', item.macd_state], ['5日量比', value(item.volume_ratio_5, '×', 2)], ['RSI6', value(item.rsi6, '', 1)]]
+      ? [['所属板块', item.industry || '未分类'], ['5日量比', value(item.volume_ratio_5, '×', 2)], ['RSI6', value(item.rsi6, '', 1)]]
       : [['历史高开率', value(item.high_open_rate_pct, '%', 1)], ['尾盘30分钟', signed(item.last_30_change_pct)], ['区间位置', value(item.range_position_pct, '%', 1)]];
     const notes = page === 'oversold' ? (item.reasons || []).join(' · ') : (item.risks || []).join('；');
     return `<article class="result-card" data-code="${escapeHtml(item.code)}">
@@ -128,7 +129,8 @@
   function detailHeader(item) {
     const reasons = page === 'oversold' ? (item.reasons || []) : ['历史开盘统计与尾盘量价质量综合入选'];
     const gap = item.detail?.gap_stats;
-    return `<div class="detail-head"><div><h2 id="detailTitle">${escapeHtml(item.name)}</h2><span class="detail-code">${escapeHtml(item.code)} · ${value(item.price, '', 2)}元</span></div><div class="detail-score">${value(item.score, '', 1)}<small>综合评分</small></div></div>
+    const industry = page === 'oversold' ? ` · ${escapeHtml(item.industry || '未分类')}` : '';
+    return `<div class="detail-head"><div><h2 id="detailTitle">${escapeHtml(item.name)}</h2><span class="detail-code">${escapeHtml(item.code)}${industry} · ${value(item.price, '', 2)}元</span></div><div class="detail-score">${value(item.score, '', 1)}<small>综合评分</small></div></div>
       <div class="detail-notes"><div><strong>入选原因</strong>${escapeHtml(reasons.join('；'))}</div><div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；'))}</div></div>
       ${gap ? `<div class="gap-summary"><div><span>近60日高开率</span><strong>${value(gap.high_open_rate * 100, '%', 1)}</strong></div><div><span>平均开盘收益</span><strong>${signed(gap.average_open_return * 100)}</strong></div><div><span>最大低开</span><strong>${signed(gap.max_low_open * 100)}</strong></div><div><span>有效样本</span><strong>${gap.sample_count || 0}</strong></div></div><div class="recent-gaps" title="最近20次次日开盘结果">${(gap.recent_results || []).map((entry) => `<span class="${entry.high_open ? 'positive' : 'negative'}" title="${escapeHtml(entry.next_date)} ${signed(entry.return_pct)}">${entry.high_open ? '↑' : '↓'}</span>`).join('')}</div>` : ''}`;
   }
@@ -217,4 +219,3 @@
   if (page === 'home') initHome();
   if (page === 'oversold' || page === 'overnight') initList();
 })();
-

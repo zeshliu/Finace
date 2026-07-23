@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from src.industry import enrich_candidate_industries
 from src.overnight_strategy import calculate_gap_statistics
 from src.oversold_strategy import scan_oversold
 from src.pipeline import ROOT, build_provider, load_config, now_china, preliminary_spot_filter, refresh_histories, update_metadata
@@ -28,6 +29,13 @@ def run(config_path=None) -> dict:
         raise RuntimeError(f"可用日线覆盖率不足 {minimum_coverage:.0%}，保留上一版数据")
 
     candidates = scan_oversold(spot, histories, config)
+    candidates = enrich_candidate_industries(
+        candidates,
+        provider,
+        ROOT / "data" / "cache" / "industry.json",
+        int(config["data"].get("max_workers", 4)),
+    )
+    provider.close()
     trade_dates = [frame["date"].max() for frame in histories.values() if not frame.empty]
     trade_date = max(trade_dates).strftime("%Y-%m-%d")
     generated_at = now.isoformat(timespec="seconds")

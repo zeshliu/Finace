@@ -76,6 +76,32 @@ def exchange_code(code: str) -> str:
     return f"sh.{code}" if code.startswith(("5", "6")) else f"sz.{code}"
 
 
+def normalize_industry_name(value: str) -> str:
+    """清理行业代码，并将过长的证监会行业名称转换为列表友好的名称。"""
+    text = str(value or "").strip()
+    if len(text) >= 2 and text[0].isalpha():
+        index = 1
+        while index < len(text) and text[index].isdigit():
+            index += 1
+        if index > 1:
+            text = text[index:]
+    aliases = {
+        "计算机、通信和其他电子设备制造业": "电子设备",
+        "电力、热力生产和供应业": "电力",
+        "软件和信息技术服务业": "软件服务",
+        "互联网和相关服务": "互联网",
+        "货币金融服务": "银行",
+        "资本市场服务": "证券",
+        "医药制造业": "医药制造",
+        "汽车制造业": "汽车",
+    }
+    if text in aliases:
+        return aliases[text]
+    if text.endswith("制造业") and len(text) > 3:
+        return text[:-1]
+    return text or "未分类"
+
+
 def normalize_frame(frame: pd.DataFrame, rename: dict[str, str], date_column: str | None = None) -> pd.DataFrame:
     if frame is None or frame.empty:
         return pd.DataFrame()
@@ -179,6 +205,71 @@ class MarketDataProvider:
                 LOGGER.warning("%s 日线失败 %s: %s", source, code, exc)
         raise RuntimeError(f"{code} 所有日线源失败: {' | '.join(errors)}")
 
+    def get_industry(self, code: str) -> str:
+        """获取东方财富细分行业；单只请求便于只查询最终候选。"""
+        import requests
+
+        code = normalize_code(code)
+        market = "1" if code.startswith(("5", "6")) else "0"
+
+        def fetch() -> pd.DataFrame:
+            errors: list[str] = []
+            params = {
+                "fltt": "2",
+                "invt": "2",
+                "fields": "f57,f58,f127",
+                "secid": f"{market}.{code}",
+            }
+            for host in ("push2delay.eastmoney.com", "push2.eastmoney.com"):
+                try:
+                    response = requests.get(
+                        f"https://{host}/api/qt/stock/get",
+                        params=params,
+                        timeout=self.timeout,
+                    )
+                    response.raise_for_status()
+                    data = response.json().get("data") or {}
+                    industry = normalize_industry_name(data.get("f127"))
+                    if industry == "未分类":
+                        raise ValueError(f"{code} 未返回行业")
+                    return pd.DataFrame([{"industry": industry}])
+                except Exception as exc:
+                    errors.append(f"{host}: {exc}")
+            raise RuntimeError(" | ".join(errors))
+
+        result = self._retry(f"东方财富行业 {code}", fetch)
+        return str(result.iloc[0]["industry"])
+
+    def _ensure_baostock_login_locked(self) -> None:
+        import baostock as bs
+
+        if self._baostock_logged_in:
+            return
+        login = bs.login()
+        if login.error_code != "0":
+            raise RuntimeError(f"BaoStock 登录失败: {login.error_msg}")
+        self._baostock_logged_in = True
+
+    def get_industry_map_baostock(self) -> dict[str, str]:
+        """一次查询全市场证监会行业，作为细分行业接口的免费备用源。"""
+        import baostock as bs
+
+        with BAOSTOCK_LOCK:
+            self._ensure_baostock_login_locked()
+            response = bs.query_stock_industry()
+            if response.error_code != "0":
+                raise RuntimeError(response.error_msg)
+            mapping: dict[str, str] = {}
+            while response.next():
+                row = dict(zip(response.fields, response.get_row_data()))
+                code = normalize_code(row.get("code", ""))
+                industry = normalize_industry_name(row.get("industry", ""))
+                if code and industry != "未分类":
+                    mapping[code] = industry
+        if not mapping:
+            raise RuntimeError("BaoStock 行业分类返回空数据")
+        return mapping
+
     def _get_history_tencent(self, code: str, start_date: str, end_date: str, adjust: str) -> pd.DataFrame:
         import akshare as ak
 
@@ -221,11 +312,7 @@ class MarketDataProvider:
 
         # BaoStock 使用进程级会话；复用一次登录并串行查询少量回退股票。
         with BAOSTOCK_LOCK:
-            if not self._baostock_logged_in:
-                login = bs.login()
-                if login.error_code != "0":
-                    raise RuntimeError(f"BaoStock 登录失败: {login.error_msg}")
-                self._baostock_logged_in = True
+            self._ensure_baostock_login_locked()
             fields = "date,code,open,high,low,close,volume,amount,adjustflag,turn,pctChg,tradestatus"
             response = bs.query_history_k_data_plus(
                 exchange_code(code),
