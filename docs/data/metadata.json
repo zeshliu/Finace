@@ -1,6 +1,6 @@
 {
   "latest_trade_date": "2026-07-24",
-  "last_updated": "2026-07-24T17:02:36+08:00",
+  "last_updated": "2026-07-24T17:10:50+08:00",
   "success": true,
   "scanned_stocks": 666,
   "candidate_count": 4,
@@ -16,7 +16,7 @@
     },
     "overnight": {
       "latest_trade_date": "2026-07-24",
-      "last_updated": "2026-07-24T17:02:36+08:00",
+      "last_updated": "2026-07-24T17:10:50+08:00",
       "success": true,
       "scanned_stocks": 666,
       "candidate_count": 4,
