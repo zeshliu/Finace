@@ -1,10 +1,10 @@
 {
-  "latest_trade_date": "2026-07-23",
-  "last_updated": "2026-07-23T20:10:51+08:00",
+  "latest_trade_date": "2026-07-24",
+  "last_updated": "2026-07-24T09:54:16+08:00",
   "success": true,
-  "scanned_stocks": 1455,
-  "candidate_count": 221,
-  "last_job": "oversold",
+  "scanned_stocks": 1115,
+  "candidate_count": 10,
+  "last_job": "overnight",
   "sections": {
     "oversold": {
       "latest_trade_date": "2026-07-23",
@@ -15,18 +15,19 @@
       "failed_stocks": 141
     },
     "overnight": {
-      "latest_trade_date": "2026-07-23",
-      "last_updated": "2026-07-23T17:14:29+08:00",
+      "latest_trade_date": "2026-07-24",
+      "last_updated": "2026-07-24T09:54:16+08:00",
       "success": true,
-      "scanned_stocks": 1117,
-      "candidate_count": 3,
+      "scanned_stocks": 1115,
+      "candidate_count": 10,
       "minute_checked_stocks": 300,
       "failed_stocks": 0
     }
   },
   "data_sources": [
-    "AKShare",
-    "BaoStock"
+    "新浪财经（经 AKShare，主源）",
+    "腾讯财经/东方财富（经 AKShare，备用）",
+    "BaoStock（备用）"
   ],
   "notice": "免费数据可能延迟或短暂不可用；内容仅供技术研究，不构成投资建议。"
 }
