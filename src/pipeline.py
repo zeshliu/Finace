@@ -35,7 +35,10 @@ def build_provider(config: dict) -> MarketDataProvider:
         retries=data.get("request_retries", 3),
         retry_seconds=data.get("retry_seconds", 2),
         timeout=data.get("request_timeout", 15),
+        spot_sources=data.get("spot_sources"),
         history_sources=data.get("history_sources"),
+        intraday_sources=data.get("intraday_sources"),
+        sina_history_interval=data.get("sina_history_interval_seconds", 0.25),
     )
 
 
@@ -117,7 +120,11 @@ def update_metadata(section: str, section_data: dict, config: dict, write: bool 
         "candidate_count": section_data["candidate_count"],
         "last_job": section,
         "sections": sections,
-        "data_sources": ["AKShare", "BaoStock"],
+        "data_sources": [
+            "新浪财经（经 AKShare，主源）",
+            "腾讯财经/东方财富（经 AKShare，备用）",
+            "BaoStock（备用）",
+        ],
         "notice": "免费数据可能延迟或短暂不可用；内容仅供技术研究，不构成投资建议。",
     }
     if write:

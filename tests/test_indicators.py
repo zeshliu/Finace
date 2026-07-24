@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 from src.indicators import add_indicators, kdj, macd, macd_negative_bars_shrinking, moving_averages, rsi, safe_divide
-from src.providers import normalize_tencent_history
+from src.providers import normalize_sina_history, normalize_tencent_history
 
 
 def test_macd_calculation_has_expected_start_and_direction():
@@ -58,3 +58,21 @@ def test_tencent_history_normalizes_volume_and_estimated_amount():
     assert result["volume"].tolist() == [1000, 2000]
     assert result["amount"].iloc[0] == 1000 * 100 * ((10.0 + 10.4 + 10.6 + 9.9) / 4)
     assert result["code"].iloc[-1] == "600000"
+
+
+def test_sina_history_normalizes_daily_columns():
+    raw = pd.DataFrame(
+        {
+            "date": ["2026-07-22", "2026-07-23"],
+            "open": [10.0, 10.2],
+            "high": [10.3, 10.5],
+            "low": [9.9, 10.1],
+            "close": [10.2, 10.4],
+            "volume": [1_000_000, 1_100_000],
+            "amount": [10_100_000, 11_300_000],
+        }
+    )
+    result = normalize_sina_history(raw, "sh600000")
+    assert result["code"].tolist() == ["600000", "600000"]
+    assert result["date"].is_monotonic_increasing
+    assert np.isclose(result["pct_change"].iloc[-1], 10.4 / 10.2 * 100 - 100)

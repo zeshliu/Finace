@@ -14,10 +14,19 @@ data:
   request_retries: 1
   retry_seconds: 1
   request_timeout: 8
+  spot_sources:
+    - sina
+    - eastmoney
   history_sources:
+    - sina
     - tencent
     - eastmoney
     - baostock
+  intraday_sources:
+    - sina
+    - eastmoney
+  # 新浪日线批量访问过快可能触发限制，控制请求启动间隔
+  sina_history_interval_seconds: 0.25
   intraday_period_minutes: 5
   intraday_shortlist: 300
   min_spot_rows: 1000

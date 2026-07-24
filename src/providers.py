@@ -1,4 +1,4 @@
-"""免费 A 股数据源：AKShare 主源，BaoStock 日线备用源。"""
+"""免费 A 股数据源：新浪财经主源，腾讯、东方财富和 BaoStock 备用。"""
 
 from __future__ import annotations
 
@@ -136,18 +136,37 @@ def normalize_tencent_history(frame: pd.DataFrame, code: str) -> pd.DataFrame:
     return result.reset_index(drop=True)
 
 
+def normalize_sina_history(frame: pd.DataFrame, code: str) -> pd.DataFrame:
+    """标准化新浪日线；成交量单位为股，成交额单位为元。"""
+    result = normalize_frame(frame, {}, "date")
+    required = {"date", "open", "high", "low", "close", "volume", "amount"}
+    if result.empty or required.difference(result.columns):
+        raise ValueError(f"新浪日线 {normalize_code(code)} 字段不完整")
+    result["pct_change"] = result["close"].pct_change(fill_method=None) * 100
+    result["code"] = normalize_code(code)
+    return result.reset_index(drop=True)
+
+
 class MarketDataProvider:
     def __init__(
         self,
         retries: int = 3,
         retry_seconds: float = 2,
         timeout: float = 15,
+        spot_sources: list[str] | None = None,
         history_sources: list[str] | None = None,
+        intraday_sources: list[str] | None = None,
+        sina_history_interval: float = 0.25,
     ):
         self.retries = max(1, int(retries))
         self.retry_seconds = max(0, float(retry_seconds))
         self.timeout = timeout
-        self.history_sources = history_sources or ["tencent", "eastmoney", "baostock"]
+        self.spot_sources = spot_sources or ["sina", "eastmoney"]
+        self.history_sources = history_sources or ["sina", "tencent", "eastmoney", "baostock"]
+        self.intraday_sources = intraday_sources or ["sina", "eastmoney"]
+        self.sina_history_interval = max(0, float(sina_history_interval))
+        self._sina_history_lock = threading.Lock()
+        self._sina_history_last_started = 0.0
         self._baostock_logged_in = False
 
     def _retry(self, label: str, operation: Callable[[], pd.DataFrame]) -> pd.DataFrame:
@@ -179,17 +198,29 @@ class MarketDataProvider:
                 raise RuntimeError(f"A股快照仅返回 {len(normalized)} 行，低于完整性阈值 {min_rows}")
             return normalized
 
-        try:
-            return validate(self._retry("东方财富 A股快照", lambda: ak.stock_zh_a_spot_em()))
-        except Exception as em_error:
-            LOGGER.warning("东方财富快照失败，切换新浪快照: %s", em_error)
-            return validate(self._retry("新浪 A股快照", lambda: ak.stock_zh_a_spot()))
+        handlers = {
+            "sina": ("新浪 A股快照", ak.stock_zh_a_spot),
+            "eastmoney": ("东方财富 A股快照", ak.stock_zh_a_spot_em),
+        }
+        errors: list[str] = []
+        for source in self.spot_sources:
+            normalized_source = str(source).lower()
+            if normalized_source not in handlers:
+                continue
+            label, operation = handlers[normalized_source]
+            try:
+                return validate(self._retry(label, operation))
+            except Exception as exc:
+                errors.append(f"{normalized_source}: {exc}")
+                LOGGER.warning("%s失败，尝试下一个快照源: %s", label, exc)
+        raise RuntimeError(f"所有A股快照源失败: {' | '.join(errors)}")
 
     def get_history(self, code: str, start_date: str, end_date: str, adjust: str = "qfq") -> pd.DataFrame:
-        """按配置依次尝试腾讯、东方财富和 BaoStock。日期格式 YYYYMMDD。"""
+        """按配置依次尝试新浪及免费备用源。日期格式 YYYYMMDD。"""
         code = normalize_code(code)
         errors: list[str] = []
         handlers = {
+            "sina": self._get_history_sina,
             "tencent": self._get_history_tencent,
             "eastmoney": self._get_history_eastmoney,
             "baostock": self._get_history_baostock,
@@ -269,6 +300,31 @@ class MarketDataProvider:
         if not mapping:
             raise RuntimeError("BaoStock 行业分类返回空数据")
         return mapping
+
+    def _throttle_sina_history(self) -> None:
+        if self.sina_history_interval <= 0:
+            return
+        with self._sina_history_lock:
+            elapsed = time.monotonic() - self._sina_history_last_started
+            remaining = self.sina_history_interval - elapsed
+            if remaining > 0:
+                time.sleep(remaining)
+            self._sina_history_last_started = time.monotonic()
+
+    def _get_history_sina(self, code: str, start_date: str, end_date: str, adjust: str) -> pd.DataFrame:
+        import akshare as ak
+
+        def fetch() -> pd.DataFrame:
+            self._throttle_sina_history()
+            return ak.stock_zh_a_daily(
+                symbol=exchange_code(code).replace(".", ""),
+                start_date=start_date,
+                end_date=end_date,
+                adjust=adjust,
+            )
+
+        raw = self._retry(f"新浪日线 {code}", fetch)
+        return normalize_sina_history(raw, code)
 
     def _get_history_tencent(self, code: str, start_date: str, end_date: str, adjust: str) -> pd.DataFrame:
         import akshare as ak
@@ -354,32 +410,47 @@ class MarketDataProvider:
         day = trade_date or datetime.now().strftime("%Y-%m-%d")
         start = f"{day} 09:30:00"
         end = f"{day} 15:00:00"
-        try:
-            raw = self._retry(
-                f"东方财富分钟线 {code}",
+        normalized_code = normalize_code(code)
+        handlers = {
+            "sina": (
+                "新浪分钟线",
+                lambda: ak.stock_zh_a_minute(
+                    symbol=exchange_code(normalized_code).replace(".", ""),
+                    period=str(period),
+                    adjust="",
+                ),
+            ),
+            "eastmoney": (
+                "东方财富分钟线",
                 lambda: ak.stock_zh_a_hist_min_em(
-                    symbol=normalize_code(code),
+                    symbol=normalized_code,
                     start_date=start,
                     end_date=end,
                     period=str(period),
                     adjust="",
                 ),
-            )
-        except Exception as em_error:
-            LOGGER.warning("东方财富分钟线失败，切换新浪 %s: %s", code, em_error)
-            raw = self._retry(
-                f"新浪分钟线 {code}",
-                lambda: ak.stock_zh_a_minute(symbol=exchange_code(code).replace(".", ""), period=str(period), adjust=""),
-            )
-        result = normalize_frame(raw, MINUTE_RENAME, "datetime")
+            ),
+        }
+        errors: list[str] = []
         minute_required = {"datetime", "open", "high", "low", "close", "volume", "amount"}
-        if minute_required.difference(result.columns):
-            raise ValueError(f"{code} 分钟线字段不完整")
-        if not result.empty:
-            result = result[result["datetime"].dt.strftime("%Y-%m-%d") == day]
-        if result.empty:
-            raise RuntimeError(f"{code} 在 {day} 没有有效分钟线")
-        return result.reset_index(drop=True)
+        for source in self.intraday_sources:
+            normalized_source = str(source).lower()
+            if normalized_source not in handlers:
+                continue
+            label, operation = handlers[normalized_source]
+            try:
+                raw = self._retry(f"{label} {normalized_code}", operation)
+                result = normalize_frame(raw, MINUTE_RENAME, "datetime")
+                if minute_required.difference(result.columns):
+                    raise ValueError(f"{normalized_code} 分钟线字段不完整")
+                result = result[result["datetime"].dt.strftime("%Y-%m-%d") == day]
+                if result.empty:
+                    raise RuntimeError(f"{normalized_code} 在 {day} 没有有效分钟线")
+                return result.reset_index(drop=True)
+            except Exception as exc:
+                errors.append(f"{normalized_source}: {exc}")
+                LOGGER.warning("%s %s失败，尝试下一个分钟线源: %s", label, normalized_code, exc)
+        raise RuntimeError(f"{normalized_code} 所有分钟线源失败: {' | '.join(errors)}")
 
 
 def history_request_range(cached: pd.DataFrame, end: datetime, lookback_days: int) -> tuple[str, str]:
