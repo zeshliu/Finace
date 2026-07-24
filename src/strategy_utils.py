@@ -7,7 +7,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .providers import normalize_code
+from .providers import board_for_code, normalize_code
 
 
 def _number(value: Any, default: float = 0.0) -> float:
@@ -47,6 +47,9 @@ def passes_basic_filters(
     name = str(spot.get("name", ""))
     code = normalize_code(spot.get("code", ""))
 
+    allowed_boards = set(screening.get("allowed_boards") or [])
+    if allowed_boards and board_for_code(code) not in allowed_boards:
+        reasons.append("不属于沪市主板或深市主板")
     if not np.isfinite(price) or not (float(screening["price_min"]) <= price <= float(screening["price_max"])):
         reasons.append("价格不在设定区间")
     if screening.get("exclude_st", True) and is_st_name(name):

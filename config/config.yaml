@@ -34,6 +34,9 @@ data:
   min_intraday_coverage: 0.50
 
 screening:
+  allowed_boards:
+    - sh_main
+    - sz_main
   price_min: 10.0
   price_max: 20.0
   min_listing_trading_days: 120
@@ -58,7 +61,7 @@ oversold:
   volume_ratio_max: 2.5
 
 overnight:
-  score_threshold: 65
+  score_threshold: 50
   min_samples: 40
   # 隔夜板块不按当日/近3日涨跌幅、尾盘跌幅或区间位置做硬性排除
   basic_return_filter_enabled: false

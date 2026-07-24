@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import yaml
 
-from .providers import MarketDataProvider, history_request_range, normalize_code
+from .providers import MarketDataProvider, board_for_code, history_request_range, normalize_code
 from .storage import DailyCache, atomic_write_json, read_json
 
 LOGGER = logging.getLogger(__name__)
@@ -46,6 +46,9 @@ def preliminary_spot_filter(spot: pd.DataFrame, config: dict) -> pd.DataFrame:
     screening = config["screening"]
     result = spot.copy()
     result["code"] = result["code"].map(normalize_code)
+    allowed_boards = set(screening.get("allowed_boards") or [])
+    if allowed_boards:
+        result = result[result["code"].map(board_for_code).isin(allowed_boards)]
     result = result[result["price"].between(float(screening["price_min"]), float(screening["price_max"]), inclusive="both")]
     result = result[~result["name"].astype(str).str.upper().str.replace(" ", "", regex=False).str.match(r"^\*?ST")]
     result = result[result["volume"].fillna(0) > 0]

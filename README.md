@@ -93,6 +93,7 @@ python main.py serve --host 0.0.0.0 --port 8080
 
 默认基础条件位于 `config/config.yaml`：
 
+- 仅筛选沪市主板（600/601/603/605）和深市主板（000/001/002/003）
 - 最新价 10 元至 20 元（包含边界）
 - 排除 ST、*ST、停牌
 - 排除上市不足 120 个交易日
@@ -119,7 +120,7 @@ oversold:
   score_threshold: 65
 
 overnight:
-  score_threshold: 65
+  score_threshold: 50
 ```
 
 所有阈值集中在 `config/config.yaml`，包括流动性、上市天数、成交量倍数、尾盘跳水和历史低开风险等。

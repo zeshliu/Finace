@@ -69,6 +69,22 @@ def normalize_code(value: str) -> str:
     return digits[-6:].zfill(6)
 
 
+def board_for_code(value: str) -> str:
+    """按交易所代码规则识别A股板块。"""
+    code = normalize_code(value)
+    if code.startswith(("600", "601", "603", "605")):
+        return "sh_main"
+    if code.startswith(("000", "001", "002", "003")):
+        return "sz_main"
+    if code.startswith(("688", "689")):
+        return "sh_star"
+    if code.startswith(("300", "301")):
+        return "sz_growth"
+    if code.startswith(("4", "8", "92")):
+        return "beijing"
+    return "other"
+
+
 def exchange_code(code: str) -> str:
     code = normalize_code(code)
     if code.startswith(("4", "8", "92")):
