@@ -190,7 +190,33 @@
       backgroundColor: 'transparent',
       textStyle: { color: muted, fontFamily: 'system-ui' },
       legend: [{ top: 4, data: ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '布林上轨', '布林下轨'], textStyle: { color: muted, fontSize: 10 } }],
-      tooltip: { trigger: 'axis', axisPointer: { type: 'cross' }, borderWidth: 1, textStyle: { fontSize: 11 } },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'cross' },
+        borderWidth: 1,
+        textStyle: { fontSize: 11 },
+        formatter: (params) => {
+          if (!Array.isArray(params) || !params.length) return '';
+          const allowed = ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '成交量'];
+          const filtered = params.filter((p) => allowed.includes(p.seriesName));
+          if (!filtered.length) return '';
+          const date = filtered[0].name || filtered[0].axisValue || '';
+          let lines = [`<div style="font-weight:bold;margin-bottom:2px;">${escapeHtml(date)}</div>`];
+          filtered.forEach((p) => {
+            if (p.seriesName === 'K线') {
+              const d = p.data;
+              if (Array.isArray(d) && d.length >= 5) {
+                lines.push(`${p.marker} <strong>K线</strong> 开:${value(d[1])} 收:${value(d[2])} 低:${value(d[3])} 高:${value(d[4])}`);
+              }
+            } else if (p.seriesName === '成交量') {
+              lines.push(`${p.marker} <strong>成交量</strong>: ${Number(p.value).toLocaleString()}`);
+            } else {
+              lines.push(`${p.marker} <strong>${escapeHtml(p.seriesName)}</strong>: ${value(p.value)}`);
+            }
+          });
+          return lines.join('');
+        }
+      },
       axisPointer: { link: [{ xAxisIndex: 'all' }] },
       dataZoom: [{ type: 'inside', xAxisIndex: [0, 1, 2, 3], start: 45, end: 100 }, { show: true, xAxisIndex: [0, 1, 2, 3], bottom: 3, height: 18, start: 45, end: 100 }],
       grid: [{ left: 52, right: 18, top: 38, height: 285 }, { left: 52, right: 18, top: 342, height: 78 }, { left: 52, right: 18, top: 440, height: 78 }, { left: 52, right: 18, top: 538, height: 90 }],

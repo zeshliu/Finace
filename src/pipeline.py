@@ -136,8 +136,65 @@ def update_metadata(section: str, section_data: dict, config: dict, write: bool 
     return metadata
 
 
+def load_candidate_pool(docs_data_dir: str | Path | None = None) -> dict[str, dict[str, list[str]]]:
+    """加载历史筛选股票池（记录策略下每只股票满足筛选条件的交易日列表）。"""
+    data_dir = Path(docs_data_dir) if docs_data_dir else ROOT / "docs" / "data"
+    pool_file = data_dir / "candidate_pool.json"
+    data = read_json(pool_file, {})
+    if not isinstance(data, dict):
+        return {"oversold": {}, "overnight": {}}
+    return {
+        "oversold": data.get("oversold", {}) if isinstance(data.get("oversold"), dict) else {},
+        "overnight": data.get("overnight", {}) if isinstance(data.get("overnight"), dict) else {},
+    }
+
+
+def get_historical_candidate_codes(strategy_name: str, docs_data_dir: str | Path | None = None) -> set[str]:
+    """获取指定策略历史上所有曾上榜过的股票代码集合。"""
+    data_dir = Path(docs_data_dir) if docs_data_dir else ROOT / "docs" / "data"
+    pool = load_candidate_pool(data_dir)
+    codes = set(pool.get(strategy_name, {}).keys())
+    history_dir = data_dir / "history"
+    if history_dir.exists():
+        for file_path in history_dir.glob(f"{strategy_name}_*.json"):
+            if file_path.name.startswith("."):
+                continue
+            data = read_json(file_path)
+            if isinstance(data, dict) and isinstance(data.get("candidates"), list):
+                for cand in data["candidates"]:
+                    code = cand.get("code")
+                    if code:
+                        codes.add(normalize_code(code))
+    return codes
+
+
+def update_candidate_pool(
+    strategy_name: str,
+    trade_date: str | None,
+    candidate_codes: list[str],
+    docs_data_dir: str | Path | None = None,
+) -> dict:
+    """更新并保存历史股票池记录。"""
+    if not trade_date:
+        return load_candidate_pool(docs_data_dir)
+    data_dir = Path(docs_data_dir) if docs_data_dir else ROOT / "docs" / "data"
+    pool = load_candidate_pool(data_dir)
+    strategy_pool = pool.setdefault(strategy_name, {})
+    
+    for code in candidate_codes:
+        norm_code = normalize_code(code)
+        if norm_code not in strategy_pool:
+            strategy_pool[norm_code] = []
+        if trade_date not in strategy_pool[norm_code]:
+            strategy_pool[norm_code].append(trade_date)
+            strategy_pool[norm_code].sort(reverse=True)
+            
+    atomic_write_json(data_dir / "candidate_pool.json", pool)
+    return pool
+
+
 def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tuple[dict, dict[str, dict[str, set[str]]]]:
-    """扫描 docs/data/history/ 目录，生成 history_index.json 并计算各股票上榜天数。"""
+    """扫描 docs/data/history/ 目录及 candidate_pool.json，生成 history_index.json 并计算各股票累计上榜天数。"""
     data_dir = Path(docs_data_dir) if docs_data_dir else ROOT / "docs" / "data"
     history_dir = data_dir / "history"
     
@@ -152,38 +209,48 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
         "overnight": {},
     }
 
-    if not history_dir.exists():
-        history_dir.mkdir(parents=True, exist_ok=True)
-        
-    for file_path in sorted(history_dir.glob("*.json")):
-        if file_path.name.startswith("."):
-            continue
-        prefix = "oversold" if file_path.name.startswith("oversold_") else ("overnight" if file_path.name.startswith("overnight_") else None)
-        if not prefix:
-            continue
-        data = read_json(file_path)
-        if not isinstance(data, dict) or not isinstance(data.get("candidates"), list):
-            continue
-        trade_date = data.get("trade_date")
-        generated_at = data.get("generated_at")
-        candidates = data.get("candidates", [])
-        
-        index_data[prefix].append({
-            "filename": file_path.name,
-            "trade_date": trade_date,
-            "generated_at": generated_at,
-            "candidate_count": len(candidates),
-        })
-        
-        for cand in candidates:
-            code = cand.get("code")
-            if not code:
-                continue
+    # 首先读取 candidate_pool 中的历史交易日
+    pool = load_candidate_pool(data_dir)
+    for prefix in ("oversold", "overnight"):
+        for code, dates in pool.get(prefix, {}).items():
             if code not in stats[prefix]:
                 stats[prefix][code] = set()
-            if trade_date:
-                stats[prefix][code].add(trade_date)
-                
+            stats[prefix][code].update(dates)
+
+    if history_dir.exists():
+        for file_path in sorted(history_dir.glob("*.json")):
+            if file_path.name.startswith("."):
+                continue
+            prefix = "oversold" if file_path.name.startswith("oversold_") else ("overnight" if file_path.name.startswith("overnight_") else None)
+            if not prefix:
+                continue
+            data = read_json(file_path)
+            if not isinstance(data, dict) or not isinstance(data.get("candidates"), list):
+                continue
+            trade_date = data.get("trade_date")
+            generated_at = data.get("generated_at")
+            candidates = data.get("candidates", [])
+            
+            index_data[prefix].append({
+                "filename": file_path.name,
+                "trade_date": trade_date,
+                "generated_at": generated_at,
+                "candidate_count": len(candidates),
+            })
+            
+            for cand in candidates:
+                code = cand.get("code")
+                if not code:
+                    continue
+                code_norm = normalize_code(code)
+                if code_norm not in stats[prefix]:
+                    stats[prefix][code_norm] = set()
+                if trade_date:
+                    stats[prefix][code_norm].add(trade_date)
+                cand_dates = cand.get("history_dates")
+                if isinstance(cand_dates, list):
+                    stats[prefix][code_norm].update(cand_dates)
+                    
     for prefix in ("oversold", "overnight"):
         index_data[prefix].sort(key=lambda item: item.get("generated_at") or "", reverse=True)
         
@@ -197,13 +264,14 @@ def enrich_candidates_with_history_stats(
     stats: dict[str, dict[str, set[str]]],
     current_trade_date: str | None = None,
 ) -> list[dict]:
-    """为候选股票注入 selected_days（已上榜天数）和 history_dates（历史日期列表）。"""
+    """为候选股票注入 selected_days（累计已上榜天数）和 history_dates（历史上榜日期列表）。"""
     strategy_stats = stats.get(strategy_name, {})
     for cand in candidates:
         code = cand.get("code")
         if not code:
             continue
-        dates_set = set(strategy_stats.get(code, set()))
+        norm_code = normalize_code(code)
+        dates_set = set(strategy_stats.get(norm_code, set()))
         trade_date = cand.get("trade_date") or current_trade_date
         if trade_date:
             dates_set.add(trade_date)

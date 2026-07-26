@@ -13,12 +13,15 @@ from src.pipeline import (
     build_history_index_and_stats,
     build_provider,
     enrich_candidates_with_history_stats,
+    get_historical_candidate_codes,
     load_cached_histories,
     load_config,
     now_china,
     preliminary_spot_filter,
+    update_candidate_pool,
     update_metadata,
 )
+from src.providers import normalize_code
 from src.storage import DailyCache, archive_payload, atomic_write_json_bundle
 from src.strategy_utils import passes_basic_filters
 
@@ -41,6 +44,14 @@ def run(config_path=None) -> dict:
     provider = build_provider(config)
     spot_all = provider.get_spot(int(config["data"].get("min_spot_rows", 1000)))
     spot = preliminary_spot_filter(spot_all, config)
+    
+    # 融入历史上榜股票
+    hist_codes = get_historical_candidate_codes("overnight", ROOT / "docs" / "data")
+    if hist_codes and not spot_all.empty:
+        hist_spot = spot_all[spot_all["code"].astype(str).map(normalize_code).isin(hist_codes)]
+        if not hist_spot.empty:
+            spot = pd.concat([spot, hist_spot], ignore_index=True).drop_duplicates(subset=["code"], keep="first").reset_index(drop=True)
+
     cache = DailyCache(ROOT / "data" / "cache" / "daily")
     histories = load_cached_histories(spot["code"].astype(str).tolist(), cache)
     if not histories:
@@ -101,6 +112,8 @@ def run(config_path=None) -> dict:
     candidates.sort(key=lambda item: (-item["score"], item["code"]))
 
     trade_date = now.strftime("%Y-%m-%d")
+    cand_codes = [c["code"] for c in candidates]
+    update_candidate_pool("overnight", trade_date, cand_codes, ROOT / "docs" / "data")
     _, history_stats = build_history_index_and_stats(ROOT / "docs" / "data")
     candidates = enrich_candidates_with_history_stats(candidates, "overnight", history_stats, trade_date)
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import pandas as pd
 
 from src.industry import enrich_candidate_industries
 from src.overnight_strategy import calculate_gap_statistics
@@ -12,12 +13,15 @@ from src.pipeline import (
     build_history_index_and_stats,
     build_provider,
     enrich_candidates_with_history_stats,
+    get_historical_candidate_codes,
     load_config,
     now_china,
     preliminary_spot_filter,
     refresh_histories,
+    update_candidate_pool,
     update_metadata,
 )
+from src.providers import normalize_code
 from src.storage import DailyCache, archive_payload, atomic_write_json_bundle
 
 LOGGER = logging.getLogger(__name__)
@@ -29,6 +33,14 @@ def run(config_path=None) -> dict:
     provider = build_provider(config)
     spot_all = provider.get_spot(int(config["data"].get("min_spot_rows", 1000)))
     spot = preliminary_spot_filter(spot_all, config)
+    
+    # 融入历史上榜股票，确保历史候选股票每日同步刷新数据并参与二次筛选
+    hist_codes = get_historical_candidate_codes("oversold", ROOT / "docs" / "data")
+    if hist_codes and not spot_all.empty:
+        hist_spot = spot_all[spot_all["code"].astype(str).map(normalize_code).isin(hist_codes)]
+        if not hist_spot.empty:
+            spot = pd.concat([spot, hist_spot], ignore_index=True).drop_duplicates(subset=["code"], keep="first").reset_index(drop=True)
+
     if spot.empty:
         raise RuntimeError("基础快照筛选后无股票，保留上一版数据")
 
@@ -38,6 +50,7 @@ def run(config_path=None) -> dict:
     if not histories or len(histories) / len(spot) < minimum_coverage:
         raise RuntimeError(f"可用日线覆盖率不足 {minimum_coverage:.0%}，保留上一版数据")
 
+    # 执行二次筛选评估
     candidates = scan_oversold(spot, histories, config)
     candidates = enrich_candidate_industries(
         candidates,
@@ -46,10 +59,13 @@ def run(config_path=None) -> dict:
         int(config["data"].get("max_workers", 4)),
     )
     provider.close()
+    
     trade_dates = [frame["date"].max() for frame in histories.values() if not frame.empty]
     trade_date = max(trade_dates).strftime("%Y-%m-%d")
     generated_at = now.isoformat(timespec="seconds")
     
+    cand_codes = [c["code"] for c in candidates]
+    update_candidate_pool("oversold", trade_date, cand_codes, ROOT / "docs" / "data")
     _, history_stats = build_history_index_and_stats(ROOT / "docs" / "data")
     candidates = enrich_candidates_with_history_stats(candidates, "oversold", history_stats, trade_date)
 

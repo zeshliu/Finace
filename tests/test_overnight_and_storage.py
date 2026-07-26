@@ -84,3 +84,22 @@ def test_json_bundle_publishes_all_files(tmp_path):
     atomic_write_json_bundle({first: {"version": 2}, second: {"version": 2}})
     assert read_json(first) == {"version": 2}
     assert read_json(second) == {"version": 2}
+
+
+def test_candidate_pool_tracking_and_day_counts(tmp_path):
+    from src.pipeline import build_history_index_and_stats, enrich_candidates_with_history_stats, update_candidate_pool
+    data_dir = tmp_path / "data"
+    
+    update_candidate_pool("oversold", "2026-07-22", ["600000", "000001"], data_dir)
+    update_candidate_pool("oversold", "2026-07-23", ["600000"], data_dir)
+    update_candidate_pool("oversold", "2026-07-24", ["600000", "000001", "600002"], data_dir)
+    
+    _, stats = build_history_index_and_stats(data_dir)
+    cands = [{"code": "600000"}, {"code": "000001"}, {"code": "600002"}]
+    enriched = enrich_candidates_with_history_stats(cands, "oversold", stats, "2026-07-24")
+    
+    cand_map = {item["code"]: item for item in enriched}
+    assert cand_map["600000"]["selected_days"] == 3
+    assert cand_map["000001"]["selected_days"] == 2
+    assert cand_map["600002"]["selected_days"] == 1
+
