@@ -39,15 +39,15 @@ screening:
     - sz_main
   price_min: 0.0
   price_max: 40.0
-  min_listing_trading_days: 120
-  min_avg_amount_20: 50000000
+  min_listing_trading_days: 0
+  min_avg_amount_20: 0
   exclude_st: true
   exclude_suspended: true
   near_limit_ratio:
     main: 0.095
     growth: 0.195
     beijing: 0.295
-  max_3d_return: 0.12
+  max_3d_return: null
 
 oversold:
   score_threshold: 65

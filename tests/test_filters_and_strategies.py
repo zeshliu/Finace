@@ -106,7 +106,6 @@ def test_overnight_basic_filter_allows_large_price_moves(config, history_factory
 
     assert not regular_passed
     assert "当天涨停或接近涨停" in regular_reasons
-    assert "近3日累计涨幅过大" in regular_reasons
     assert overnight_passed, overnight_reasons
 
 

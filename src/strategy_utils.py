@@ -61,15 +61,18 @@ def passes_basic_filters(
         return False, reasons
 
     valid_history = history.dropna(subset=["close"]) if "close" in history else pd.DataFrame()
-    if len(valid_history) < int(screening["min_listing_trading_days"]):
+    min_listing_days = int(screening.get("min_listing_trading_days", 0) or 0)
+    if min_listing_days > 0 and len(valid_history) < min_listing_days:
         reasons.append("上市交易日不足")
 
-    if "amount" not in valid_history:
-        reasons.append("缺少成交额数据")
-    else:
-        avg_amount = pd.to_numeric(valid_history["amount"], errors="coerce").tail(20).mean()
-        if pd.isna(avg_amount) or avg_amount < float(screening["min_avg_amount_20"]):
-            reasons.append("近20日平均成交额不足")
+    min_avg_amount = float(screening.get("min_avg_amount_20", 0) or 0)
+    if min_avg_amount > 0:
+        if "amount" not in valid_history:
+            reasons.append("缺少成交额数据")
+        else:
+            avg_amount = pd.to_numeric(valid_history["amount"], errors="coerce").tail(20).mean()
+            if pd.isna(avg_amount) or avg_amount < min_avg_amount:
+                reasons.append("近20日平均成交额不足")
 
     if apply_return_limits and len(valid_history) >= 2:
         previous_close = _number(valid_history["close"].iloc[-2], 0)
@@ -82,12 +85,13 @@ def passes_basic_filters(
             reasons.append("当天涨停或接近涨停")
 
     closes = pd.to_numeric(valid_history["close"], errors="coerce").dropna()
-    if apply_return_limits and len(closes) >= 4:
+    max_3d_return = screening.get("max_3d_return")
+    if apply_return_limits and max_3d_return is not None and len(closes) >= 4:
         if abs(closes.iloc[-1] - price) / max(price, 0.01) <= 0.001:
             return_3d = closes.iloc[-1] / closes.iloc[-4] - 1
         else:
             return_3d = price / closes.iloc[-3] - 1
-        if return_3d > float(screening["max_3d_return"]):
+        if return_3d > float(max_3d_return):
             reasons.append("近3日累计涨幅过大")
     return not reasons, reasons
 
