@@ -47,8 +47,10 @@
   }
 
   function renderOversoldRow(item) {
+    const days = item.selected_days || 1;
     return `<tr data-code="${escapeHtml(item.code)}">
       <td class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></td>
+      <td><span class="score-badge" style="background:var(--accent-subtle, rgba(39,149,170,0.15));color:var(--accent,#2795aa);">${days}天</span></td>
       <td><span class="industry-pill">${escapeHtml(item.industry || '未分类')}</span></td>
       <td><strong>${value(item.price, '', 2)}</strong></td><td class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</td>
       <td><span class="score-badge">${value(item.score, '', 1)}</span></td>
@@ -59,8 +61,10 @@
   }
 
   function renderOvernightRow(item) {
+    const days = item.selected_days || 1;
     return `<tr data-code="${escapeHtml(item.code)}">
       <td class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></td>
+      <td><span class="score-badge" style="background:var(--accent-subtle, rgba(39,149,170,0.15));color:var(--accent,#2795aa);">${days}天</span></td>
       <td><strong>${value(item.price, '', 2)}</strong></td><td class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</td>
       <td>${value(item.high_open_rate_pct, '%', 1)}</td><td class="${directionClass(item.average_open_return_pct)}">${signed(item.average_open_return_pct)}</td>
       <td>${value(item.below_minus_1_probability_pct, '%', 1)}</td><td class="${directionClass(item.last_30_change_pct)}">${signed(item.last_30_change_pct)}</td>
@@ -69,9 +73,10 @@
   }
 
   function renderCard(item) {
+    const days = item.selected_days || 1;
     const metrics = page === 'oversold'
-      ? [['所属板块', item.industry || '未分类'], ['5日量比', value(item.volume_ratio_5, '×', 2)], ['RSI6', value(item.rsi6, '', 1)]]
-      : [['历史高开率', value(item.high_open_rate_pct, '%', 1)], ['尾盘30分钟', signed(item.last_30_change_pct)], ['区间位置', value(item.range_position_pct, '%', 1)]];
+      ? [['上榜天数', `${days}天`], ['所属板块', item.industry || '未分类'], ['5日量比', value(item.volume_ratio_5, '×', 2)], ['RSI6', value(item.rsi6, '', 1)]]
+      : [['上榜天数', `${days}天`], ['历史高开率', value(item.high_open_rate_pct, '%', 1)], ['尾盘30分钟', signed(item.last_30_change_pct)], ['区间位置', value(item.range_position_pct, '%', 1)]];
     const notes = page === 'oversold' ? (item.reasons || []).join(' · ') : (item.risks || []).join('；');
     return `<article class="result-card" data-code="${escapeHtml(item.code)}">
       <div class="result-card-head"><div class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></div><span class="score-badge">${value(item.score, '', 1)}</span></div>
@@ -107,15 +112,36 @@
     renderResults();
   }
 
+  async function loadHistoryOptions() {
+    const select = q('#historyDateSelect');
+    if (!select) return;
+    try {
+      const indexData = await getJson('data/history_index.json');
+      const items = indexData[page] || [];
+      select.innerHTML = '<option value="latest">最新数据</option>' + items.map((item) => {
+        const dateStr = item.trade_date || item.generated_at?.slice(0, 10) || '未知日期';
+        const timeStr = item.generated_at ? formatTime(item.generated_at) : '';
+        return `<option value="${escapeHtml(item.filename)}">${dateStr} (${timeStr}) [${item.candidate_count || 0}只]</option>`;
+      }).join('');
+    } catch (_) {
+      select.innerHTML = '<option value="latest">最新数据</option>';
+    }
+  }
+
   async function loadList(manual = false) {
     const button = q('#refreshButton');
+    const selectedFile = q('#historyDateSelect')?.value || 'latest';
     if (manual) button?.classList.add('loading');
     try {
-      const payload = await getJson(`data/${page}_latest.json`);
+      const targetPath = selectedFile === 'latest' ? `data/${page}_latest.json` : `data/history/${selectedFile}`;
+      const payload = await getJson(targetPath);
       state.payload = payload;
       state.all = Array.isArray(payload.candidates) ? payload.candidates : [];
       state.metadataStamp = payload.generated_at;
-      q('#updateText').textContent = payload.generated_at ? `数据时间 ${formatTime(payload.generated_at)} · 交易日 ${payload.trade_date || '—'} · 扫描 ${payload.scanned_stocks || 0} 只` : payload.disclaimer;
+      const isHistory = selectedFile !== 'latest';
+      q('#updateText').textContent = payload.generated_at
+        ? `${isHistory ? '【往期记录】' : ''}数据时间 ${formatTime(payload.generated_at)} · 交易日 ${payload.trade_date || '—'} · 扫描 ${payload.scanned_stocks || 0} 只`
+        : payload.disclaimer;
       applyFilters();
     } catch (error) {
       q('#updateText').textContent = `暂时无法读取数据：${error.message}`;
@@ -130,8 +156,14 @@
     const reasons = page === 'oversold' ? (item.reasons || []) : ['历史开盘统计与尾盘量价质量综合入选'];
     const gap = item.detail?.gap_stats;
     const industry = page === 'oversold' ? ` · ${escapeHtml(item.industry || '未分类')}` : '';
+    const days = item.selected_days || 1;
+    const datesList = (item.history_dates || []).slice(0, 6).join('、');
     return `<div class="detail-head"><div><h2 id="detailTitle">${escapeHtml(item.name)}</h2><span class="detail-code">${escapeHtml(item.code)}${industry} · ${value(item.price, '', 2)}元</span></div><div class="detail-score">${value(item.score, '', 1)}<small>综合评分</small></div></div>
-      <div class="detail-notes"><div><strong>入选原因</strong>${escapeHtml(reasons.join('；'))}</div><div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；'))}</div></div>
+      <div class="detail-notes">
+        <div><strong>上榜统计</strong>已累计在筛选中上榜 <strong>${days}</strong> 天${datesList ? `（包含：${escapeHtml(datesList)} 等）` : ''}</div>
+        <div><strong>入选原因</strong>${escapeHtml(reasons.join('；'))}</div>
+        <div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；'))}</div>
+      </div>
       ${gap ? `<div class="gap-summary"><div><span>近60日高开率</span><strong>${value(gap.high_open_rate * 100, '%', 1)}</strong></div><div><span>平均开盘收益</span><strong>${signed(gap.average_open_return * 100)}</strong></div><div><span>最大低开</span><strong>${signed(gap.max_low_open * 100)}</strong></div><div><span>有效样本</span><strong>${gap.sample_count || 0}</strong></div></div><div class="recent-gaps" title="最近20次次日开盘结果">${(gap.recent_results || []).map((entry) => `<span class="${entry.high_open ? 'positive' : 'negative'}" title="${escapeHtml(entry.next_date)} ${signed(entry.return_pct)}">${entry.high_open ? '↑' : '↓'}</span>`).join('')}</div>` : ''}`;
   }
 
@@ -205,13 +237,14 @@
   }
 
   function initList() {
-    ['#searchInput', '#minPrice', '#maxPrice'].forEach((selector) => q(selector).addEventListener('input', applyFilters));
-    q('#sortSelect').addEventListener('change', applyFilters);
-    q('#refreshButton').addEventListener('click', () => loadList(true));
+    ['#searchInput', '#minPrice', '#maxPrice'].forEach((selector) => q(selector)?.addEventListener('input', applyFilters));
+    q('#sortSelect')?.addEventListener('change', applyFilters);
+    q('#historyDateSelect')?.addEventListener('change', () => loadList(false));
+    q('#refreshButton')?.addEventListener('click', () => loadList(true));
     document.querySelectorAll('[data-close-modal]').forEach((element) => element.addEventListener('click', closeDetail));
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !q('#detailModal').hidden) closeDetail(); });
     window.addEventListener('resize', () => state.chart?.resize());
-    loadList();
+    loadHistoryOptions().then(() => loadList());
     setInterval(checkForUpdates, 60000);
   }
 

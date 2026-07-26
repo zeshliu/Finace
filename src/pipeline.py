@@ -7,6 +7,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -133,3 +134,79 @@ def update_metadata(section: str, section_data: dict, config: dict, write: bool 
     if write:
         atomic_write_json(path, metadata)
     return metadata
+
+
+def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tuple[dict, dict[str, dict[str, set[str]]]]:
+    """扫描 docs/data/history/ 目录，生成 history_index.json 并计算各股票上榜天数。"""
+    data_dir = Path(docs_data_dir) if docs_data_dir else ROOT / "docs" / "data"
+    history_dir = data_dir / "history"
+    
+    index_data: dict[str, Any] = {
+        "updated_at": datetime.now().isoformat(timespec="seconds"),
+        "oversold": [],
+        "overnight": [],
+    }
+    
+    stats: dict[str, dict[str, set[str]]] = {
+        "oversold": {},
+        "overnight": {},
+    }
+
+    if not history_dir.exists():
+        history_dir.mkdir(parents=True, exist_ok=True)
+        
+    for file_path in sorted(history_dir.glob("*.json")):
+        if file_path.name.startswith("."):
+            continue
+        prefix = "oversold" if file_path.name.startswith("oversold_") else ("overnight" if file_path.name.startswith("overnight_") else None)
+        if not prefix:
+            continue
+        data = read_json(file_path)
+        if not isinstance(data, dict) or not isinstance(data.get("candidates"), list):
+            continue
+        trade_date = data.get("trade_date")
+        generated_at = data.get("generated_at")
+        candidates = data.get("candidates", [])
+        
+        index_data[prefix].append({
+            "filename": file_path.name,
+            "trade_date": trade_date,
+            "generated_at": generated_at,
+            "candidate_count": len(candidates),
+        })
+        
+        for cand in candidates:
+            code = cand.get("code")
+            if not code:
+                continue
+            if code not in stats[prefix]:
+                stats[prefix][code] = set()
+            if trade_date:
+                stats[prefix][code].add(trade_date)
+                
+    for prefix in ("oversold", "overnight"):
+        index_data[prefix].sort(key=lambda item: item.get("generated_at") or "", reverse=True)
+        
+    atomic_write_json(data_dir / "history_index.json", index_data)
+    return index_data, stats
+
+
+def enrich_candidates_with_history_stats(
+    candidates: list[dict],
+    strategy_name: str,
+    stats: dict[str, dict[str, set[str]]],
+    current_trade_date: str | None = None,
+) -> list[dict]:
+    """为候选股票注入 selected_days（已上榜天数）和 history_dates（历史日期列表）。"""
+    strategy_stats = stats.get(strategy_name, {})
+    for cand in candidates:
+        code = cand.get("code")
+        if not code:
+            continue
+        dates_set = set(strategy_stats.get(code, set()))
+        trade_date = cand.get("trade_date") or current_trade_date
+        if trade_date:
+            dates_set.add(trade_date)
+        cand["selected_days"] = len(dates_set)
+        cand["history_dates"] = sorted(list(dates_set), reverse=True)
+    return candidates

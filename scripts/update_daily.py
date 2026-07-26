@@ -7,7 +7,17 @@ import logging
 from src.industry import enrich_candidate_industries
 from src.overnight_strategy import calculate_gap_statistics
 from src.oversold_strategy import scan_oversold
-from src.pipeline import ROOT, build_provider, load_config, now_china, preliminary_spot_filter, refresh_histories, update_metadata
+from src.pipeline import (
+    ROOT,
+    build_history_index_and_stats,
+    build_provider,
+    enrich_candidates_with_history_stats,
+    load_config,
+    now_china,
+    preliminary_spot_filter,
+    refresh_histories,
+    update_metadata,
+)
 from src.storage import DailyCache, archive_payload, atomic_write_json_bundle
 
 LOGGER = logging.getLogger(__name__)
@@ -39,6 +49,10 @@ def run(config_path=None) -> dict:
     trade_dates = [frame["date"].max() for frame in histories.values() if not frame.empty]
     trade_date = max(trade_dates).strftime("%Y-%m-%d")
     generated_at = now.isoformat(timespec="seconds")
+    
+    _, history_stats = build_history_index_and_stats(ROOT / "docs" / "data")
+    candidates = enrich_candidates_with_history_stats(candidates, "oversold", history_stats, trade_date)
+
     payload = {
         "strategy": "oversold",
         "title": "超跌反弹初期",
@@ -81,8 +95,9 @@ def run(config_path=None) -> dict:
     )
     try:
         archive_payload(docs_path, ROOT / "docs" / "data" / "history", "oversold", int(config["site"]["history_retention"]))
+        build_history_index_and_stats(ROOT / "docs" / "data")
     except OSError as exc:
-        LOGGER.warning("主结果已发布，但历史归档失败: %s", exc)
+        LOGGER.warning("主结果已发布，但历史归档或索引失败: %s", exc)
     LOGGER.info("每日更新完成：扫描 %s，候选 %s，失败/缓存回退 %s", len(histories), len(candidates), len(failures))
     return {"payload": payload, "metadata": metadata}
 

@@ -26,8 +26,9 @@
 
     <section class="toolbar" aria-label="筛选工具">
       <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索名称或代码" autocomplete="off"></label>
-      <label>最低价<input id="minPrice" type="number" min="0" step="0.1" placeholder="10"></label>
-      <label>最高价<input id="maxPrice" type="number" min="0" step="0.1" placeholder="20"></label>
+      <label>往期记录<select id="historyDateSelect"><option value="latest">最新数据</option></select></label>
+      <label>最低价<input id="minPrice" type="number" min="0" step="0.1" placeholder="0"></label>
+      <label>最高价<input id="maxPrice" type="number" min="0" step="0.1" placeholder="40"></label>
       <label>排序<select id="sortSelect"><option value="score-desc">评分从高到低</option><option value="price-asc">价格从低到高</option><option value="change-desc">涨幅从高到低</option></select></label>
       <button class="refresh-button" id="refreshButton" type="button">↻ 刷新数据</button>
     </section>
@@ -35,7 +36,7 @@
     <section class="results-panel">
       <div class="table-wrap">
         <table>
-          <thead><tr><th>股票</th><th>所属板块</th><th>最新价</th><th>涨跌幅</th><th>评分</th><th>均线</th><th>5日量比</th><th>20日跌幅</th><th>RSI6</th><th>入选原因</th><th>风险提示</th></tr></thead>
+          <thead><tr><th>股票</th><th>上榜天数</th><th>所属板块</th><th>最新价</th><th>涨跌幅</th><th>评分</th><th>均线</th><th>5日量比</th><th>20日跌幅</th><th>RSI6</th><th>入选原因</th><th>风险提示</th></tr></thead>
           <tbody id="resultTable"></tbody>
         </table>
       </div>

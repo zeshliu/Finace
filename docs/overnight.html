@@ -26,8 +26,9 @@
 
     <section class="toolbar" aria-label="筛选工具">
       <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索名称或代码" autocomplete="off"></label>
-      <label>最低价<input id="minPrice" type="number" min="0" step="0.1" placeholder="10"></label>
-      <label>最高价<input id="maxPrice" type="number" min="0" step="0.1" placeholder="20"></label>
+      <label>往期记录<select id="historyDateSelect"><option value="latest">最新数据</option></select></label>
+      <label>最低价<input id="minPrice" type="number" min="0" step="0.1" placeholder="0"></label>
+      <label>最高价<input id="maxPrice" type="number" min="0" step="0.1" placeholder="40"></label>
       <label>排序<select id="sortSelect"><option value="score-desc">评分从高到低</option><option value="price-asc">价格从低到高</option><option value="change-desc">涨幅从高到低</option></select></label>
       <button class="refresh-button" id="refreshButton" type="button">↻ 刷新数据</button>
     </section>
@@ -35,7 +36,7 @@
     <section class="results-panel">
       <div class="table-wrap">
         <table>
-          <thead><tr><th>股票</th><th>当前价</th><th>涨跌幅</th><th>历史高开率</th><th>平均开盘收益</th><th>低开&gt;1%</th><th>尾盘30分钟</th><th>区间位置</th><th>尾盘评分</th><th>综合评分</th><th>风险提示</th><th>数据时间</th></tr></thead>
+          <thead><tr><th>股票</th><th>上榜天数</th><th>当前价</th><th>涨跌幅</th><th>历史高开率</th><th>平均开盘收益</th><th>低开&gt;1%</th><th>尾盘30分钟</th><th>区间位置</th><th>尾盘评分</th><th>综合评分</th><th>风险提示</th><th>数据时间</th></tr></thead>
           <tbody id="resultTable"></tbody>
         </table>
       </div>

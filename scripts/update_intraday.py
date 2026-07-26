@@ -8,7 +8,17 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 
 from src.overnight_strategy import calculate_gap_statistics, evaluate_overnight
-from src.pipeline import ROOT, build_provider, load_cached_histories, load_config, now_china, preliminary_spot_filter, update_metadata
+from src.pipeline import (
+    ROOT,
+    build_history_index_and_stats,
+    build_provider,
+    enrich_candidates_with_history_stats,
+    load_cached_histories,
+    load_config,
+    now_china,
+    preliminary_spot_filter,
+    update_metadata,
+)
 from src.storage import DailyCache, archive_payload, atomic_write_json_bundle
 from src.strategy_utils import passes_basic_filters
 
@@ -91,6 +101,9 @@ def run(config_path=None) -> dict:
     candidates.sort(key=lambda item: (-item["score"], item["code"]))
 
     trade_date = now.strftime("%Y-%m-%d")
+    _, history_stats = build_history_index_and_stats(ROOT / "docs" / "data")
+    candidates = enrich_candidates_with_history_stats(candidates, "overnight", history_stats, trade_date)
+
     payload = {
         "strategy": "overnight",
         "title": "隔夜高开候选",
@@ -128,8 +141,9 @@ def run(config_path=None) -> dict:
     )
     try:
         archive_payload(docs_path, ROOT / "docs" / "data" / "history", "overnight", int(config["site"]["history_retention"]))
+        build_history_index_and_stats(ROOT / "docs" / "data")
     except OSError as exc:
-        LOGGER.warning("主结果已发布，但历史归档失败: %s", exc)
+        LOGGER.warning("主结果已发布，但历史归档或索引失败: %s", exc)
     LOGGER.info("盘中更新完成：基础合格 %s，分钟线 %s，候选 %s", len(eligible), len(minutes), len(candidates))
     return {"payload": payload, "metadata": metadata}
 

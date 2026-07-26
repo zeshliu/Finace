@@ -94,7 +94,7 @@ python main.py serve --host 0.0.0.0 --port 8080
 默认基础条件位于 `config/config.yaml`：
 
 - 仅筛选沪市主板（600/601/603/605）和深市主板（000/001/002/003）
-- 最新价 10 元至 20 元（包含边界）
+- 最新价 0 元至 40 元（包含边界）
 - 排除 ST、*ST、停牌
 - 排除上市不足 120 个交易日
 - 排除近 20 日平均成交额低于 5000 万元
@@ -107,8 +107,8 @@ python main.py serve --host 0.0.0.0 --port 8080
 
 ```yaml
 screening:
-  price_min: 10.0
-  price_max: 20.0
+  price_min: 0.0
+  price_max: 40.0
 ```
 
 ### 修改评分阈值
@@ -124,6 +124,11 @@ overnight:
 ```
 
 所有阈值集中在 `config/config.yaml`，包括流动性、上市天数、成交量倍数、尾盘跳水和历史低开风险等。
+
+## 往期记录与上榜天数
+
+- **往期记录切换**：前端工具栏提供历史日期选择器，可自由选择并加载任意历史日期的筛选结果快照。
+- **上榜天数统计**：系统根据 `docs/data/history/` 历史归档自动统计每只股票在历史筛选中被选中的累计天数（例如“上榜 5 天”），并在表格、移动端卡片及详情弹窗中予以展示。
 
 ## 超跌反弹策略
 
@@ -177,6 +182,7 @@ overnight:
 ```text
 docs/data/oversold_latest.json
 docs/data/overnight_latest.json
+docs/data/history_index.json
 docs/data/metadata.json
 docs/data/history/
 ```
@@ -217,7 +223,7 @@ docs/data/history/
 测试不访问网络，覆盖：
 
 - MACD、KDJ、RSI、均线
-- 价格 10 至 20 元边界与 ST 排除
+- 价格 0 至 40 元边界与 ST 排除
 - 超跌条件与 MACD 负柱缩短
 - 历史高开率与次日开盘收益公式
 - 风险扣分

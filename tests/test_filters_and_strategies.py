@@ -11,7 +11,7 @@ from src.strategy_utils import passes_basic_filters
 
 
 def test_price_boundaries_are_inclusive(config, history_factory):
-    for price in (10.0, 20.0):
+    for price in (0.0, 40.0):
         history = history_factory(close=price)
         spot = {"code": "600000", "name": "浦发银行", "price": price, "volume": 1000}
         passed, reasons = passes_basic_filters(spot, history, config)
@@ -19,8 +19,8 @@ def test_price_boundaries_are_inclusive(config, history_factory):
 
 
 def test_prices_outside_boundaries_are_excluded(config, history_factory):
-    history = history_factory(close=9.99)
-    spot = {"code": "600000", "name": "浦发银行", "price": 9.99, "volume": 1000}
+    history = history_factory(close=40.01)
+    spot = {"code": "600000", "name": "浦发银行", "price": 40.01, "volume": 1000}
     passed, reasons = passes_basic_filters(spot, history, config)
     assert not passed
     assert "价格不在设定区间" in reasons

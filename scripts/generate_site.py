@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from src.pipeline import ROOT, load_config
+from src.pipeline import ROOT, build_history_index_and_stats, load_config
 from src.storage import atomic_write_json, read_json, write_validated_payload
 
 
@@ -12,6 +12,7 @@ def run(config_path=None) -> dict:
     config = load_config(config_path)
     data_dir = ROOT / "docs" / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
+    build_history_index_and_stats(data_dir)
     defaults = {
         "oversold_latest.json": ("oversold", "超跌反弹初期", config["oversold"]["score_threshold"]),
         "overnight_latest.json": ("overnight", "隔夜高开候选", config["overnight"]["score_threshold"]),

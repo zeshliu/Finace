@@ -37,8 +37,8 @@ screening:
   allowed_boards:
     - sh_main
     - sz_main
-  price_min: 10.0
-  price_max: 20.0
+  price_min: 0.0
+  price_max: 40.0
   min_listing_trading_days: 120
   min_avg_amount_20: 50000000
   exclude_st: true
