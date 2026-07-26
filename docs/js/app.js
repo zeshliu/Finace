@@ -189,7 +189,11 @@
       animation: false,
       backgroundColor: 'transparent',
       textStyle: { color: muted, fontFamily: 'system-ui' },
-      legend: [{ top: 4, data: ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '布林上轨', '布林下轨'], textStyle: { color: muted, fontSize: 10 } }],
+      legend: [
+        { top: 4, data: ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '布林上轨', '布林下轨'], textStyle: { color: muted, fontSize: 10 } },
+        { top: 424, data: ['MACD', 'DIF', 'DEA'], textStyle: { color: muted, fontSize: 10 } },
+        { top: 522, data: ['K', 'D', 'J', 'RSI6'], textStyle: { color: muted, fontSize: 10 } }
+      ],
       tooltip: {
         trigger: 'axis',
         axisPointer: { type: 'cross' },
