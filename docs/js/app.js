@@ -234,8 +234,8 @@
         { name: 'DIF', type: 'line', data: series('dif'), xAxisIndex: 2, yAxisIndex: 2, showSymbol: false, lineStyle: { width: 1.2, color: '#e3a72f' } },
         { name: 'DEA', type: 'line', data: series('dea'), xAxisIndex: 2, yAxisIndex: 2, showSymbol: false, lineStyle: { width: 1.2, color: '#7c75d8' } },
         { name: 'K', type: 'line', data: series('k'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1, color: '#e3a72f' } },
-        { name: 'D', type: 'line', data: series('d'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1, color: '#7c75d8' } },
-        { name: 'J', type: 'line', data: series('j'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1, color: '#2795aa' } },
+        { name: 'D', type: 'line', data: series('d'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1, color: '#2795aa' } },
+        { name: 'J', type: 'line', data: series('j'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1, color: '#cc27bb' } },
         { name: 'RSI6', type: 'line', data: series('rsi6'), xAxisIndex: 3, yAxisIndex: 3, showSymbol: false, lineStyle: { width: 1.4, color: ink } }
       ]
     });
