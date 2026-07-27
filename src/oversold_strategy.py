@@ -92,7 +92,7 @@ def _state_and_score(history: pd.DataFrame, config: dict) -> tuple[dict, dict, l
     components["candle"] = 5 if latest["close"] >= latest["open"] and upper_shadow < 0.4 else (2 if upper_shadow < 0.5 else 0)
 
     avg_amount = float(history["amount"].tail(20).mean()) if "amount" in history else 0
-    min_amount = float(config["screening"]["min_avg_amount_20"])
+    min_amount = float(config["screening"]["min_avg_amount_20"] or 50_000_000)
     components["liquidity"] = round(clamp(avg_amount / (min_amount * 3)) * 5, 1)
     states = {
         "macd": "低位金叉" if low_cross else ("负柱缩短" if shrinking else ("DIF向上" if dif_up else "弱势整理")),
