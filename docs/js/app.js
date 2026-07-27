@@ -105,6 +105,7 @@
     const sort = q('#sortSelect').value;
     state.filtered = state.all.filter((item) => (!term || item.code.includes(term) || item.name.toLowerCase().includes(term)) && Number(item.price) >= min && Number(item.price) <= max);
     state.filtered.sort((a, b) => {
+      if (sort === 'days-desc') return (Number(b.selected_days) || 1) - (Number(a.selected_days) || 1);
       if (sort === 'price-asc') return Number(a.price) - Number(b.price);
       if (sort === 'change-desc') return Number(b.change_pct) - Number(a.change_pct);
       return Number(b.score) - Number(a.score);
