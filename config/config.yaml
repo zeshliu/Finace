@@ -11,12 +11,13 @@ data:
   recent_gap_results: 20
   adjust: "qfq"
   max_workers: 8
-  request_retries: 1
-  retry_seconds: 1
-  request_timeout: 8
+  request_retries: 3
+  retry_seconds: 2
+  request_timeout: 12
   spot_sources:
     - sina
     - eastmoney
+    - tencent
   history_sources:
     - sina
     - tencent

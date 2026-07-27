@@ -27,6 +27,9 @@ SPOT_RENAME = {
     "量比": "volume_ratio",
     "换手率": "turnover",
     "5分钟涨跌": "change_5m",
+    "zxj": "price",
+    "zdf": "pct_change",
+    "turnover": "amount",
 }
 
 DAILY_RENAME = {
@@ -177,7 +180,7 @@ class MarketDataProvider:
         self.retries = max(1, int(retries))
         self.retry_seconds = max(0, float(retry_seconds))
         self.timeout = timeout
-        self.spot_sources = spot_sources or ["sina", "eastmoney"]
+        self.spot_sources = spot_sources or ["sina", "eastmoney", "tencent"]
         self.history_sources = history_sources or ["sina", "tencent", "eastmoney", "baostock"]
         self.intraday_sources = intraday_sources or ["sina", "eastmoney"]
         self.sina_history_interval = max(0, float(sina_history_interval))
@@ -217,6 +220,7 @@ class MarketDataProvider:
         handlers = {
             "sina": ("新浪 A股快照", ak.stock_zh_a_spot),
             "eastmoney": ("东方财富 A股快照", ak.stock_zh_a_spot_em),
+            "tencent": ("腾讯 A股快照", ak.stock_zh_a_spot_tx),
         }
         errors: list[str] = []
         for source in self.spot_sources:
