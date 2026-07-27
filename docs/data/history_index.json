@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-27T21:36:59",
+  "updated_at": "2026-07-27T22:14:15",
   "oversold": [
     {
       "filename": "oversold_20260727_213652.json",
@@ -45,6 +45,12 @@
     }
   ],
   "overnight": [
+    {
+      "filename": "overnight_20260727_221410.json",
+      "trade_date": "2026-07-27",
+      "generated_at": "2026-07-27T22:12:49+08:00",
+      "candidate_count": 0
+    },
     {
       "filename": "overnight_20260724_091406.json",
       "trade_date": "2026-07-24",
