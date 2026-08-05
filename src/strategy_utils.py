@@ -110,6 +110,7 @@ def build_chart_data(history: pd.DataFrame, days: int = 120) -> list[dict]:
     columns = [
         "open", "close", "low", "high", "volume", "ma5", "ma10", "ma20", "ma60",
         "dif", "dea", "macd_hist", "k", "d", "j", "rsi6", "boll_upper", "boll_mid", "boll_lower",
+        "atr14", "atr_ma20", "amplitude_pct",
     ]
     records: list[dict] = []
     for _, row in history.tail(days).iterrows():

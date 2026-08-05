@@ -127,6 +127,7 @@ def update_metadata(section: str, section_data: dict, config: dict, write: bool 
         "data_sources": [
             "新浪财经（经 AKShare，主源）",
             "腾讯财经/东方财富（经 AKShare，备用）",
+            "东方财富 ETF 行情与基金分类（经 AKShare）",
             "BaoStock（备用）",
         ],
         "notice": "免费数据可能延迟或短暂不可用；内容仅供技术研究，不构成投资建议。",
@@ -142,10 +143,10 @@ def load_candidate_pool(docs_data_dir: str | Path | None = None) -> dict[str, di
     pool_file = data_dir / "candidate_pool.json"
     data = read_json(pool_file, {})
     if not isinstance(data, dict):
-        return {"oversold": {}, "overnight": {}}
+        data = {}
     return {
-        "oversold": data.get("oversold", {}) if isinstance(data.get("oversold"), dict) else {},
-        "overnight": data.get("overnight", {}) if isinstance(data.get("overnight"), dict) else {},
+        name: data.get(name, {}) if isinstance(data.get(name), dict) else {}
+        for name in ("oversold", "overnight", "t0_etf")
     }
 
 
@@ -202,16 +203,18 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
         "updated_at": datetime.now().isoformat(timespec="seconds"),
         "oversold": [],
         "overnight": [],
+        "t0_etf": [],
     }
     
     stats: dict[str, dict[str, set[str]]] = {
         "oversold": {},
         "overnight": {},
+        "t0_etf": {},
     }
 
     # 首先读取 candidate_pool 中的历史交易日
     pool = load_candidate_pool(data_dir)
-    for prefix in ("oversold", "overnight"):
+    for prefix in ("oversold", "overnight", "t0_etf"):
         for code, dates in pool.get(prefix, {}).items():
             if code not in stats[prefix]:
                 stats[prefix][code] = set()
@@ -221,7 +224,14 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
         for file_path in sorted(history_dir.glob("*.json")):
             if file_path.name.startswith("."):
                 continue
-            prefix = "oversold" if file_path.name.startswith("oversold_") else ("overnight" if file_path.name.startswith("overnight_") else None)
+            if file_path.name.startswith("oversold_"):
+                prefix = "oversold"
+            elif file_path.name.startswith("overnight_"):
+                prefix = "overnight"
+            elif file_path.name.startswith("t0_etf_"):
+                prefix = "t0_etf"
+            else:
+                prefix = None
             if not prefix:
                 continue
             data = read_json(file_path)
@@ -251,7 +261,7 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
                 if isinstance(cand_dates, list):
                     stats[prefix][code_norm].update(cand_dates)
                     
-    for prefix in ("oversold", "overnight"):
+    for prefix in ("oversold", "overnight", "t0_etf"):
         index_data[prefix].sort(key=lambda item: item.get("generated_at") or "", reverse=True)
         
     atomic_write_json(data_dir / "history_index.json", index_data)

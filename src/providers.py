@@ -32,6 +32,22 @@ SPOT_RENAME = {
     "turnover": "amount",
 }
 
+ETF_SPOT_RENAME = {
+    **SPOT_RENAME,
+    "开盘价": "open",
+    "最高价": "high",
+    "最低价": "low",
+    "昨收": "prev_close",
+    "数据日期": "data_date",
+    "更新时间": "updated_at",
+}
+
+ETF_CATALOG_RENAME = {
+    "基金代码": "code",
+    "基金简称": "name",
+    "类型": "fund_type",
+}
+
 DAILY_RENAME = {
     "日期": "date",
     "股票代码": "code",
@@ -235,6 +251,27 @@ class MarketDataProvider:
                 LOGGER.warning("%s失败，尝试下一个快照源: %s", label, exc)
         raise RuntimeError(f"所有A股快照源失败: {' | '.join(errors)}")
 
+    def get_etf_spot(self, min_rows: int = 0) -> pd.DataFrame:
+        """获取 ETF 实时行情并合并基金类型，供 T+0 品种识别使用。"""
+        import akshare as ak
+
+        raw_spot = self._retry("东方财富 ETF 快照", ak.fund_etf_spot_em)
+        spot = normalize_frame(raw_spot, ETF_SPOT_RENAME)
+        required = {"code", "name", "price", "pct_change", "volume", "amount"}
+        missing = required.difference(spot.columns)
+        if missing:
+            raise ValueError(f"ETF 快照缺少列: {', '.join(sorted(missing))}")
+        if len(spot) < int(min_rows):
+            raise RuntimeError(f"ETF 快照仅返回 {len(spot)} 行，低于完整性阈值 {min_rows}")
+
+        raw_catalog = self._retry("东方财富 ETF 基金类型", ak.fund_etf_fund_daily_em)
+        catalog = normalize_frame(raw_catalog, ETF_CATALOG_RENAME)
+        if "code" not in catalog or "fund_type" not in catalog:
+            raise ValueError("ETF 基金类型列表字段不完整")
+        type_map = catalog.drop_duplicates("code", keep="first").set_index("code")["fund_type"]
+        spot["fund_type"] = spot["code"].map(type_map).fillna("")
+        return spot.reset_index(drop=True)
+
     def get_history(self, code: str, start_date: str, end_date: str, adjust: str = "qfq") -> pd.DataFrame:
         """按配置依次尝试新浪及免费备用源。日期格式 YYYYMMDD。"""
         code = normalize_code(code)
@@ -255,6 +292,51 @@ class MarketDataProvider:
                 errors.append(f"{source}: {exc}")
                 LOGGER.warning("%s 日线失败 %s: %s", source, code, exc)
         raise RuntimeError(f"{code} 所有日线源失败: {' | '.join(errors)}")
+
+    def get_etf_history(self, code: str, start_date: str, end_date: str, adjust: str = "qfq") -> pd.DataFrame:
+        """ETF 日线：东方财富主源，新浪作为免费备用源。"""
+        import akshare as ak
+
+        code = normalize_code(code)
+        errors: list[str] = []
+        try:
+            raw = self._retry(
+                f"东方财富 ETF 日线 {code}",
+                lambda: ak.fund_etf_hist_em(
+                    symbol=code,
+                    period="daily",
+                    start_date=start_date,
+                    end_date=end_date,
+                    adjust=adjust,
+                ),
+            )
+            result = normalize_frame(raw, DAILY_RENAME, "date")
+            required = {"date", "open", "high", "low", "close", "volume", "amount"}
+            if result.empty or required.difference(result.columns):
+                raise ValueError(f"东方财富 ETF 日线 {code} 字段不完整")
+            result["code"] = code
+            return result.reset_index(drop=True)
+        except Exception as exc:
+            errors.append(f"eastmoney: {exc}")
+            LOGGER.warning("东方财富 ETF 日线失败 %s: %s", code, exc)
+
+        try:
+            symbol = exchange_code(code).replace(".", "")
+            raw = self._retry(f"新浪 ETF 日线 {code}", lambda: ak.fund_etf_hist_sina(symbol=symbol))
+            result = normalize_sina_history(raw, code)
+            start = pd.to_datetime(start_date, format="%Y%m%d", errors="coerce")
+            end = pd.to_datetime(end_date, format="%Y%m%d", errors="coerce")
+            if pd.notna(start):
+                result = result[result["date"] >= start]
+            if pd.notna(end):
+                result = result[result["date"] <= end]
+            if result.empty:
+                raise ValueError(f"新浪 ETF 日线 {code} 日期范围内为空")
+            return result.reset_index(drop=True)
+        except Exception as exc:
+            errors.append(f"sina: {exc}")
+            LOGGER.warning("新浪 ETF 日线失败 %s: %s", code, exc)
+        raise RuntimeError(f"{code} 所有 ETF 日线源失败: {' | '.join(errors)}")
 
     def get_industry(self, code: str) -> str:
         """获取东方财富细分行业；单只请求便于只查询最终候选。"""
