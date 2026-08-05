@@ -1,10 +1,10 @@
 {
   "latest_trade_date": "2026-08-05",
-  "last_updated": "2026-08-05T20:24:27+08:00",
+  "last_updated": "2026-08-05T22:20:48+08:00",
   "success": true,
-  "scanned_stocks": 2955,
-  "candidate_count": 102,
-  "last_job": "oversold",
+  "scanned_stocks": 282,
+  "candidate_count": 117,
+  "last_job": "t0_etf",
   "sections": {
     "oversold": {
       "latest_trade_date": "2026-08-05",
@@ -25,17 +25,18 @@
     },
     "t0_etf": {
       "latest_trade_date": "2026-08-05",
-      "last_updated": "2026-08-05T11:34:36+08:00",
+      "last_updated": "2026-08-05T22:20:48+08:00",
       "success": true,
       "scanned_stocks": 282,
       "eligible_etfs": 282,
-      "candidate_count": 112,
+      "candidate_count": 117,
       "failed_stocks": 0
     }
   },
   "data_sources": [
     "新浪财经（经 AKShare，主源）",
     "腾讯财经/东方财富（经 AKShare，备用）",
+    "东方财富 ETF 行情与基金分类（经 AKShare）",
     "BaoStock（备用）"
   ],
   "notice": "免费数据可能延迟或短暂不可用；内容仅供技术研究，不构成投资建议。"
