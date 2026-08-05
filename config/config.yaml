@@ -6,11 +6,13 @@ site:
 data:
   # 220个自然日通常覆盖约145-155个交易日，满足120日图表并留出停牌/节假日缓冲
   history_lookback_days: 220
+  etf_history_lookback_days: 260
   chart_days: 120
   overnight_stat_days: 60
   recent_gap_results: 20
   adjust: "qfq"
   max_workers: 8
+  etf_max_workers: 4
   request_retries: 3
   retry_seconds: 2
   request_timeout: 12
@@ -31,7 +33,9 @@ data:
   intraday_period_minutes: 5
   intraday_shortlist: 300
   min_spot_rows: 1000
+  min_etf_spot_rows: 1000
   min_history_coverage: 0.70
+  min_etf_history_coverage: 0.75
   min_intraday_coverage: 0.50
 
 screening:
@@ -76,3 +80,10 @@ overnight:
   min_range_position: 0.45
   long_upper_shadow_ratio: 0.50
   abnormal_volume_ratio: 3.0
+
+t0_etf:
+  score_threshold: 60
+  min_avg_amount_20: 50000000
+  min_avg_amplitude_20: 0.8
+  min_current_amount: 5000000
+  atr_abnormal_multiplier: 2.0

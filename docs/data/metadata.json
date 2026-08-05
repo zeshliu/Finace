@@ -22,6 +22,15 @@
       "candidate_count": 0,
       "minute_checked_stocks": 300,
       "failed_stocks": 0
+    },
+    "t0_etf": {
+      "latest_trade_date": "2026-08-05",
+      "last_updated": "2026-08-05T11:34:36+08:00",
+      "success": true,
+      "scanned_stocks": 282,
+      "eligible_etfs": 282,
+      "candidate_count": 112,
+      "failed_stocks": 0
     }
   },
   "data_sources": [

@@ -1,0 +1,4140 @@
+{
+  "strategy": "t0_etf",
+  "title": "T+0 ETF",
+  "trade_date": "2026-08-05",
+  "generated_at": "2026-08-05T11:34:36+08:00",
+  "score_threshold": 60,
+  "scanned_stocks": 282,
+  "eligible_etfs": 282,
+  "failed_stocks": 0,
+  "candidates": [
+    {
+      "code": "159513",
+      "name": "纳斯达克100ETF大成",
+      "category": "跨境ETF",
+      "price": 1.834,
+      "change_pct": 3.15,
+      "score": 85.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 76.83,
+      "atr14": 0.0351,
+      "atr_pct": 1.92,
+      "amount": 190156474.0,
+      "avg_amount_20": 132257752.0,
+      "avg_amplitude_20": 1.08,
+      "volume_ratio": 2.38,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159632",
+      "name": "纳斯达克ETF华安",
+      "category": "跨境ETF",
+      "price": 2.494,
+      "change_pct": 3.23,
+      "score": 85.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.38,
+      "atr14": 0.0487,
+      "atr_pct": 1.95,
+      "amount": 361336742.0,
+      "avg_amount_20": 310860754.0,
+      "avg_amplitude_20": 1.07,
+      "volume_ratio": 2.21,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513110",
+      "name": "纳指ETF华泰柏瑞",
+      "category": "跨境ETF",
+      "price": 2.521,
+      "change_pct": 3.15,
+      "score": 85.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.08,
+      "atr14": 0.0493,
+      "atr_pct": 1.95,
+      "amount": 194989524.0,
+      "avg_amount_20": 176304908.0,
+      "avg_amplitude_20": 1.15,
+      "volume_ratio": 1.59,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513870",
+      "name": "纳指ETF富国",
+      "category": "跨境ETF",
+      "price": 2.101,
+      "change_pct": 3.14,
+      "score": 85.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 76.78,
+      "atr14": 0.04,
+      "atr_pct": 1.91,
+      "amount": 145881124.0,
+      "avg_amount_20": 119592121.0,
+      "avg_amplitude_20": 1.11,
+      "volume_ratio": 2.29,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159509",
+      "name": "纳指科技ETF景顺",
+      "category": "跨境ETF",
+      "price": 2.835,
+      "change_pct": 4.15,
+      "score": 84.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 15.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 79.47,
+      "atr14": 0.0685,
+      "atr_pct": 2.41,
+      "amount": 548577305.0,
+      "avg_amount_20": 710790836.0,
+      "avg_amplitude_20": 1.65,
+      "volume_ratio": 1.66,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159655",
+      "name": "标普500ETF华夏",
+      "category": "跨境ETF",
+      "price": 2.013,
+      "change_pct": 2.91,
+      "score": 83.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 13.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 79.94,
+      "atr14": 0.0286,
+      "atr_pct": 1.42,
+      "amount": 135314541.0,
+      "avg_amount_20": 94864880.0,
+      "avg_amplitude_20": 1.03,
+      "volume_ratio": 2.35,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513500",
+      "name": "标普500ETF博时",
+      "category": "跨境ETF",
+      "price": 2.649,
+      "change_pct": 2.59,
+      "score": 83.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 9.0,
+        "成交量与量比": 15.0,
+        "RSI": 4.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 80.11,
+      "atr14": 0.0365,
+      "atr_pct": 1.38,
+      "amount": 461199801.0,
+      "avg_amount_20": 365173523.0,
+      "avg_amplitude_20": 0.99,
+      "volume_ratio": 2.38,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限",
+        "RSI偏高，短线可能过热"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513850",
+      "name": "美国50ETF易方达",
+      "category": "跨境ETF",
+      "price": 1.858,
+      "change_pct": 1.47,
+      "score": 83.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 11.0,
+        "均线": 20.0,
+        "ATR": 15.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "高位钝化",
+      "ma_state": "多头排列",
+      "rsi6": 78.81,
+      "atr14": 0.033,
+      "atr_pct": 1.78,
+      "amount": 168729883.0,
+      "avg_amount_20": 75903593.0,
+      "avg_amplitude_20": 1.24,
+      "volume_ratio": 3.96,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升"
+      ],
+      "risks": [
+        "量比偏高，注意冲高回落"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159501",
+      "name": "纳指ETF嘉实",
+      "category": "跨境ETF",
+      "price": 2.105,
+      "change_pct": 2.88,
+      "score": 82.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 79.17,
+      "atr14": 0.0362,
+      "atr_pct": 1.72,
+      "amount": 95797210.0,
+      "avg_amount_20": 109108423.0,
+      "avg_amplitude_20": 1.05,
+      "volume_ratio": 1.74,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159660",
+      "name": "纳指ETF汇添富",
+      "category": "跨境ETF",
+      "price": 2.407,
+      "change_pct": 3.22,
+      "score": 82.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.03,
+      "atr14": 0.0467,
+      "atr_pct": 1.94,
+      "amount": 172431939.0,
+      "avg_amount_20": 112191969.0,
+      "avg_amplitude_20": 1.09,
+      "volume_ratio": 2.84,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升"
+      ],
+      "risks": [
+        "量比偏高，注意冲高回落"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513100",
+      "name": "纳指ETF国泰",
+      "category": "跨境ETF",
+      "price": 2.256,
+      "change_pct": 2.92,
+      "score": 82.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 78.68,
+      "atr14": 0.0448,
+      "atr_pct": 1.99,
+      "amount": 210960412.0,
+      "avg_amount_20": 393175026.0,
+      "avg_amplitude_20": 1.06,
+      "volume_ratio": 1.34,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513390",
+      "name": "纳指100ETF博时",
+      "category": "跨境ETF",
+      "price": 2.47,
+      "change_pct": 3.26,
+      "score": 82.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.38,
+      "atr14": 0.0501,
+      "atr_pct": 2.03,
+      "amount": 127100757.0,
+      "avg_amount_20": 193383708.0,
+      "avg_amplitude_20": 1.18,
+      "volume_ratio": 1.64,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159269",
+      "name": "港股通科技ETF南方",
+      "category": "跨境ETF",
+      "price": 0.887,
+      "change_pct": 1.49,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.67,
+      "atr14": 0.0229,
+      "atr_pct": 2.58,
+      "amount": 94165992.0,
+      "avg_amount_20": 119360306.0,
+      "avg_amplitude_20": 2.7,
+      "volume_ratio": 1.38,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159366",
+      "name": "港股医疗ETF永赢",
+      "category": "跨境ETF",
+      "price": 1.324,
+      "change_pct": -0.15,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 66.2,
+      "atr14": 0.0421,
+      "atr_pct": 3.18,
+      "amount": 93926472.0,
+      "avg_amount_20": 134056175.0,
+      "avg_amplitude_20": 3.38,
+      "volume_ratio": 1.76,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159659",
+      "name": "纳斯达克100ETF招商",
+      "category": "跨境ETF",
+      "price": 2.378,
+      "change_pct": 3.17,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 9.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.49,
+      "atr14": 0.0446,
+      "atr_pct": 1.88,
+      "amount": 247534781.0,
+      "avg_amount_20": 199705345.0,
+      "avg_amplitude_20": 1.0,
+      "volume_ratio": 2.19,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513020",
+      "name": "港股科技ETF国泰",
+      "category": "跨境ETF",
+      "price": 0.986,
+      "change_pct": 1.54,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 69.45,
+      "atr14": 0.0247,
+      "atr_pct": 2.5,
+      "amount": 176555730.0,
+      "avg_amount_20": 222439032.0,
+      "avg_amplitude_20": 2.56,
+      "volume_ratio": 2.06,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513150",
+      "name": "港股通科技ETF华泰柏瑞",
+      "category": "跨境ETF",
+      "price": 0.997,
+      "change_pct": 1.42,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.19,
+      "atr14": 0.0251,
+      "atr_pct": 2.52,
+      "amount": 61779298.0,
+      "avg_amount_20": 116203457.0,
+      "avg_amplitude_20": 2.69,
+      "volume_ratio": 1.1,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513980",
+      "name": "港股科技ETF景顺",
+      "category": "跨境ETF",
+      "price": 0.63,
+      "change_pct": 1.61,
+      "score": 81.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.64,
+      "atr14": 0.0161,
+      "atr_pct": 2.56,
+      "amount": 278242730.0,
+      "avg_amount_20": 544462826.0,
+      "avg_amplitude_20": 2.59,
+      "volume_ratio": 1.2,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159696",
+      "name": "纳指ETF易方达",
+      "category": "跨境ETF",
+      "price": 2.065,
+      "change_pct": 2.94,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 77.46,
+      "atr14": 0.0376,
+      "atr_pct": 1.82,
+      "amount": 52798342.0,
+      "avg_amount_20": 71432723.0,
+      "avg_amplitude_20": 1.07,
+      "volume_ratio": 1.01,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159934",
+      "name": "黄金ETF易方达",
+      "category": "黄金ETF",
+      "price": 8.926,
+      "change_pct": 1.57,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 15.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.83,
+      "atr14": 0.1199,
+      "atr_pct": 1.34,
+      "amount": 627929842.0,
+      "avg_amount_20": 564772447.0,
+      "avg_amplitude_20": 0.86,
+      "volume_ratio": 2.28,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513650",
+      "name": "标普500ETF南方",
+      "category": "跨境ETF",
+      "price": 2.007,
+      "change_pct": 2.61,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 9.0,
+        "成交量与量比": 12.0,
+        "RSI": 4.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 81.12,
+      "atr14": 0.0282,
+      "atr_pct": 1.4,
+      "amount": 236013265.0,
+      "avg_amount_20": 277183674.0,
+      "avg_amplitude_20": 0.99,
+      "volume_ratio": 1.98,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限",
+        "RSI偏高，短线可能过热"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518600",
+      "name": "金ETF广发",
+      "category": "黄金ETF",
+      "price": 8.903,
+      "change_pct": 1.6,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 15.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 66.0,
+      "atr14": 0.1194,
+      "atr_pct": 1.34,
+      "amount": 150875536.0,
+      "avg_amount_20": 126559323.0,
+      "avg_amplitude_20": 0.83,
+      "volume_ratio": 2.18,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518680",
+      "name": "金ETF富国",
+      "category": "黄金ETF",
+      "price": 8.949,
+      "change_pct": 1.64,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 15.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.65,
+      "atr14": 0.1206,
+      "atr_pct": 1.35,
+      "amount": 121487322.0,
+      "avg_amount_20": 109531960.0,
+      "avg_amplitude_20": 0.85,
+      "volume_ratio": 2.47,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518800",
+      "name": "黄金ETF国泰",
+      "category": "黄金ETF",
+      "price": 8.955,
+      "change_pct": 1.59,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 15.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.67,
+      "atr14": 0.1203,
+      "atr_pct": 1.34,
+      "amount": 451876669.0,
+      "avg_amount_20": 410172389.0,
+      "avg_amplitude_20": 0.85,
+      "volume_ratio": 2.24,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520650",
+      "name": "港股通互联网ETF南方",
+      "category": "跨境ETF",
+      "price": 0.661,
+      "change_pct": 0.76,
+      "score": 80.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 11.0,
+        "均线": 20.0,
+        "ATR": 10.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "偏弱",
+      "ma_state": "多头排列",
+      "rsi6": 72.95,
+      "atr14": 0.0252,
+      "atr_pct": 3.81,
+      "amount": 146668508.0,
+      "avg_amount_20": 181364388.0,
+      "avg_amplitude_20": 3.76,
+      "volume_ratio": 1.36,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159137",
+      "name": "港股通医疗ETF华宝",
+      "category": "跨境ETF",
+      "price": 0.885,
+      "change_pct": 0.0,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 65.77,
+      "atr14": 0.0285,
+      "atr_pct": 3.22,
+      "amount": 37218536.0,
+      "avg_amount_20": 64162513.0,
+      "avg_amplitude_20": 3.4,
+      "volume_ratio": 1.48,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159167",
+      "name": "港股通医疗ETF工银",
+      "category": "跨境ETF",
+      "price": 0.875,
+      "change_pct": 0.57,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 66.86,
+      "atr14": 0.0294,
+      "atr_pct": 3.36,
+      "amount": 18601303.0,
+      "avg_amount_20": 52076191.0,
+      "avg_amplitude_20": 3.78,
+      "volume_ratio": 1.55,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159577",
+      "name": "美国50ETF汇添富",
+      "category": "跨境ETF",
+      "price": 1.666,
+      "change_pct": 1.65,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 11.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 13.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "高位钝化",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 78.93,
+      "atr14": 0.03,
+      "atr_pct": 1.8,
+      "amount": 104405113.0,
+      "avg_amount_20": 75843095.0,
+      "avg_amplitude_20": 1.19,
+      "volume_ratio": 2.46,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159751",
+      "name": "港股通科技ETF鹏华",
+      "category": "跨境ETF",
+      "price": 0.916,
+      "change_pct": 1.33,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 67.96,
+      "atr14": 0.0224,
+      "atr_pct": 2.45,
+      "amount": 34604642.0,
+      "avg_amount_20": 68710655.0,
+      "avg_amplitude_20": 2.54,
+      "volume_ratio": 1.04,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520510",
+      "name": "港股通医疗ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.866,
+      "change_pct": -0.69,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 11.0,
+        "均线": 20.0,
+        "ATR": 9.0,
+        "成交量与量比": 9.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "偏弱",
+      "ma_state": "多头排列",
+      "rsi6": 63.35,
+      "atr14": 0.0289,
+      "atr_pct": 3.34,
+      "amount": 140011674.0,
+      "avg_amount_20": 153978296.0,
+      "avg_amplitude_20": 3.47,
+      "volume_ratio": 2.6,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR连续上升",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "量比偏高，注意冲高回落"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520530",
+      "name": "港股通科技ETF东财",
+      "category": "跨境ETF",
+      "price": 0.841,
+      "change_pct": 1.2,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.6,
+      "atr14": 0.0203,
+      "atr_pct": 2.42,
+      "amount": 26301593.0,
+      "avg_amount_20": 50027058.0,
+      "avg_amplitude_20": 2.45,
+      "volume_ratio": 1.01,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520600",
+      "name": "港股通汽车ETF广发",
+      "category": "跨境ETF",
+      "price": 1.075,
+      "change_pct": 1.22,
+      "score": 79.0,
+      "score_components": {
+        "MACD": 16.0,
+        "KDJ": 20.0,
+        "均线": 17.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头收敛",
+      "kdj_state": "金叉向上",
+      "ma_state": "多头排列",
+      "rsi6": 58.92,
+      "atr14": 0.0288,
+      "atr_pct": 2.68,
+      "amount": 115525508.0,
+      "avg_amount_20": 189278153.0,
+      "avg_amplitude_20": 2.77,
+      "volume_ratio": 1.12,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159636",
+      "name": "港股通科技30ETF工银",
+      "category": "跨境ETF",
+      "price": 0.549,
+      "change_pct": 1.29,
+      "score": 78.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.58,
+      "atr14": 0.0151,
+      "atr_pct": 2.75,
+      "amount": 274181551.0,
+      "avg_amount_20": 594193702.0,
+      "avg_amplitude_20": 2.79,
+      "volume_ratio": 1.23,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159941",
+      "name": "纳指ETF广发",
+      "category": "跨境ETF",
+      "price": 1.683,
+      "change_pct": 3.19,
+      "score": 78.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 13.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 78.2,
+      "atr14": 0.0338,
+      "atr_pct": 2.01,
+      "amount": 606573373.0,
+      "avg_amount_20": 1158030539.0,
+      "avg_amplitude_20": 1.18,
+      "volume_ratio": 0.98,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513000",
+      "name": "日经225ETF易方达",
+      "category": "跨境ETF",
+      "price": 2.307,
+      "change_pct": 3.59,
+      "score": 78.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 10.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 67.73,
+      "atr14": 0.0742,
+      "atr_pct": 3.22,
+      "amount": 175116256.0,
+      "avg_amount_20": 258563395.0,
+      "avg_amplitude_20": 2.26,
+      "volume_ratio": 0.95,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513580",
+      "name": "恒生科技ETF华安",
+      "category": "跨境ETF",
+      "price": 0.619,
+      "change_pct": 0.98,
+      "score": 78.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 69.98,
+      "atr14": 0.0154,
+      "atr_pct": 2.48,
+      "amount": 70433101.0,
+      "avg_amount_20": 145207038.0,
+      "avg_amplitude_20": 2.46,
+      "volume_ratio": 1.16,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513800",
+      "name": "日本东证指数ETF南方",
+      "category": "跨境ETF",
+      "price": 1.86,
+      "change_pct": 1.69,
+      "score": 78.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 10.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 67.69,
+      "atr14": 0.0343,
+      "atr_pct": 1.84,
+      "amount": 56638064.0,
+      "avg_amount_20": 106088873.0,
+      "avg_amplitude_20": 1.39,
+      "volume_ratio": 0.81,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159937",
+      "name": "黄金ETF博时",
+      "category": "黄金ETF",
+      "price": 8.524,
+      "change_pct": 1.65,
+      "score": 77.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.72,
+      "atr14": 0.1152,
+      "atr_pct": 1.35,
+      "amount": 444994864.0,
+      "avg_amount_20": 445852564.0,
+      "avg_amplitude_20": 0.86,
+      "volume_ratio": 2.07,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518660",
+      "name": "黄金ETF工银",
+      "category": "黄金ETF",
+      "price": 8.571,
+      "change_pct": 1.62,
+      "score": 77.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.66,
+      "atr14": 0.1154,
+      "atr_pct": 1.35,
+      "amount": 107784397.0,
+      "avg_amount_20": 129810532.0,
+      "avg_amplitude_20": 0.84,
+      "volume_ratio": 1.32,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518850",
+      "name": "黄金ETF华夏",
+      "category": "黄金ETF",
+      "price": 8.632,
+      "change_pct": 1.65,
+      "score": 77.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 66.22,
+      "atr14": 0.1158,
+      "atr_pct": 1.34,
+      "amount": 273190355.0,
+      "avg_amount_20": 287999572.0,
+      "avg_amplitude_20": 0.83,
+      "volume_ratio": 1.97,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "518880",
+      "name": "黄金ETF华安",
+      "category": "黄金ETF",
+      "price": 8.545,
+      "change_pct": 1.63,
+      "score": 77.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 65.56,
+      "atr14": 0.1155,
+      "atr_pct": 1.35,
+      "amount": 3403028426.0,
+      "avg_amount_20": 2544844007.0,
+      "avg_amplitude_20": 0.84,
+      "volume_ratio": 2.59,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限",
+        "量比偏高，注意冲高回落"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513300",
+      "name": "纳斯达克ETF华夏",
+      "category": "跨境ETF",
+      "price": 2.741,
+      "change_pct": 2.85,
+      "score": 76.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 15.0,
+        "成交量与量比": 4.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 75.95,
+      "atr14": 0.0559,
+      "atr_pct": 2.04,
+      "amount": 192910680.0,
+      "avg_amount_20": 364037976.0,
+      "avg_amplitude_20": 1.26,
+      "volume_ratio": 0.79,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "ATR连续上升"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513520",
+      "name": "日经ETF华夏",
+      "category": "跨境ETF",
+      "price": 2.296,
+      "change_pct": 3.24,
+      "score": 76.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 69.53,
+      "atr14": 0.0769,
+      "atr_pct": 3.35,
+      "amount": 302465072.0,
+      "avg_amount_20": 464160412.0,
+      "avg_amplitude_20": 2.28,
+      "volume_ratio": 1.12,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520630",
+      "name": "港股通互联网ETF广发",
+      "category": "跨境ETF",
+      "price": 0.735,
+      "change_pct": 0.68,
+      "score": 76.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 13.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 75.43,
+      "atr14": 0.0255,
+      "atr_pct": 3.47,
+      "amount": 64198835.0,
+      "avg_amount_20": 60228234.0,
+      "avg_amplitude_20": 3.63,
+      "volume_ratio": 1.97,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159568",
+      "name": "港股互联网ETF博时",
+      "category": "跨境ETF",
+      "price": 1.255,
+      "change_pct": 0.72,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 74.73,
+      "atr14": 0.0408,
+      "atr_pct": 3.25,
+      "amount": 120349534.0,
+      "avg_amount_20": 183237228.0,
+      "avg_amplitude_20": 3.32,
+      "volume_ratio": 1.19,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159607",
+      "name": "中概互联网ETF嘉实",
+      "category": "跨境ETF",
+      "price": 0.872,
+      "change_pct": 0.81,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 73.88,
+      "atr14": 0.0242,
+      "atr_pct": 2.78,
+      "amount": 144850931.0,
+      "avg_amount_20": 200380573.0,
+      "avg_amplitude_20": 2.72,
+      "volume_ratio": 1.32,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159688",
+      "name": "恒生互联网ETF华安",
+      "category": "跨境ETF",
+      "price": 0.841,
+      "change_pct": 0.96,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 73.91,
+      "atr14": 0.0252,
+      "atr_pct": 3.0,
+      "amount": 88256853.0,
+      "avg_amount_20": 166737871.0,
+      "avg_amplitude_20": 2.95,
+      "volume_ratio": 1.01,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159740",
+      "name": "恒生科技ETF大成",
+      "category": "跨境ETF",
+      "price": 0.614,
+      "change_pct": 1.15,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 71.1,
+      "atr14": 0.0154,
+      "atr_pct": 2.51,
+      "amount": 751245486.0,
+      "avg_amount_20": 1342214338.0,
+      "avg_amplitude_20": 2.49,
+      "volume_ratio": 1.16,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159741",
+      "name": "恒生科技ETF嘉实",
+      "category": "跨境ETF",
+      "price": 0.616,
+      "change_pct": 0.98,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.47,
+      "atr14": 0.0149,
+      "atr_pct": 2.41,
+      "amount": 100329847.0,
+      "avg_amount_20": 164927662.0,
+      "avg_amplitude_20": 2.37,
+      "volume_ratio": 1.34,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159742",
+      "name": "恒生科技ETF博时",
+      "category": "跨境ETF",
+      "price": 0.631,
+      "change_pct": 1.12,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.42,
+      "atr14": 0.0159,
+      "atr_pct": 2.52,
+      "amount": 120755732.0,
+      "avg_amount_20": 235352633.0,
+      "avg_amplitude_20": 2.49,
+      "volume_ratio": 1.15,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159747",
+      "name": "香港科技ETF南方",
+      "category": "跨境ETF",
+      "price": 1.239,
+      "change_pct": 0.98,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 71.32,
+      "atr14": 0.0299,
+      "atr_pct": 2.42,
+      "amount": 44886630.0,
+      "avg_amount_20": 104956975.0,
+      "avg_amplitude_20": 2.46,
+      "volume_ratio": 1.14,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159834",
+      "name": "金ETF南方",
+      "category": "黄金ETF",
+      "price": 8.928,
+      "change_pct": 1.7,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 20.0,
+        "均线": 15.0,
+        "ATR": 0.0,
+        "成交量与量比": 10.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 66.4,
+      "atr14": 0.1219,
+      "atr_pct": 1.37,
+      "amount": 116541023.0,
+      "avg_amount_20": 61588684.0,
+      "avg_amplitude_20": 0.89,
+      "volume_ratio": 3.18,
+      "reasons": [
+        "MACD动能改善",
+        "KDJ金叉",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限",
+        "量比偏高，注意冲高回落"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513010",
+      "name": "恒生科技ETF易方达",
+      "category": "跨境ETF",
+      "price": 0.642,
+      "change_pct": 0.94,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.13,
+      "atr14": 0.016,
+      "atr_pct": 2.49,
+      "amount": 634040424.0,
+      "avg_amount_20": 1188369193.0,
+      "avg_amplitude_20": 2.5,
+      "volume_ratio": 1.16,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513050",
+      "name": "中概互联网ETF易方达",
+      "category": "跨境ETF",
+      "price": 1.193,
+      "change_pct": 1.27,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 78.18,
+      "atr14": 0.0353,
+      "atr_pct": 2.96,
+      "amount": 2241481741.0,
+      "avg_amount_20": 3377219643.0,
+      "avg_amplitude_20": 2.88,
+      "volume_ratio": 1.23,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513130",
+      "name": "恒生科技ETF华泰柏瑞",
+      "category": "跨境ETF",
+      "price": 0.613,
+      "change_pct": 0.99,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.4,
+      "atr14": 0.0152,
+      "atr_pct": 2.47,
+      "amount": 2021237540.0,
+      "avg_amount_20": 3668582635.0,
+      "avg_amplitude_20": 2.49,
+      "volume_ratio": 1.12,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513180",
+      "name": "恒生科技ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.623,
+      "change_pct": 0.97,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.81,
+      "atr14": 0.0153,
+      "atr_pct": 2.45,
+      "amount": 2026704581.0,
+      "avg_amount_20": 3831289537.0,
+      "avg_amplitude_20": 2.46,
+      "volume_ratio": 1.07,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513260",
+      "name": "恒生科技ETF汇添富",
+      "category": "跨境ETF",
+      "price": 1.198,
+      "change_pct": 0.93,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.38,
+      "atr14": 0.0294,
+      "atr_pct": 2.45,
+      "amount": 228310550.0,
+      "avg_amount_20": 429701259.0,
+      "avg_amplitude_20": 2.4,
+      "volume_ratio": 1.12,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513330",
+      "name": "恒生互联网ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.414,
+      "change_pct": 0.73,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 77.22,
+      "atr14": 0.0126,
+      "atr_pct": 3.05,
+      "amount": 1937709223.0,
+      "avg_amount_20": 2705915118.0,
+      "avg_amplitude_20": 3.02,
+      "volume_ratio": 1.34,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513380",
+      "name": "恒生科技ETF广发",
+      "category": "跨境ETF",
+      "price": 0.565,
+      "change_pct": 0.89,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.73,
+      "atr14": 0.0139,
+      "atr_pct": 2.46,
+      "amount": 151672911.0,
+      "avg_amount_20": 292488828.0,
+      "avg_amplitude_20": 2.43,
+      "volume_ratio": 1.08,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513560",
+      "name": "香港科技ETF兴银",
+      "category": "跨境ETF",
+      "price": 1.168,
+      "change_pct": 1.57,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 6.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.89,
+      "atr14": 0.0285,
+      "atr_pct": 2.44,
+      "amount": 34400260.0,
+      "avg_amount_20": 71038569.0,
+      "avg_amplitude_20": 2.47,
+      "volume_ratio": 0.93,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513770",
+      "name": "港股互联网ETF华宝",
+      "category": "跨境ETF",
+      "price": 0.391,
+      "change_pct": 0.77,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 76.05,
+      "atr14": 0.0131,
+      "atr_pct": 3.36,
+      "amount": 446613807.0,
+      "avg_amount_20": 866413550.0,
+      "avg_amplitude_20": 3.38,
+      "volume_ratio": 1.02,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520570",
+      "name": "恒生科技ETF南方",
+      "category": "跨境ETF",
+      "price": 0.788,
+      "change_pct": 1.03,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.85,
+      "atr14": 0.0197,
+      "atr_pct": 2.5,
+      "amount": 94367996.0,
+      "avg_amount_20": 145114957.0,
+      "avg_amplitude_20": 2.47,
+      "volume_ratio": 1.24,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520920",
+      "name": "恒生科技ETF天弘",
+      "category": "跨境ETF",
+      "price": 0.73,
+      "change_pct": 1.11,
+      "score": 75.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.93,
+      "atr14": 0.0178,
+      "atr_pct": 2.44,
+      "amount": 145194647.0,
+      "avg_amount_20": 273357222.0,
+      "avg_amplitude_20": 2.4,
+      "volume_ratio": 1.09,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159101",
+      "name": "港股通科技ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.778,
+      "change_pct": 1.3,
+      "score": 74.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.19,
+      "atr14": 0.0195,
+      "atr_pct": 2.5,
+      "amount": 134969040.0,
+      "avg_amount_20": 274289466.0,
+      "avg_amplitude_20": 2.52,
+      "volume_ratio": 0.92,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159128",
+      "name": "港股科技ETF天弘",
+      "category": "跨境ETF",
+      "price": 0.763,
+      "change_pct": 1.19,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.3,
+      "atr14": 0.0204,
+      "atr_pct": 2.68,
+      "amount": 79271159.0,
+      "avg_amount_20": 89470203.0,
+      "avg_amplitude_20": 2.81,
+      "volume_ratio": 1.73,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159152",
+      "name": "港股通科技ETF平安",
+      "category": "跨境ETF",
+      "price": 0.822,
+      "change_pct": 1.99,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 73.68,
+      "atr14": 0.0221,
+      "atr_pct": 2.68,
+      "amount": 48948389.0,
+      "avg_amount_20": 53893913.0,
+      "avg_amplitude_20": 2.72,
+      "volume_ratio": 1.52,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159170",
+      "name": "港股通互联网ETF永赢",
+      "category": "跨境ETF",
+      "price": 0.93,
+      "change_pct": 1.09,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 76.23,
+      "atr14": 0.0334,
+      "atr_pct": 3.59,
+      "amount": 41346900.0,
+      "avg_amount_20": 76558257.0,
+      "avg_amplitude_20": 4.08,
+      "volume_ratio": 1.09,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513220",
+      "name": "中概互联ETF招商",
+      "category": "跨境ETF",
+      "price": 1.031,
+      "change_pct": 0.98,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 78.8,
+      "atr14": 0.0267,
+      "atr_pct": 2.59,
+      "amount": 34945631.0,
+      "avg_amount_20": 51202948.0,
+      "avg_amplitude_20": 2.65,
+      "volume_ratio": 1.23,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513860",
+      "name": "港股通科技ETF海富通",
+      "category": "跨境ETF",
+      "price": 0.627,
+      "change_pct": 1.46,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 4.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 68.14,
+      "atr14": 0.016,
+      "atr_pct": 2.55,
+      "amount": 80795040.0,
+      "avg_amount_20": 206683060.0,
+      "avg_amplitude_20": 2.61,
+      "volume_ratio": 0.79,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520840",
+      "name": "港股通恒生科技ETF华安",
+      "category": "跨境ETF",
+      "price": 0.813,
+      "change_pct": 1.37,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 72.45,
+      "atr14": 0.0212,
+      "atr_pct": 2.61,
+      "amount": 48920829.0,
+      "avg_amount_20": 87378162.0,
+      "avg_amplitude_20": 2.64,
+      "volume_ratio": 1.12,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520910",
+      "name": "港股通互联网ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.699,
+      "change_pct": 1.01,
+      "score": 73.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 10.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 74.84,
+      "atr14": 0.0227,
+      "atr_pct": 3.25,
+      "amount": 47950815.0,
+      "avg_amount_20": 62297552.0,
+      "avg_amplitude_20": 3.31,
+      "volume_ratio": 1.6,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159687",
+      "name": "亚太精选ETF南方",
+      "category": "跨境ETF",
+      "price": 1.832,
+      "change_pct": 2.0,
+      "score": 72.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 64.44,
+      "atr14": 0.062,
+      "atr_pct": 3.38,
+      "amount": 177508224.0,
+      "avg_amount_20": 423921768.0,
+      "avg_amplitude_20": 2.31,
+      "volume_ratio": 0.87,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159866",
+      "name": "日经ETF工银",
+      "category": "跨境ETF",
+      "price": 1.704,
+      "change_pct": 3.46,
+      "score": 72.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 69.17,
+      "atr14": 0.0528,
+      "atr_pct": 3.1,
+      "amount": 193589344.0,
+      "avg_amount_20": 310956792.0,
+      "avg_amplitude_20": 2.14,
+      "volume_ratio": 0.89,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513360",
+      "name": "教育ETF博时",
+      "category": "跨境ETF",
+      "price": 0.476,
+      "change_pct": 1.49,
+      "score": 72.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 8.0,
+        "均线": 20.0,
+        "ATR": 10.0,
+        "成交量与量比": 13.0,
+        "RSI": 1.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "高位钝化",
+      "ma_state": "多头排列",
+      "rsi6": 85.22,
+      "atr14": 0.0112,
+      "atr_pct": 2.35,
+      "amount": 122671505.0,
+      "avg_amount_20": 91219542.0,
+      "avg_amplitude_20": 2.43,
+      "volume_ratio": 1.3,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值",
+        "量比温和放大"
+      ],
+      "risks": [
+        "RSI偏高，短线可能过热"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513880",
+      "name": "日经225ETF华安",
+      "category": "跨境ETF",
+      "price": 2.146,
+      "change_pct": 3.32,
+      "score": 72.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 68.19,
+      "atr14": 0.072,
+      "atr_pct": 3.36,
+      "amount": 184007466.0,
+      "avg_amount_20": 329473814.0,
+      "avg_amplitude_20": 2.44,
+      "volume_ratio": 0.86,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159131",
+      "name": "港股通信息技术ETF华宝",
+      "category": "跨境ETF",
+      "price": 0.959,
+      "change_pct": 2.68,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 59.64,
+      "atr14": 0.042,
+      "atr_pct": 4.38,
+      "amount": 1336226755.0,
+      "avg_amount_20": 2806972313.0,
+      "avg_amplitude_20": 4.25,
+      "volume_ratio": 1.0,
+      "reasons": [
+        "MACD动能改善",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159196",
+      "name": "港股通信息技术ETF易方达",
+      "category": "跨境ETF",
+      "price": 1.227,
+      "change_pct": 2.85,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.63,
+      "atr14": 0.0547,
+      "atr_pct": 4.46,
+      "amount": 276941062.0,
+      "avg_amount_20": 557730229.0,
+      "avg_amplitude_20": 4.3,
+      "volume_ratio": 1.01,
+      "reasons": [
+        "MACD动能改善",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159202",
+      "name": "恒生互联网ETF万家",
+      "category": "跨境ETF",
+      "price": 0.893,
+      "change_pct": 0.45,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 8.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "高位钝化",
+      "ma_state": "多头排列",
+      "rsi6": 75.9,
+      "atr14": 0.0272,
+      "atr_pct": 3.04,
+      "amount": 142210090.0,
+      "avg_amount_20": 226485911.0,
+      "avg_amplitude_20": 3.02,
+      "volume_ratio": 1.05,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159605",
+      "name": "中概互联ETF广发",
+      "category": "跨境ETF",
+      "price": 0.877,
+      "change_pct": 1.15,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 75.55,
+      "atr14": 0.0241,
+      "atr_pct": 2.74,
+      "amount": 219901911.0,
+      "avg_amount_20": 427634338.0,
+      "avg_amplitude_20": 2.65,
+      "volume_ratio": 0.97,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159750",
+      "name": "港股科技50ETF招商",
+      "category": "跨境ETF",
+      "price": 0.911,
+      "change_pct": 0.89,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.79,
+      "atr14": 0.0229,
+      "atr_pct": 2.52,
+      "amount": 43893390.0,
+      "avg_amount_20": 104145300.0,
+      "avg_amplitude_20": 2.52,
+      "volume_ratio": 0.84,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159792",
+      "name": "港股通互联网ETF富国",
+      "category": "跨境ETF",
+      "price": 0.637,
+      "change_pct": 0.47,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 16.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头收敛",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 73.03,
+      "atr14": 0.022,
+      "atr_pct": 3.45,
+      "amount": 1814572463.0,
+      "avg_amount_20": 3264533161.0,
+      "avg_amplitude_20": 3.49,
+      "volume_ratio": 1.04,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159980",
+      "name": "有色ETF大成",
+      "category": "商品ETF",
+      "price": 2.145,
+      "change_pct": 0.33,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 0.0,
+        "成交量与量比": 12.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 76.46,
+      "atr14": 0.0216,
+      "atr_pct": 1.0,
+      "amount": 262626189.0,
+      "avg_amount_20": 306482661.0,
+      "avg_amplitude_20": 0.85,
+      "volume_ratio": 1.6,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513040",
+      "name": "港股通互联网ETF易方达",
+      "category": "跨境ETF",
+      "price": 1.027,
+      "change_pct": 0.69,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 73.81,
+      "atr14": 0.0344,
+      "atr_pct": 3.35,
+      "amount": 638512315.0,
+      "avg_amount_20": 1035945309.0,
+      "avg_amplitude_20": 3.34,
+      "volume_ratio": 0.98,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513160",
+      "name": "港股科技ETF银华",
+      "category": "跨境ETF",
+      "price": 1.029,
+      "change_pct": 1.18,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 71.27,
+      "atr14": 0.028,
+      "atr_pct": 2.72,
+      "amount": 161219514.0,
+      "avg_amount_20": 411202315.0,
+      "avg_amplitude_20": 2.71,
+      "volume_ratio": 0.94,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520980",
+      "name": "港股通科技ETF汇添富",
+      "category": "跨境ETF",
+      "price": 0.928,
+      "change_pct": 1.42,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 70.54,
+      "atr14": 0.0259,
+      "atr_pct": 2.79,
+      "amount": 202043394.0,
+      "avg_amount_20": 451934470.0,
+      "avg_amplitude_20": 2.79,
+      "volume_ratio": 0.88,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "526000",
+      "name": "港股通信息技术ETF华夏",
+      "category": "跨境ETF",
+      "price": 1.183,
+      "change_pct": 3.05,
+      "score": 71.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 61.13,
+      "atr14": 0.052,
+      "atr_pct": 4.4,
+      "amount": 447160744.0,
+      "avg_amount_20": 721383706.0,
+      "avg_amplitude_20": 4.25,
+      "volume_ratio": 1.15,
+      "reasons": [
+        "MACD动能改善",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159262",
+      "name": "港股通科技ETF广发",
+      "category": "跨境ETF",
+      "price": 0.906,
+      "change_pct": 1.12,
+      "score": 69.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 71.5,
+      "atr14": 0.0252,
+      "atr_pct": 2.78,
+      "amount": 222446988.0,
+      "avg_amount_20": 608914797.0,
+      "avg_amplitude_20": 2.73,
+      "volume_ratio": 0.95,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159529",
+      "name": "标普消费ETF景顺",
+      "category": "跨境ETF",
+      "price": 1.299,
+      "change_pct": 1.01,
+      "score": 69.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 15.0,
+        "ATR": 10.0,
+        "成交量与量比": 2.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "站上MA5/MA10",
+      "rsi6": 76.53,
+      "atr14": 0.0217,
+      "atr_pct": 1.67,
+      "amount": 45245984.0,
+      "avg_amount_20": 62813565.0,
+      "avg_amplitude_20": 1.37,
+      "volume_ratio": 0.78,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "ATR高于20日均值"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513890",
+      "name": "恒生科技ETF摩根",
+      "category": "跨境ETF",
+      "price": 0.955,
+      "change_pct": 1.06,
+      "score": 69.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 12.0,
+        "均线": 20.0,
+        "ATR": 4.0,
+        "成交量与量比": 6.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "多头排列",
+      "rsi6": 71.55,
+      "atr14": 0.023,
+      "atr_pct": 2.41,
+      "amount": 21969909.0,
+      "avg_amount_20": 65419378.0,
+      "avg_amplitude_20": 2.43,
+      "volume_ratio": 0.89,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159185",
+      "name": "港股通信息技术ETF鹏华",
+      "category": "跨境ETF",
+      "price": 1.093,
+      "change_pct": 2.82,
+      "score": 67.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.21,
+      "atr14": 0.0482,
+      "atr_pct": 4.41,
+      "amount": 160132860.0,
+      "avg_amount_20": 387499781.0,
+      "avg_amplitude_20": 4.21,
+      "volume_ratio": 0.87,
+      "reasons": [
+        "MACD动能改善",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159198",
+      "name": "港股通信息技术ETF富国",
+      "category": "跨境ETF",
+      "price": 1.23,
+      "change_pct": 2.67,
+      "score": 67.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.1,
+      "atr14": 0.0552,
+      "atr_pct": 4.49,
+      "amount": 137764707.0,
+      "avg_amount_20": 311713891.0,
+      "avg_amplitude_20": 4.4,
+      "volume_ratio": 0.98,
+      "reasons": [
+        "MACD动能改善",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513240",
+      "name": "港股通信息技术ETF华安",
+      "category": "跨境ETF",
+      "price": 1.015,
+      "change_pct": 2.84,
+      "score": 67.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.59,
+      "atr14": 0.0442,
+      "atr_pct": 4.36,
+      "amount": 105383289.0,
+      "avg_amount_20": 245360728.0,
+      "avg_amplitude_20": 4.22,
+      "volume_ratio": 0.94,
+      "reasons": [
+        "MACD动能改善",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "526050",
+      "name": "港股通信息技术ETF招商",
+      "category": "跨境ETF",
+      "price": 1.068,
+      "change_pct": 2.99,
+      "score": 67.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 8.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.71,
+      "atr14": 0.0472,
+      "atr_pct": 4.42,
+      "amount": 62060949.0,
+      "avg_amount_20": 192695259.0,
+      "avg_amplitude_20": 4.25,
+      "volume_ratio": 0.95,
+      "reasons": [
+        "MACD动能改善",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520710",
+      "name": "港股通信息技术ETF广发",
+      "category": "跨境ETF",
+      "price": 0.901,
+      "change_pct": 2.85,
+      "score": 65.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 15.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 6.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "多头向上",
+      "ma_state": "均线修复",
+      "rsi6": 60.53,
+      "atr14": 0.0388,
+      "atr_pct": 4.31,
+      "amount": 41692620.0,
+      "avg_amount_20": 95221897.0,
+      "avg_amplitude_20": 4.16,
+      "volume_ratio": 0.83,
+      "reasons": [
+        "MACD动能改善",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159121",
+      "name": "港股通汽车ETF易方达",
+      "category": "跨境ETF",
+      "price": 0.776,
+      "change_pct": 0.78,
+      "score": 64.0,
+      "score_components": {
+        "MACD": 16.0,
+        "KDJ": 3.0,
+        "均线": 12.0,
+        "ATR": 10.0,
+        "成交量与量比": 13.0,
+        "RSI": 10.0
+      },
+      "macd_state": "多头收敛",
+      "kdj_state": "偏弱",
+      "ma_state": "均线下方",
+      "rsi6": 56.23,
+      "atr14": 0.0268,
+      "atr_pct": 3.46,
+      "amount": 63806329.0,
+      "avg_amount_20": 51637078.0,
+      "avg_amplitude_20": 3.47,
+      "volume_ratio": 1.36,
+      "reasons": [
+        "MACD动能改善",
+        "ATR高于20日均值",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513700",
+      "name": "港股通医药ETF鹏华",
+      "category": "跨境ETF",
+      "price": 0.59,
+      "change_pct": 0.51,
+      "score": 63.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 58.52,
+      "atr14": 0.0183,
+      "atr_pct": 3.1,
+      "amount": 104907473.0,
+      "avg_amount_20": 167308342.0,
+      "avg_amplitude_20": 3.2,
+      "volume_ratio": 1.51,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520970",
+      "name": "港股通创新药ETF嘉实",
+      "category": "跨境ETF",
+      "price": 0.817,
+      "change_pct": 0.49,
+      "score": 63.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 10.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.12,
+      "atr14": 0.0285,
+      "atr_pct": 3.49,
+      "amount": 74990289.0,
+      "avg_amount_20": 123807186.0,
+      "avg_amplitude_20": 3.64,
+      "volume_ratio": 1.82,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513030",
+      "name": "德国ETF华安",
+      "category": "跨境ETF",
+      "price": 1.884,
+      "change_pct": 1.34,
+      "score": 62.0,
+      "score_components": {
+        "MACD": 20.0,
+        "KDJ": 8.0,
+        "均线": 20.0,
+        "ATR": 0.0,
+        "成交量与量比": 13.0,
+        "RSI": 1.0
+      },
+      "macd_state": "多头扩张",
+      "kdj_state": "高位钝化",
+      "ma_state": "多头排列",
+      "rsi6": 86.27,
+      "atr14": 0.0233,
+      "atr_pct": 1.24,
+      "amount": 73936629.0,
+      "avg_amount_20": 73696570.0,
+      "avg_amplitude_20": 0.86,
+      "volume_ratio": 1.78,
+      "reasons": [
+        "MACD动能改善",
+        "均线结构偏强",
+        "量比温和放大"
+      ],
+      "risks": [
+        "近20日平均振幅接近筛选下限",
+        "RSI偏高，短线可能过热"
+      ],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159502",
+      "name": "标普生物科技ETF嘉实",
+      "category": "跨境ETF",
+      "price": 1.522,
+      "change_pct": 3.05,
+      "score": 61.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 8.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 53.72,
+      "atr14": 0.0406,
+      "atr_pct": 2.67,
+      "amount": 125265705.0,
+      "avg_amount_20": 291428966.0,
+      "avg_amplitude_20": 1.51,
+      "volume_ratio": 1.3,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159105",
+      "name": "恒生生物科技ETF易方达",
+      "category": "跨境ETF",
+      "price": 0.859,
+      "change_pct": 0.35,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.27,
+      "atr14": 0.0289,
+      "atr_pct": 3.37,
+      "amount": 64998486.0,
+      "avg_amount_20": 183360706.0,
+      "avg_amplitude_20": 3.47,
+      "volume_ratio": 1.2,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159303",
+      "name": "恒生医疗ETF大成",
+      "category": "跨境ETF",
+      "price": 1.487,
+      "change_pct": 0.68,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.41,
+      "atr14": 0.049,
+      "atr_pct": 3.3,
+      "amount": 73402180.0,
+      "avg_amount_20": 164559213.0,
+      "avg_amplitude_20": 3.45,
+      "volume_ratio": 1.6,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159557",
+      "name": "恒生医疗ETF嘉实",
+      "category": "跨境ETF",
+      "price": 1.358,
+      "change_pct": 0.44,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.56,
+      "atr14": 0.043,
+      "atr_pct": 3.16,
+      "amount": 54046981.0,
+      "avg_amount_20": 145617636.0,
+      "avg_amplitude_20": 3.2,
+      "volume_ratio": 1.51,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159615",
+      "name": "恒生生物科技ETF南方",
+      "category": "跨境ETF",
+      "price": 1.044,
+      "change_pct": 0.58,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.78,
+      "atr14": 0.0341,
+      "atr_pct": 3.27,
+      "amount": 74724822.0,
+      "avg_amount_20": 164409460.0,
+      "avg_amplitude_20": 3.39,
+      "volume_ratio": 1.62,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "159892",
+      "name": "恒生医药ETF华夏",
+      "category": "跨境ETF",
+      "price": 0.728,
+      "change_pct": 0.55,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.09,
+      "atr14": 0.0238,
+      "atr_pct": 3.27,
+      "amount": 475181765.0,
+      "avg_amount_20": 926471249.0,
+      "avg_amplitude_20": 3.39,
+      "volume_ratio": 1.47,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513060",
+      "name": "恒生医疗ETF博时",
+      "category": "跨境ETF",
+      "price": 0.536,
+      "change_pct": 0.75,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.46,
+      "atr14": 0.0157,
+      "atr_pct": 2.93,
+      "amount": 523418175.0,
+      "avg_amount_20": 826679738.0,
+      "avg_amplitude_20": 3.01,
+      "volume_ratio": 1.64,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513120",
+      "name": "港股创新药ETF广发",
+      "category": "跨境ETF",
+      "price": 1.174,
+      "change_pct": 0.51,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 55.72,
+      "atr14": 0.0418,
+      "atr_pct": 3.56,
+      "amount": 4951860903.0,
+      "avg_amount_20": 8518485529.0,
+      "avg_amplitude_20": 3.69,
+      "volume_ratio": 1.66,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513200",
+      "name": "港股通医药ETF易方达",
+      "category": "跨境ETF",
+      "price": 0.989,
+      "change_pct": 0.51,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.45,
+      "atr14": 0.0314,
+      "atr_pct": 3.17,
+      "amount": 109694734.0,
+      "avg_amount_20": 286808141.0,
+      "avg_amplitude_20": 3.26,
+      "volume_ratio": 1.33,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513280",
+      "name": "恒生生物科技ETF汇添富",
+      "category": "跨境ETF",
+      "price": 1.029,
+      "change_pct": 0.49,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.09,
+      "atr14": 0.0339,
+      "atr_pct": 3.29,
+      "amount": 66987727.0,
+      "avg_amount_20": 125394767.0,
+      "avg_amplitude_20": 3.42,
+      "volume_ratio": 1.7,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513630",
+      "name": "港股低波红利ETF摩根",
+      "category": "跨境ETF",
+      "price": 1.576,
+      "change_pct": -0.69,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 13.0,
+        "KDJ": 3.0,
+        "均线": 12.0,
+        "ATR": 10.0,
+        "成交量与量比": 15.0,
+        "RSI": 7.0
+      },
+      "macd_state": "多头收敛",
+      "kdj_state": "偏弱",
+      "ma_state": "均线下方",
+      "rsi6": 38.37,
+      "atr14": 0.0244,
+      "atr_pct": 1.55,
+      "amount": 533763253.0,
+      "avg_amount_20": 470514970.0,
+      "avg_amplitude_20": 1.43,
+      "volume_ratio": 1.92,
+      "reasons": [
+        "MACD动能改善",
+        "ATR高于20日均值",
+        "量比温和放大"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513780",
+      "name": "港股创新药ETF景顺",
+      "category": "跨境ETF",
+      "price": 1.517,
+      "change_pct": 0.46,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.41,
+      "atr14": 0.053,
+      "atr_pct": 3.49,
+      "amount": 299888780.0,
+      "avg_amount_20": 606919776.0,
+      "avg_amplitude_20": 3.57,
+      "volume_ratio": 1.45,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "513930",
+      "name": "恒生生物科技ETF华泰柏瑞",
+      "category": "跨境ETF",
+      "price": 0.96,
+      "change_pct": 0.42,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 57.08,
+      "atr14": 0.0325,
+      "atr_pct": 3.39,
+      "amount": 63734107.0,
+      "avg_amount_20": 132977024.0,
+      "avg_amplitude_20": 3.48,
+      "volume_ratio": 1.61,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    },
+    {
+      "code": "520700",
+      "name": "港股通创新药ETF万家",
+      "category": "跨境ETF",
+      "price": 1.461,
+      "change_pct": 0.48,
+      "score": 60.0,
+      "score_components": {
+        "MACD": 7.0,
+        "KDJ": 20.0,
+        "均线": 7.0,
+        "ATR": 4.0,
+        "成交量与量比": 12.0,
+        "RSI": 10.0
+      },
+      "macd_state": "偏弱",
+      "kdj_state": "金叉向上",
+      "ma_state": "均线修复",
+      "rsi6": 56.5,
+      "atr14": 0.0504,
+      "atr_pct": 3.45,
+      "amount": 251575937.0,
+      "avg_amount_20": 461019424.0,
+      "avg_amplitude_20": 3.57,
+      "volume_ratio": 1.7,
+      "reasons": [
+        "KDJ金叉",
+        "量比温和放大",
+        "RSI处于强势区间"
+      ],
+      "risks": [],
+      "selected_days": 1,
+      "history_dates": [
+        "2026-08-05"
+      ]
+    }
+  ],
+  "disclaimer": "仅筛选规则识别的 T+0 ETF；交易制度与产品属性可能调整，下单前请以券商标识和基金公告为准。"
+}

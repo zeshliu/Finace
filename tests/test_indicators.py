@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.indicators import add_indicators, kdj, macd, macd_negative_bars_shrinking, moving_averages, rsi, safe_divide
+from src.indicators import add_indicators, atr, kdj, macd, macd_negative_bars_shrinking, moving_averages, rsi, safe_divide
 from src.providers import normalize_sina_history, normalize_tencent_history
 
 
@@ -28,6 +28,13 @@ def test_moving_average():
     result = moving_averages(pd.Series(range(1, 11), dtype=float), windows=(5,))
     assert result["ma5"].iloc[-1] == 8
     assert pd.isna(result["ma5"].iloc[3])
+
+
+def test_atr_uses_true_range_and_wilder_smoothing():
+    close = pd.Series([10.0] * 20)
+    result = atr(pd.Series([11.0] * 20), pd.Series([9.0] * 20), close, 14)
+    assert result.first_valid_index() == 13
+    assert np.isclose(result.iloc[-1], 2.0)
 
 
 def test_macd_negative_bars_shrink():

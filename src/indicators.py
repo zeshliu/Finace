@@ -76,6 +76,23 @@ def bollinger_bands(close: pd.Series, window: int = 20, std_multiplier: float = 
     )
 
 
+def atr(high: pd.Series, low: pd.Series, close: pd.Series, period: int = 14) -> pd.Series:
+    """Wilder ATR；首个有效值至少需要 period 个真实波幅样本。"""
+    high = pd.to_numeric(high, errors="coerce")
+    low = pd.to_numeric(low, errors="coerce")
+    close = pd.to_numeric(close, errors="coerce")
+    previous_close = close.shift(1)
+    true_range = pd.concat(
+        [
+            high - low,
+            (high - previous_close).abs(),
+            (low - previous_close).abs(),
+        ],
+        axis=1,
+    ).max(axis=1)
+    return true_range.ewm(alpha=1 / period, adjust=False, min_periods=period).mean().rename(f"atr{period}")
+
+
 def add_indicators(frame: pd.DataFrame) -> pd.DataFrame:
     """为标准 OHLCV DataFrame 增加本项目所需的全部指标。"""
     if frame is None or frame.empty:
@@ -99,6 +116,7 @@ def add_indicators(frame: pd.DataFrame) -> pd.DataFrame:
             kdj(result["high"], result["low"], result["close"]),
             rsi(result["close"], 6),
             bollinger_bands(result["close"]),
+            atr(result["high"], result["low"], result["close"], 14),
         ],
         axis=1,
     )
@@ -107,6 +125,9 @@ def add_indicators(frame: pd.DataFrame) -> pd.DataFrame:
     result["return_10"] = result["close"].pct_change(10, fill_method=None)
     result["return_20"] = result["close"].pct_change(20, fill_method=None)
     result["pct_change_calc"] = result["close"].pct_change(fill_method=None)
+    previous_close = result["close"].shift(1)
+    result["amplitude_pct"] = safe_divide(result["high"] - result["low"], previous_close) * 100
+    result["atr_ma20"] = result["atr14"].rolling(20, min_periods=20).mean()
     return result
 
 

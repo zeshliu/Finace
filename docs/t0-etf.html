@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="普通 A 股账户可交易的 T+0 ETF 技术筛选。">
+  <title>T+0 ETF · A股技术筛选</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="t0_etf">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span><strong>A股技术筛选</strong><small>T+0 ETF</small></span></a>
+    <nav><a href="oversold.html">超跌反弹</a><a href="overnight.html">隔夜高开</a><a href="t0-etf.html" class="active">T+0 ETF</a></nav>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="切换深色模式">◐</button>
+  </header>
+
+  <main class="list-shell">
+    <section class="page-heading etf-heading">
+      <a class="back-link" href="index.html">← 返回总览</a>
+      <div class="heading-row">
+        <div><div class="eyebrow">INTRADAY ETF WATCH</div><h1>T+0 ETF</h1><p>仅筛选普通 A 股账户可交易、支持当日回转的黄金、商品、跨境、债券和货币 ETF；排除普通股票 ETF，默认展示综合评分 60 分以上。</p></div>
+        <div class="score-orbit"><strong id="candidateCount">—</strong><span>只候选</span></div>
+      </div>
+      <div class="update-line"><span class="live-dot"></span><span id="updateText">正在读取最新数据…</span></div>
+    </section>
+
+    <section class="toolbar" aria-label="筛选工具">
+      <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索 ETF 名称或代码" autocomplete="off"></label>
+      <label>往期记录<select id="historyDateSelect"><option value="latest">最新数据</option></select></label>
+      <label>最低价<input id="minPrice" type="number" min="0" step="0.001" placeholder="0"></label>
+      <label>最高价<input id="maxPrice" type="number" min="0" step="0.001" placeholder="不限"></label>
+      <label>排序<select id="sortSelect"><option value="score-desc">评分从高到低</option><option value="days-desc">上榜天数从高到低</option><option value="price-asc">价格从低到高</option><option value="change-desc">涨幅从高到低</option></select></label>
+      <button class="refresh-button" id="refreshButton" type="button">↻ 刷新数据</button>
+    </section>
+
+    <section class="results-panel">
+      <div class="table-wrap etf-table-wrap">
+        <table>
+          <thead><tr><th>ETF名称</th><th>上榜天数</th><th>最新价</th><th>当日涨跌幅</th><th>综合评分</th><th>MACD状态</th><th>KDJ状态</th><th>MA状态</th><th>RSI6</th><th>ATR(14)</th><th>成交额</th><th>20日平均振幅</th><th>量比</th><th>入选原因</th><th>风险提示</th></tr></thead>
+          <tbody id="resultTable"></tbody>
+        </table>
+      </div>
+      <div class="card-list" id="resultCards"></div>
+      <div class="empty-state" id="emptyState" hidden><span>≈</span><h2>暂无达到 60 分的 T+0 ETF</h2><p>也可能是行情尚未更新，或流动性与平均振幅未达到基础门槛。</p></div>
+    </section>
+  </main>
+
+  <footer><p>T+0 资格、交易权限和产品属性可能调整，下单前请以券商标识与基金公告为准；本页面不构成投资建议。</p></footer>
+  <script src="js/app.js?v=20260805_1"></script>
+</body>
+</html>

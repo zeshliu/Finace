@@ -59,6 +59,7 @@ jobs:
         if: github.event_name != 'push'
         run: |
           python main.py daily
+          python main.py etf
           python main.py site
 
       - name: 提交有效结果
