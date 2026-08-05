@@ -2,17 +2,25 @@
   'use strict';
 
   const page = document.body.dataset.page;
-  const state = { all: [], filtered: [], payload: null, chart: null, metadataStamp: null };
+  const state = { all: [], filtered: [], payload: null, chart: null, metadataStamp: null, isHistory: false };
   const q = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
-  const value = (number, suffix = '', digits = 2) => Number.isFinite(Number(number)) ? `${Number(number).toFixed(digits)}${suffix}` : '—';
-  const signed = (number, suffix = '%') => Number.isFinite(Number(number)) ? `${Number(number) > 0 ? '+' : ''}${Number(number).toFixed(2)}${suffix}` : '—';
+  const isNumeric = (number) => number !== null && number !== undefined && number !== '' && Number.isFinite(Number(number));
+  const value = (number, suffix = '', digits = 2) => isNumeric(number) ? `${Number(number).toFixed(digits)}${suffix}` : '—';
+  const signed = (number, suffix = '%') => isNumeric(number) ? `${Number(number) > 0 ? '+' : ''}${Number(number).toFixed(2)}${suffix}` : '—';
   const formatAmount = (number) => {
+    if (!isNumeric(number)) return '—';
     const amount = Number(number);
-    if (!Number.isFinite(amount)) return '—';
     if (amount >= 100000000) return `${(amount / 100000000).toFixed(2)}亿`;
     if (amount >= 10000) return `${(amount / 10000).toFixed(0)}万`;
     return amount.toFixed(0);
+  };
+  const formatVolume = (number) => {
+    if (!isNumeric(number)) return '—';
+    const volume = Number(number);
+    if (Math.abs(volume) >= 100000000) return `${(volume / 100000000).toFixed(2)}亿`;
+    if (Math.abs(volume) >= 10000) return `${(volume / 10000).toFixed(1)}万`;
+    return volume.toFixed(0);
   };
   const directionClass = (number) => Number(number) > 0 ? 'up' : Number(number) < 0 ? 'down' : '';
   const formatTime = (iso) => {
@@ -82,7 +90,7 @@
 
   function renderT0EtfRow(item) {
     const days = item.selected_days || 1;
-    return `<tr data-code="${escapeHtml(item.code)}">
+    return `<tr data-code="${escapeHtml(item.code)}" role="button" tabindex="0" aria-label="查看 ${escapeHtml(item.name)} 指标详情">
       <td class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)} · ${escapeHtml(item.category || 'T+0 ETF')}</span></td>
       <td><span class="score-badge" style="background:var(--cool-soft);color:var(--cool);">${days}天</span></td>
       <td><strong>${value(item.price, '', 3)}</strong></td><td class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</td>
@@ -102,7 +110,7 @@
         ? [['上榜天数', `${days}天`], ['历史高开率', value(item.high_open_rate_pct, '%', 1)], ['尾盘30分钟', signed(item.last_30_change_pct)], ['区间位置', value(item.range_position_pct, '%', 1)]]
         : [['上榜天数', `${days}天`], ['ETF类型', item.category || 'T+0 ETF'], ['ATR', value(item.atr14, '', 4)], ['20日振幅', value(item.avg_amplitude_20, '%', 2)]];
     const notes = page === 'overnight' ? (item.risks || []).join('；') : (item.reasons || []).join(' · ');
-    return `<article class="result-card" data-code="${escapeHtml(item.code)}">
+    return `<article class="result-card" data-code="${escapeHtml(item.code)}" role="button" tabindex="0" aria-label="查看 ${escapeHtml(item.name)} 详情">
       <div class="result-card-head"><div class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></div><span class="score-badge">${value(item.score, '', 1)}</span></div>
       <div class="result-card-price"><strong>${value(item.price, '', 2)}</strong><span class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</span></div>
       <div class="mobile-metrics">${metrics.map(([label, val]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(val)}</strong></div>`).join('')}</div>
@@ -120,9 +128,15 @@
     empty.hidden = items.length > 0;
     q('.table-wrap').hidden = items.length === 0;
     q('#candidateCount').textContent = items.length;
-    if (page !== 't0_etf') {
-      document.querySelectorAll('[data-code]').forEach((element) => element.addEventListener('click', () => openDetail(element.dataset.code)));
-    }
+    document.querySelectorAll('[data-code]').forEach((element) => {
+      element.addEventListener('click', () => openDetail(element.dataset.code));
+      element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openDetail(element.dataset.code);
+        }
+      });
+    });
   }
 
   function applyFilters() {
@@ -170,6 +184,7 @@
       state.all = Array.isArray(payload.candidates) ? payload.candidates : [];
       state.metadataStamp = payload.generated_at;
       const isHistory = selectedFile !== 'latest';
+      state.isHistory = isHistory;
       q('#updateText').textContent = payload.generated_at
         ? `${isHistory ? '【往期记录】' : ''}数据时间 ${formatTime(payload.generated_at)} · 交易日 ${payload.trade_date || '—'} · 扫描 ${payload.scanned_stocks || 0} 只`
         : payload.disclaimer;
@@ -191,13 +206,24 @@
       : page === 't0_etf' ? ` · ${escapeHtml(item.category || 'T+0 ETF')}` : '';
     const days = item.selected_days || 1;
     const datesList = (item.history_dates || []).slice(0, 6).join('、');
+    const premiumClass = directionClass(item.premium_rate);
+    const etfMetrics = page === 't0_etf' ? `<section class="etf-detail-metrics" aria-label="ETF 技术指标">
+        <div class="wide"><span>MACD</span><strong>${escapeHtml(item.macd_state || '—')}</strong><small>DIF ${value(item.dif, '', 4)} · DEA ${value(item.dea, '', 4)} · 柱 ${value(item.macd_hist, '', 4)}</small></div>
+        <div class="wide"><span>KDJ</span><strong>${escapeHtml(item.kdj_state || '—')}</strong><small>K ${value(item.k, '', 2)} · D ${value(item.d, '', 2)} · J ${value(item.j, '', 2)}</small></div>
+        <div class="wide"><span>均线</span><strong>${escapeHtml(item.ma_state || '—')}</strong><small>MA5 ${value(item.ma5, '', 4)} · MA10 ${value(item.ma10, '', 4)} · MA20 ${value(item.ma20, '', 4)}</small></div>
+        <div><span>RSI6</span><strong>${value(item.rsi6, '', 2)}</strong><small>6日相对强弱</small></div>
+        <div><span>ATR（14）</span><strong>${value(item.atr14, '', 4)}</strong><small>占价格 ${value(item.atr_pct, '%', 2)}</small></div>
+        <div><span>成交量</span><strong>${formatVolume(item.volume)}</strong><small>最新交易日</small></div>
+        <div><span>量比</span><strong>${value(item.volume_ratio, '×', 2)}</strong><small>相对近期成交量</small></div>
+        <div><span>溢价率</span><strong class="${premiumClass}">${signed(item.premium_rate)}</strong><small>${isNumeric(item.iopv) ? `IOPV ${value(item.iopv, '', 4)}` : '暂无实时 IOPV'} · 负值为折价</small></div>
+      </section><div class="chart-section-title"><strong>近120个交易日技术图表</strong><span>可缩放查看 K线、均线、成交量、MACD、KDJ 与 RSI6</span></div>` : '';
     return `<div class="detail-head"><div><h2 id="detailTitle">${escapeHtml(item.name)}</h2><span class="detail-code">${escapeHtml(item.code)}${industry} · ${value(item.price, '', 2)}元</span></div><div class="detail-score">${value(item.score, '', 1)}<small>综合评分</small></div></div>
       <div class="detail-notes">
         <div><strong>上榜统计</strong>已累计在筛选中上榜 <strong>${days}</strong> 天${datesList ? `（包含：${escapeHtml(datesList)} 等）` : ''}</div>
         <div><strong>入选原因</strong>${escapeHtml(reasons.join('；'))}</div>
-        <div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；'))}</div>
+        <div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；') || '暂无额外风险标记')}</div>
       </div>
-      ${gap ? `<div class="gap-summary"><div><span>近60日高开率</span><strong>${value(gap.high_open_rate * 100, '%', 1)}</strong></div><div><span>平均开盘收益</span><strong>${signed(gap.average_open_return * 100)}</strong></div><div><span>最大低开</span><strong>${signed(gap.max_low_open * 100)}</strong></div><div><span>有效样本</span><strong>${gap.sample_count || 0}</strong></div></div><div class="recent-gaps" title="最近20次次日开盘结果">${(gap.recent_results || []).map((entry) => `<span class="${entry.high_open ? 'positive' : 'negative'}" title="${escapeHtml(entry.next_date)} ${signed(entry.return_pct)}">${entry.high_open ? '↑' : '↓'}</span>`).join('')}</div>` : ''}`;
+      ${gap ? `<div class="gap-summary"><div><span>近60日高开率</span><strong>${value(gap.high_open_rate * 100, '%', 1)}</strong></div><div><span>平均开盘收益</span><strong>${signed(gap.average_open_return * 100)}</strong></div><div><span>最大低开</span><strong>${signed(gap.max_low_open * 100)}</strong></div><div><span>有效样本</span><strong>${gap.sample_count || 0}</strong></div></div><div class="recent-gaps" title="最近20次次日开盘结果">${(gap.recent_results || []).map((entry) => `<span class="${entry.high_open ? 'positive' : 'negative'}" title="${escapeHtml(entry.next_date)} ${signed(entry.return_pct)}">${entry.high_open ? '↑' : '↓'}</span>`).join('')}</div>` : ''}${etfMetrics}`;
   }
 
   function renderChart(item) {
@@ -208,6 +234,11 @@
     const rows = item.detail?.chart || [];
     const chartElement = q('#stockChart');
     state.chart?.dispose();
+    state.chart = null;
+    if (!rows.length) {
+      chartElement.innerHTML = '<div class="empty-state compact"><p>这条往期记录暂无指标序列，请查看最新数据。</p></div>';
+      return;
+    }
     state.chart = echarts.init(chartElement);
     const dates = rows.map((row) => row.date);
     const series = (key) => rows.map((row) => row[key]);
@@ -234,7 +265,7 @@
         textStyle: { fontSize: 11 },
         formatter: (params) => {
           if (!Array.isArray(params) || !params.length) return '';
-          const allowed = ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '成交量'];
+          const allowed = ['K线', 'MA5', 'MA10', 'MA20', 'MA60', '成交量', 'MACD', 'DIF', 'DEA', 'K', 'D', 'J', 'RSI6'];
           const filtered = params.filter((p) => allowed.includes(p.seriesName));
           if (!filtered.length) return '';
           const date = filtered[0].name || filtered[0].axisValue || '';
@@ -246,7 +277,7 @@
                 lines.push(`${p.marker} <strong>K线</strong> 开:${value(d[1])} 收:${value(d[2])} 低:${value(d[3])} 高:${value(d[4])}`);
               }
             } else if (p.seriesName === '成交量') {
-              lines.push(`${p.marker} <strong>成交量</strong>: ${Number(p.value).toLocaleString()}`);
+              lines.push(`${p.marker} <strong>成交量</strong>: ${formatVolume(p.value)}`);
             } else {
               lines.push(`${p.marker} <strong>${escapeHtml(p.seriesName)}</strong>: ${value(p.value)}`);
             }
@@ -274,12 +305,23 @@
     });
   }
 
-  function openDetail(code) {
+  async function openDetail(code) {
     const item = state.all.find((candidate) => candidate.code === code);
     if (!item) return;
     q('#detailContent').innerHTML = detailHeader(item);
     q('#detailModal').hidden = false;
     document.body.style.overflow = 'hidden';
+    const chartElement = q('#stockChart');
+    chartElement.innerHTML = '<div class="detail-loading">正在读取技术指标图表…</div>';
+    if (page === 't0_etf' && !state.isHistory && !item.detail?.chart?.length && item.detail_path) {
+      try {
+        const detail = await getJson(item.detail_path);
+        item.detail = { chart: Array.isArray(detail.chart) ? detail.chart : [] };
+      } catch (_) {
+        chartElement.innerHTML = '<div class="empty-state compact"><p>指标图表暂时无法读取，请稍后重试。</p></div>';
+        return;
+      }
+    }
     requestAnimationFrame(() => renderChart(item));
   }
 

@@ -45,7 +45,12 @@
     </section>
   </main>
 
+  <div class="modal" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel"><button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button><div id="detailContent"></div><div id="stockChart" class="stock-chart" aria-label="ETF 技术指标图表"></div></article>
+  </div>
   <footer><p>T+0 资格、交易权限和产品属性可能调整，下单前请以券商标识与基金公告为准；本页面不构成投资建议。</p></footer>
-  <script src="js/app.js?v=20260805_1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="js/app.js?v=20260805_2"></script>
 </body>
 </html>

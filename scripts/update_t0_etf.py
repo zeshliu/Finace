@@ -24,6 +24,26 @@ from src.t0_etf_strategy import classify_t0_etf, scan_t0_etfs
 LOGGER = logging.getLogger(__name__)
 
 
+def split_candidate_details(candidates: list[dict], trade_date: str, generated_at: str) -> tuple[list[dict], dict[str, dict]]:
+    """将图表序列拆成按代码加载的小文件，保持列表 JSON 轻量。"""
+    published_candidates: list[dict] = []
+    details: dict[str, dict] = {}
+    for candidate in candidates:
+        published = dict(candidate)
+        detail = published.pop("detail", {"chart": []})
+        code = str(published["code"])
+        published["detail_path"] = f"data/t0_etf_details/{code}.json"
+        details[code] = {
+            "code": code,
+            "name": published["name"],
+            "trade_date": trade_date,
+            "generated_at": generated_at,
+            "chart": detail.get("chart", []),
+        }
+        published_candidates.append(published)
+    return published_candidates, details
+
+
 def run(config_path=None) -> dict:
     config = load_config(config_path)
     now = now_china(config)
@@ -85,6 +105,12 @@ def run(config_path=None) -> dict:
     _, history_stats = build_history_index_and_stats(ROOT / "docs" / "data")
     candidates = enrich_candidates_with_history_stats(candidates, "t0_etf", history_stats, trade_date)
 
+    candidates, details = split_candidate_details(candidates, trade_date, generated_at)
+    detail_bundle = {
+        ROOT / "docs" / "data" / "t0_etf_details" / f"{code}.json": detail
+        for code, detail in details.items()
+    }
+
     payload = {
         "strategy": "t0_etf",
         "title": "T+0 ETF",
@@ -118,6 +144,7 @@ def run(config_path=None) -> dict:
             output_path: payload,
             docs_path: payload,
             ROOT / "docs" / "data" / "metadata.json": metadata,
+            **detail_bundle,
         }
     )
     try:

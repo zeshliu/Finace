@@ -34,6 +34,8 @@ SPOT_RENAME = {
 
 ETF_SPOT_RENAME = {
     **SPOT_RENAME,
+    "IOPV实时估值": "iopv",
+    "基金折价率": "discount_rate",
     "开盘价": "open",
     "最高价": "high",
     "最低价": "low",
@@ -77,7 +79,7 @@ MINUTE_RENAME = {
 
 NUMERIC_COLUMNS = {
     "price", "pct_change", "open", "prev_close", "high", "low", "close", "volume", "amount",
-    "volume_ratio", "turnover", "change_5m", "amplitude", "change", "average",
+    "volume_ratio", "turnover", "change_5m", "amplitude", "change", "average", "iopv", "discount_rate",
 }
 
 BAOSTOCK_LOCK = threading.Lock()

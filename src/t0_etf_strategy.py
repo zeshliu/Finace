@@ -9,7 +9,7 @@ import pandas as pd
 
 from .indicators import add_indicators
 from .providers import normalize_code
-from .strategy_utils import finite_or_none
+from .strategy_utils import build_chart_data, finite_or_none
 
 
 MONEY_KEYWORDS = (
@@ -215,6 +215,15 @@ def score_t0_etf(spot: dict | pd.Series, raw_history: pd.DataFrame, config: dict
     score = round(max(0.0, min(100.0, sum(components.values()))), 1)
     macd_state, kdj_state, ma_state = _states(history)
     price = _number(spot.get("price"), _number(latest.get("close")))
+    volume = _number(spot.get("volume"), _number(latest.get("volume")))
+    iopv = _number(spot.get("iopv"), np.nan)
+    discount_rate = _number(spot.get("discount_rate"), np.nan)
+    if np.isfinite(iopv) and iopv > 0 and price > 0:
+        premium_rate = (price / iopv - 1) * 100
+    elif np.isfinite(discount_rate):
+        premium_rate = -discount_rate
+    else:
+        premium_rate = np.nan
     return {
         "code": normalize_code(spot.get("code", "")),
         "name": str(spot.get("name", "")),
@@ -224,17 +233,30 @@ def score_t0_etf(spot: dict | pd.Series, raw_history: pd.DataFrame, config: dict
         "score": score,
         "score_components": components,
         "macd_state": macd_state,
+        "dif": finite_or_none(latest.get("dif"), 4),
+        "dea": finite_or_none(latest.get("dea"), 4),
+        "macd_hist": finite_or_none(latest.get("macd_hist"), 4),
         "kdj_state": kdj_state,
+        "k": finite_or_none(latest.get("k"), 2),
+        "d": finite_or_none(latest.get("d"), 2),
+        "j": finite_or_none(latest.get("j"), 2),
         "ma_state": ma_state,
+        "ma5": finite_or_none(latest.get("ma5"), 4),
+        "ma10": finite_or_none(latest.get("ma10"), 4),
+        "ma20": finite_or_none(latest.get("ma20"), 4),
         "rsi6": finite_or_none(rsi6, 2),
         "atr14": finite_or_none(atr14, 4),
         "atr_pct": finite_or_none(atr14 / price * 100 if price else None, 2),
+        "volume": finite_or_none(volume, 0),
         "amount": finite_or_none(current_amount, 0),
         "avg_amount_20": finite_or_none(avg_amount_20, 0),
         "avg_amplitude_20": finite_or_none(avg_amplitude_20, 2),
         "volume_ratio": finite_or_none(volume_ratio, 2),
+        "iopv": finite_or_none(iopv, 4),
+        "premium_rate": finite_or_none(premium_rate, 2),
         "reasons": reasons or ["多项技术指标达到观察阈值"],
         "risks": risks,
+        "detail": {"chart": build_chart_data(history, int(config["data"]["chart_days"]))},
     }
 
 

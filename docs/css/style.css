@@ -120,13 +120,13 @@ nav a:hover, nav a.active { background: var(--surface); color: var(--ink); box-s
 .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
 table { width: 100%; min-width: 1180px; border-collapse: collapse; font-size: 12px; }
 .etf-table-wrap table { min-width: 1720px; }
-.etf-table-wrap tbody tr { cursor: default; }
-.etf-heading + .toolbar + .results-panel .result-card { cursor: default; }
+.etf-table-wrap tbody tr { cursor: pointer; }
 .cell-sub { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
 th { position: sticky; top: 0; z-index: 1; padding: 14px 12px; background: var(--surface-2); color: var(--muted); text-align: left; font-size: 10px; font-weight: 700; white-space: nowrap; }
 td { padding: 15px 12px; border-top: 1px solid var(--line); vertical-align: top; }
 tbody tr { cursor: pointer; transition: background .15s ease; }
 tbody tr:hover { background: var(--surface-2); }
+tbody tr:focus-visible, .result-card:focus-visible { outline: 2px solid var(--cool); outline-offset: -2px; }
 .stock-name strong, .stock-name span { display: block; white-space: nowrap; }
 .stock-name span { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; margin-top: 4px; }
 .score-badge { display: inline-grid; place-items: center; min-width: 42px; height: 30px; padding: 0 9px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); font-weight: 800; }
@@ -154,6 +154,16 @@ tbody tr:hover { background: var(--surface-2); }
 .detail-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
 .detail-notes div { padding: 12px 14px; border-radius: 10px; background: var(--surface-2); color: var(--muted); font-size: 12px; line-height: 1.5; }
 .detail-notes strong { color: var(--ink); display: block; margin-bottom: 5px; }
+.etf-detail-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; margin: 8px 0 22px; }
+.etf-detail-metrics > div { min-width: 0; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.etf-detail-metrics > div.wide { grid-column: span 2; }
+.etf-detail-metrics span, .etf-detail-metrics strong, .etf-detail-metrics small { display: block; }
+.etf-detail-metrics span { color: var(--muted); font-size: 10px; }
+.etf-detail-metrics strong { margin: 7px 0 5px; font-size: 16px; }
+.etf-detail-metrics small { color: var(--muted); font-size: 10px; line-height: 1.55; overflow-wrap: anywhere; }
+.chart-section-title { display: flex; align-items: baseline; gap: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.chart-section-title span { color: var(--muted); font-size: 10px; }
+.empty-state.compact { padding: 38px 20px; }
 .gap-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
 .gap-summary div { padding: 12px; border: 1px solid var(--line); border-radius: 10px; }
 .gap-summary span, .gap-summary strong { display: block; }
@@ -164,6 +174,7 @@ tbody tr:hover { background: var(--surface-2); }
 .recent-gaps span.positive { background: color-mix(in srgb, var(--positive) 15%, transparent); color: var(--positive); }
 .recent-gaps span.negative { background: color-mix(in srgb, var(--negative) 15%, transparent); color: var(--negative); }
 .stock-chart { width: 100%; height: 680px; margin-top: 10px; }
+.detail-loading { height: 180px; display: grid; place-items: center; color: var(--muted); font-size: 12px; }
 
 footer { max-width: 1320px; margin: 0 auto; padding: 22px 36px 36px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); }
 
@@ -198,6 +209,10 @@ footer { max-width: 1320px; margin: 0 auto; padding: 22px 36px 36px; color: var(
   .modal { padding: 0; }
   .modal-panel { width: 100vw; max-height: 100vh; min-height: 100vh; border-radius: 0; padding: 22px 16px; }
   .detail-notes { grid-template-columns: 1fr; }
+  .etf-detail-metrics { grid-template-columns: 1fr 1fr; }
+  .etf-detail-metrics > div.wide { grid-column: 1 / -1; }
+  .chart-section-title { display: block; }
+  .chart-section-title span { display: block; margin-top: 5px; }
   .gap-summary { grid-template-columns: 1fr 1fr; }
   .stock-chart { height: 620px; }
 }
