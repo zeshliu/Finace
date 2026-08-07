@@ -58,9 +58,23 @@ jobs:
       - name: 更新收盘数据与网站 JSON
         if: github.event_name != 'push'
         run: |
-          python main.py daily
-          python main.py etf
+          set +e
+          timeout --signal=TERM 70m python main.py daily
+          daily_status=$?
+          timeout --signal=TERM 45m python main.py etf
+          etf_status=$?
+          set -e
           python main.py site
+          if [ "$daily_status" -ne 0 ]; then
+            echo "::warning::A股日线更新未完成，已保留上一版有效数据（状态码 $daily_status）"
+          fi
+          if [ "$etf_status" -ne 0 ]; then
+            echo "::warning::ETF 更新未完成，已保留上一版有效数据（状态码 $etf_status）"
+          fi
+          if [ "$daily_status" -ne 0 ] && [ "$etf_status" -ne 0 ]; then
+            echo "两个数据任务均未完成，终止本次发布"
+            exit 1
+          fi
 
       - name: 提交有效结果
         if: github.event_name != 'push'

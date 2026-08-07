@@ -21,9 +21,9 @@ data:
     - eastmoney
     - tencent
   history_sources:
-    - sina
     - tencent
     - eastmoney
+    - sina
     - baostock
   intraday_sources:
     - sina
