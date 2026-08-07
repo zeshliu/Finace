@@ -1,4 +1,4 @@
-"""免费 A 股数据源：腾讯、东方财富主源，新浪财经和 BaoStock 备用。"""
+"""免费 A 股数据源：新浪财经主源，腾讯、东方财富和 BaoStock 备用。"""
 
 from __future__ import annotations
 
@@ -225,7 +225,7 @@ class MarketDataProvider:
         self.timeout = timeout
         install_requests_default_timeout(timeout)
         self.spot_sources = spot_sources or ["sina", "eastmoney", "tencent"]
-        self.history_sources = history_sources or ["tencent", "eastmoney", "sina", "baostock"]
+        self.history_sources = history_sources or ["sina", "tencent", "eastmoney", "baostock"]
         self.intraday_sources = intraday_sources or ["sina", "eastmoney"]
         self.sina_history_interval = max(0, float(sina_history_interval))
         self._sina_history_lock = threading.Lock()

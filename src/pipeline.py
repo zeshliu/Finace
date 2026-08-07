@@ -125,8 +125,8 @@ def update_metadata(section: str, section_data: dict, config: dict, write: bool 
         "last_job": section,
         "sections": sections,
         "data_sources": [
-            "腾讯财经/东方财富（经 AKShare，主源）",
-            "新浪财经（经 AKShare，限速备用）",
+            "新浪财经（经 AKShare，限速主源并设置超时）",
+            "腾讯财经/东方财富（经 AKShare，备用）",
             "东方财富 ETF 行情与基金分类（经 AKShare）",
             "BaoStock（备用）",
         ],
