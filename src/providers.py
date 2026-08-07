@@ -1,4 +1,4 @@
-"""免费 A 股数据源：新浪财经主源，腾讯、东方财富和 BaoStock 备用。"""
+"""免费 A 股数据源：腾讯、东方财富主源，新浪财经和 BaoStock 备用。"""
 
 from __future__ import annotations
 
@@ -11,6 +11,31 @@ from typing import Callable
 import pandas as pd
 
 LOGGER = logging.getLogger(__name__)
+
+_REQUEST_TIMEOUT_LOCK = threading.Lock()
+_REQUEST_TIMEOUT_SECONDS = 15.0
+_REQUEST_TIMEOUT_INSTALLED = False
+_REQUESTS_ORIGINAL_REQUEST = None
+
+
+def _request_with_default_timeout(session, method, url, **kwargs):
+    """为 AKShare 内部未声明 timeout 的 requests 调用补上读取超时。"""
+    kwargs.setdefault("timeout", _REQUEST_TIMEOUT_SECONDS)
+    return _REQUESTS_ORIGINAL_REQUEST(session, method, url, **kwargs)
+
+
+def install_requests_default_timeout(timeout: float) -> None:
+    """进程级安装一次超时兜底，避免第三方行情请求永久阻塞线程池。"""
+    import requests
+
+    global _REQUEST_TIMEOUT_SECONDS, _REQUEST_TIMEOUT_INSTALLED, _REQUESTS_ORIGINAL_REQUEST
+    with _REQUEST_TIMEOUT_LOCK:
+        _REQUEST_TIMEOUT_SECONDS = max(1.0, float(timeout))
+        if _REQUEST_TIMEOUT_INSTALLED:
+            return
+        _REQUESTS_ORIGINAL_REQUEST = requests.sessions.Session.request
+        requests.sessions.Session.request = _request_with_default_timeout
+        _REQUEST_TIMEOUT_INSTALLED = True
 
 
 SPOT_RENAME = {
@@ -198,8 +223,9 @@ class MarketDataProvider:
         self.retries = max(1, int(retries))
         self.retry_seconds = max(0, float(retry_seconds))
         self.timeout = timeout
+        install_requests_default_timeout(timeout)
         self.spot_sources = spot_sources or ["sina", "eastmoney", "tencent"]
-        self.history_sources = history_sources or ["sina", "tencent", "eastmoney", "baostock"]
+        self.history_sources = history_sources or ["tencent", "eastmoney", "sina", "baostock"]
         self.intraday_sources = intraday_sources or ["sina", "eastmoney"]
         self.sina_history_interval = max(0, float(sina_history_interval))
         self._sina_history_lock = threading.Lock()
