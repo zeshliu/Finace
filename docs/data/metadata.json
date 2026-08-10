@@ -1,17 +1,17 @@
 {
   "latest_trade_date": "2026-08-07",
-  "last_updated": "2026-08-07T23:40:59+08:00",
+  "last_updated": "2026-08-10T19:47:39+08:00",
   "success": true,
   "scanned_stocks": 282,
-  "candidate_count": 93,
+  "candidate_count": 88,
   "last_job": "t0_etf",
   "sections": {
     "oversold": {
-      "latest_trade_date": "2026-08-06",
-      "last_updated": "2026-08-06T20:26:47+08:00",
+      "latest_trade_date": "2026-08-10",
+      "last_updated": "2026-08-10T19:30:50+08:00",
       "success": true,
-      "scanned_stocks": 2955,
-      "candidate_count": 39,
+      "scanned_stocks": 2942,
+      "candidate_count": 7,
       "failed_stocks": 0
     },
     "overnight": {
@@ -25,17 +25,17 @@
     },
     "t0_etf": {
       "latest_trade_date": "2026-08-07",
-      "last_updated": "2026-08-07T23:40:59+08:00",
+      "last_updated": "2026-08-10T19:47:39+08:00",
       "success": true,
       "scanned_stocks": 282,
-      "eligible_etfs": 282,
-      "candidate_count": 93,
-      "failed_stocks": 0
+      "eligible_etfs": 283,
+      "candidate_count": 88,
+      "failed_stocks": 1
     }
   },
   "data_sources": [
-    "腾讯财经/东方财富（经 AKShare，主源）",
-    "新浪财经（经 AKShare，限速备用）",
+    "新浪财经（经 AKShare，限速主源并设置超时）",
+    "腾讯财经/东方财富（经 AKShare，备用）",
     "东方财富 ETF 行情与基金分类（经 AKShare）",
     "BaoStock（备用）"
   ],

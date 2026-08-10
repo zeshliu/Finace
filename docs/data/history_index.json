@@ -1,6 +1,12 @@
 {
-  "updated_at": "2026-08-07T15:53:30",
+  "updated_at": "2026-08-10T11:59:45",
   "oversold": [
+    {
+      "filename": "oversold_20260810_114737.json",
+      "trade_date": "2026-08-10",
+      "generated_at": "2026-08-10T19:30:50+08:00",
+      "candidate_count": 7
+    },
     {
       "filename": "oversold_20260806_124429.json",
       "trade_date": "2026-08-06",
@@ -185,6 +191,12 @@
     }
   ],
   "t0_etf": [
+    {
+      "filename": "t0_etf_20260810_115943.json",
+      "trade_date": "2026-08-07",
+      "generated_at": "2026-08-10T19:47:39+08:00",
+      "candidate_count": 88
+    },
     {
       "filename": "t0_etf_20260807_155328.json",
       "trade_date": "2026-08-07",
