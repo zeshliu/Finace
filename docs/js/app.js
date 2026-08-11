@@ -48,14 +48,13 @@
 
   async function initHome() {
     try {
-      const [metadata, oversold, overnight, t0Etf] = await Promise.all([
-        getJson('data/metadata.json'), getJson('data/oversold_latest.json'), getJson('data/overnight_latest.json'), getJson('data/t0_etf_latest.json')
+      const [metadata, oversold, t0Etf] = await Promise.all([
+        getJson('data/metadata.json'), getJson('data/oversold_latest.json'), getJson('data/t0_etf_latest.json')
       ]);
       q('#latestTradeDate').textContent = metadata.latest_trade_date || '尚未生成';
       q('#lastUpdated').textContent = formatTime(metadata.last_updated);
       q('#dataStatus').textContent = metadata.success ? '更新成功' : '等待数据';
       q('#oversoldCount').textContent = oversold.candidates?.length ?? 0;
-      q('#overnightCount').textContent = overnight.candidates?.length ?? 0;
       q('#t0EtfCount').textContent = t0Etf.candidates?.length ?? 0;
     } catch (error) {
       q('#dataStatus').textContent = '读取失败';
@@ -76,18 +75,6 @@
       <td><span class="risk-text">${escapeHtml((item.risks || []).join('；'))}</span></td></tr>`;
   }
 
-  function renderOvernightRow(item) {
-    const days = item.selected_days || 1;
-    return `<tr data-code="${escapeHtml(item.code)}">
-      <td class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></td>
-      <td><span class="score-badge" style="background:var(--accent-subtle, rgba(39,149,170,0.15));color:var(--accent,#2795aa);">${days}天</span></td>
-      <td><strong>${value(item.price, '', 2)}</strong></td><td class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</td>
-      <td>${value(item.high_open_rate_pct, '%', 1)}</td><td class="${directionClass(item.average_open_return_pct)}">${signed(item.average_open_return_pct)}</td>
-      <td>${value(item.below_minus_1_probability_pct, '%', 1)}</td><td class="${directionClass(item.last_30_change_pct)}">${signed(item.last_30_change_pct)}</td>
-      <td>${value(item.range_position_pct, '%', 1)}</td><td>${value(item.tail_score, '', 1)}</td><td><span class="score-badge">${value(item.score, '', 1)}</span></td>
-      <td><span class="risk-text">${escapeHtml((item.risks || []).join('；'))}</span></td><td>${escapeHtml(formatTime(item.updated_at))}</td></tr>`;
-  }
-
   function renderT0EtfRow(item) {
     const days = item.selected_days || 1;
     return `<tr data-code="${escapeHtml(item.code)}" role="button" tabindex="0" aria-label="查看 ${escapeHtml(item.name)} 指标详情">
@@ -106,10 +93,8 @@
     const days = item.selected_days || 1;
     const metrics = page === 'oversold'
       ? [['上榜天数', `${days}天`], ['所属板块', item.industry || '未分类'], ['5日量比', value(item.volume_ratio_5, '×', 2)], ['RSI6', value(item.rsi6, '', 1)]]
-      : page === 'overnight'
-        ? [['上榜天数', `${days}天`], ['历史高开率', value(item.high_open_rate_pct, '%', 1)], ['尾盘30分钟', signed(item.last_30_change_pct)], ['区间位置', value(item.range_position_pct, '%', 1)]]
-        : [['上榜天数', `${days}天`], ['ETF类型', item.category || 'T+0 ETF'], ['ATR', value(item.atr14, '', 4)], ['20日振幅', value(item.avg_amplitude_20, '%', 2)]];
-    const notes = page === 'overnight' ? (item.risks || []).join('；') : (item.reasons || []).join(' · ');
+      : [['上榜天数', `${days}天`], ['ETF类型', item.category || 'T+0 ETF'], ['ATR', value(item.atr14, '', 4)], ['20日振幅', value(item.avg_amplitude_20, '%', 2)]];
+    const notes = (item.reasons || []).join(' · ');
     return `<article class="result-card" data-code="${escapeHtml(item.code)}" role="button" tabindex="0" aria-label="查看 ${escapeHtml(item.name)} 详情">
       <div class="result-card-head"><div class="stock-name"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.code)}</span></div><span class="score-badge">${value(item.score, '', 1)}</span></div>
       <div class="result-card-price"><strong>${value(item.price, '', 2)}</strong><span class="${directionClass(item.change_pct)}">${signed(item.change_pct)}</span></div>
@@ -122,7 +107,7 @@
     const cards = q('#resultCards');
     const empty = q('#emptyState');
     const items = state.filtered;
-    const rowRenderer = page === 'oversold' ? renderOversoldRow : page === 'overnight' ? renderOvernightRow : renderT0EtfRow;
+    const rowRenderer = page === 'oversold' ? renderOversoldRow : renderT0EtfRow;
     table.innerHTML = items.map(rowRenderer).join('');
     cards.innerHTML = items.map(renderCard).join('');
     empty.hidden = items.length > 0;
@@ -199,8 +184,7 @@
   }
 
   function detailHeader(item) {
-    const reasons = page === 'overnight' ? ['历史开盘统计与尾盘量价质量综合入选'] : (item.reasons || []);
-    const gap = item.detail?.gap_stats;
+    const reasons = item.reasons || [];
     const industry = page === 'oversold'
       ? ` · ${escapeHtml(item.industry || '未分类')}`
       : page === 't0_etf' ? ` · ${escapeHtml(item.category || 'T+0 ETF')}` : '';
@@ -223,7 +207,7 @@
         <div><strong>入选原因</strong>${escapeHtml(reasons.join('；'))}</div>
         <div><strong>风险提示</strong>${escapeHtml((item.risks || []).join('；') || '暂无额外风险标记')}</div>
       </div>
-      ${gap ? `<div class="gap-summary"><div><span>近60日高开率</span><strong>${value(gap.high_open_rate * 100, '%', 1)}</strong></div><div><span>平均开盘收益</span><strong>${signed(gap.average_open_return * 100)}</strong></div><div><span>最大低开</span><strong>${signed(gap.max_low_open * 100)}</strong></div><div><span>有效样本</span><strong>${gap.sample_count || 0}</strong></div></div><div class="recent-gaps" title="最近20次次日开盘结果">${(gap.recent_results || []).map((entry) => `<span class="${entry.high_open ? 'positive' : 'negative'}" title="${escapeHtml(entry.next_date)} ${signed(entry.return_pct)}">${entry.high_open ? '↑' : '↓'}</span>`).join('')}</div>` : ''}${etfMetrics}`;
+      ${etfMetrics}`;
   }
 
   function renderChart(item) {
@@ -358,5 +342,5 @@
 
   initTheme();
   if (page === 'home') initHome();
-  if (page === 'oversold' || page === 'overnight' || page === 't0_etf') initList();
+  if (page === 'oversold' || page === 't0_etf') initList();
 })();

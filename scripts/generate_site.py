@@ -15,7 +15,6 @@ def run(config_path=None) -> dict:
     build_history_index_and_stats(data_dir)
     defaults = {
         "oversold_latest.json": ("oversold", "超跌反弹初期", config["oversold"]["score_threshold"]),
-        "overnight_latest.json": ("overnight", "隔夜高开候选", config["overnight"]["score_threshold"]),
         "t0_etf_latest.json": ("t0_etf", "T+0 ETF", config["t0_etf"]["score_threshold"]),
     }
     for filename, (strategy, title, threshold) in defaults.items():
@@ -51,7 +50,7 @@ def run(config_path=None) -> dict:
         }
         atomic_write_json(metadata_path, metadata)
 
-    required = ["index.html", "oversold.html", "overnight.html", "t0-etf.html", "css/style.css", "js/app.js"]
+    required = ["index.html", "oversold.html", "t0-etf.html", "css/style.css", "js/app.js"]
     missing = [relative for relative in required if not (ROOT / "docs" / relative).exists()]
     if missing:
         raise FileNotFoundError(f"静态站点缺少文件: {', '.join(missing)}")

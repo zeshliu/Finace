@@ -28,7 +28,7 @@ def serve(host: str = "127.0.0.1", port: int = 8000):
 
 def main():
     parser = argparse.ArgumentParser(description="A股技术筛选网站")
-    parser.add_argument("command", choices=["daily", "intraday", "etf", "site", "all", "serve"])
+    parser.add_argument("command", choices=["daily", "etf", "site", "all", "serve"])
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", default=8000, type=int)
     args = parser.parse_args()
@@ -36,9 +36,6 @@ def main():
 
     if args.command == "daily":
         from scripts.update_daily import run
-        run()
-    elif args.command == "intraday":
-        from scripts.update_intraday import run
         run()
     elif args.command == "etf":
         from scripts.update_t0_etf import run
@@ -50,10 +47,8 @@ def main():
     elif args.command == "all":
         from scripts.generate_site import run as generate
         from scripts.update_daily import run as daily
-        from scripts.update_intraday import run as intraday
         from scripts.update_t0_etf import run as etf
         daily()
-        intraday()
         etf()
         generate()
     else:
