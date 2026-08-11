@@ -38,7 +38,6 @@ def build_provider(config: dict) -> MarketDataProvider:
         timeout=data.get("request_timeout", 15),
         spot_sources=data.get("spot_sources"),
         history_sources=data.get("history_sources"),
-        intraday_sources=data.get("intraday_sources"),
         sina_history_interval=data.get("sina_history_interval_seconds", 0.25),
     )
 
@@ -146,7 +145,7 @@ def load_candidate_pool(docs_data_dir: str | Path | None = None) -> dict[str, di
         data = {}
     return {
         name: data.get(name, {}) if isinstance(data.get(name), dict) else {}
-        for name in ("oversold", "overnight", "t0_etf")
+        for name in ("oversold", "t0_etf")
     }
 
 
@@ -202,19 +201,17 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
     index_data: dict[str, Any] = {
         "updated_at": datetime.now().isoformat(timespec="seconds"),
         "oversold": [],
-        "overnight": [],
         "t0_etf": [],
     }
     
     stats: dict[str, dict[str, set[str]]] = {
         "oversold": {},
-        "overnight": {},
         "t0_etf": {},
     }
 
     # 首先读取 candidate_pool 中的历史交易日
     pool = load_candidate_pool(data_dir)
-    for prefix in ("oversold", "overnight", "t0_etf"):
+    for prefix in ("oversold", "t0_etf"):
         for code, dates in pool.get(prefix, {}).items():
             if code not in stats[prefix]:
                 stats[prefix][code] = set()
@@ -226,8 +223,6 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
                 continue
             if file_path.name.startswith("oversold_"):
                 prefix = "oversold"
-            elif file_path.name.startswith("overnight_"):
-                prefix = "overnight"
             elif file_path.name.startswith("t0_etf_"):
                 prefix = "t0_etf"
             else:
@@ -261,7 +256,7 @@ def build_history_index_and_stats(docs_data_dir: str | Path | None = None) -> tu
                 if isinstance(cand_dates, list):
                     stats[prefix][code_norm].update(cand_dates)
                     
-    for prefix in ("oversold", "overnight", "t0_etf"):
+    for prefix in ("oversold", "t0_etf"):
         index_data[prefix].sort(key=lambda item: item.get("generated_at") or "", reverse=True)
         
     atomic_write_json(data_dir / "history_index.json", index_data)

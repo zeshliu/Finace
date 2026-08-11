@@ -68,17 +68,15 @@ nav a:hover, nav a.active { background: var(--surface); color: var(--ink); box-s
 .market-status span { color: var(--muted); font-size: 11px; margin-bottom: 8px; }
 .market-status strong { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.strategy-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.strategy-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .strategy-card { position: relative; overflow: hidden; min-height: 440px; padding: 30px; border: 1px solid var(--line); border-radius: 26px; background: var(--surface); box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease; }
 .strategy-card:hover { transform: translateY(-5px); border-color: var(--accent); }
 .strategy-card::after { content: ""; position: absolute; width: 310px; height: 310px; border-radius: 50%; right: -120px; bottom: -150px; background: var(--accent-soft); }
-.overnight-card::after { background: var(--warm-soft); }
 .etf-card::after { background: var(--cool-soft); }
 .card-topline { display: flex; justify-content: space-between; align-items: center; }
 .strategy-index { font: italic 700 14px Georgia, serif; color: var(--muted); }
 .status-pill { font-size: 11px; padding: 7px 10px; background: var(--surface-2); border-radius: 999px; }
 .strategy-icon { width: 68px; height: 68px; display: grid; place-items: center; margin-top: 46px; border-radius: 20px; background: var(--accent-soft); color: var(--accent); font-size: 34px; }
-.overnight-card .strategy-icon { background: var(--warm-soft); color: var(--warm); }
 .etf-card .strategy-icon { background: var(--cool-soft); color: var(--cool); }
 .strategy-card h2 { font: 700 34px/1.2 Georgia, "Songti SC", serif; margin: 24px 0 12px; }
 .strategy-card > p { color: var(--muted); line-height: 1.7; max-width: 440px; }
@@ -201,7 +199,8 @@ footer { max-width: 1320px; margin: 0 auto; padding: 22px 36px 36px; color: var(
   .mobile-metrics span { color: var(--muted); font-size: 9px; margin-bottom: 4px; }
   .mobile-metrics strong { font-size: 12px; }
   .mobile-notes { margin-top: 12px; color: var(--muted); font-size: 11px; line-height: 1.6; }
-  .toolbar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
+  .toolbar { position: static; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .toolbar > * { min-width: 0; }
   .search-box { grid-column: 1 / -1; }
   .toolbar label:not(.search-box) input { width: 100%; }
   .toolbar label:has(select) { grid-column: 1 / 2; }

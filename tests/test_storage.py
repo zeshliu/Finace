@@ -1,38 +1,11 @@
+"""存储、缓存与候选池测试。"""
+
 from __future__ import annotations
 
 import json
 
 import numpy as np
-import pandas as pd
-
-from src.overnight_strategy import calculate_gap_statistics
 from src.storage import DailyCache, atomic_write_json, atomic_write_json_bundle, read_json, write_validated_payload
-
-
-def gap_frame():
-    return pd.DataFrame(
-        {
-            "date": pd.bdate_range("2025-01-01", periods=4),
-            "open": [10.0, 11.0, 9.0, 12.0],
-            "close": [10.0, 10.0, 10.0, 10.0],
-        }
-    )
-
-
-def test_next_open_returns_and_high_open_rate():
-    stats = calculate_gap_statistics(gap_frame(), days=60, recent_count=20)
-    assert stats["sample_count"] == 3
-    assert stats["high_open_rate"] == 2 / 3
-    assert np.isclose(stats["average_open_return"], (0.1 - 0.1 + 0.2) / 3)
-    assert stats["below_minus_1_probability"] == 1 / 3
-    assert np.isclose(stats["max_low_open"], -0.1)
-
-
-def test_next_open_formula_uses_next_day_open_over_current_close():
-    frame = gap_frame()
-    frame.loc[0, "close"] = 20
-    stats = calculate_gap_statistics(frame)
-    assert stats["recent_results"][0]["return_pct"] == -45.0
 
 
 def test_json_output_is_valid_and_nan_becomes_null(tmp_path):
@@ -102,4 +75,3 @@ def test_candidate_pool_tracking_and_day_counts(tmp_path):
     assert cand_map["600000"]["selected_days"] == 3
     assert cand_map["000001"]["selected_days"] == 2
     assert cand_map["600002"]["selected_days"] == 1
-

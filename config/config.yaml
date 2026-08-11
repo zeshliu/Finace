@@ -8,8 +8,6 @@ data:
   history_lookback_days: 220
   etf_history_lookback_days: 260
   chart_days: 120
-  overnight_stat_days: 60
-  recent_gap_results: 20
   adjust: "qfq"
   max_workers: 8
   etf_max_workers: 4
@@ -25,18 +23,12 @@ data:
     - tencent
     - eastmoney
     - baostock
-  intraday_sources:
-    - sina
-    - eastmoney
   # 新浪日线批量访问过快可能触发限制，控制请求启动间隔
   sina_history_interval_seconds: 0.25
-  intraday_period_minutes: 5
-  intraday_shortlist: 300
   min_spot_rows: 1000
   min_etf_spot_rows: 1000
   min_history_coverage: 0.70
   min_etf_history_coverage: 0.75
-  min_intraday_coverage: 0.50
 
 screening:
   allowed_boards:
@@ -64,22 +56,6 @@ oversold:
   rsi6_low: 25
   volume_ratio_min: 1.15
   volume_ratio_max: 2.5
-
-overnight:
-  score_threshold: 50
-  min_samples: 40
-  # 隔夜板块不按当日/近3日涨跌幅、尾盘跌幅或区间位置做硬性排除
-  basic_return_filter_enabled: false
-  change_filter_enabled: false
-  tail_drop_filter_enabled: false
-  range_position_filter_enabled: false
-  change_min: -0.03
-  change_max: 0.05
-  max_low_open_probability: 0.35
-  tail_drop_limit: -0.02
-  min_range_position: 0.45
-  long_upper_shadow_ratio: 0.50
-  abnormal_volume_ratio: 3.0
 
 t0_etf:
   score_threshold: 60

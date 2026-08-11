@@ -90,18 +90,6 @@ DAILY_RENAME = {
     "换手率": "turnover",
 }
 
-MINUTE_RENAME = {
-    "时间": "datetime",
-    "day": "datetime",
-    "开盘": "open",
-    "收盘": "close",
-    "最高": "high",
-    "最低": "low",
-    "成交量": "volume",
-    "成交额": "amount",
-    "均价": "average",
-}
-
 NUMERIC_COLUMNS = {
     "price", "pct_change", "open", "prev_close", "high", "low", "close", "volume", "amount",
     "volume_ratio", "turnover", "change_5m", "amplitude", "change", "average", "iopv", "discount_rate",
@@ -217,7 +205,6 @@ class MarketDataProvider:
         timeout: float = 15,
         spot_sources: list[str] | None = None,
         history_sources: list[str] | None = None,
-        intraday_sources: list[str] | None = None,
         sina_history_interval: float = 0.25,
     ):
         self.retries = max(1, int(retries))
@@ -226,7 +213,6 @@ class MarketDataProvider:
         install_requests_default_timeout(timeout)
         self.spot_sources = spot_sources or ["sina", "eastmoney", "tencent"]
         self.history_sources = history_sources or ["sina", "tencent", "eastmoney", "baostock"]
-        self.intraday_sources = intraday_sources or ["sina", "eastmoney"]
         self.sina_history_interval = max(0, float(sina_history_interval))
         self._sina_history_lock = threading.Lock()
         self._sina_history_last_started = 0.0
@@ -533,55 +519,6 @@ class MarketDataProvider:
                 bs.logout()
             finally:
                 self._baostock_logged_in = False
-
-    def get_intraday(self, code: str, trade_date: str | None = None, period: int = 5) -> pd.DataFrame:
-        import akshare as ak
-
-        day = trade_date or datetime.now().strftime("%Y-%m-%d")
-        start = f"{day} 09:30:00"
-        end = f"{day} 15:00:00"
-        normalized_code = normalize_code(code)
-        handlers = {
-            "sina": (
-                "新浪分钟线",
-                lambda: ak.stock_zh_a_minute(
-                    symbol=exchange_code(normalized_code).replace(".", ""),
-                    period=str(period),
-                    adjust="",
-                ),
-            ),
-            "eastmoney": (
-                "东方财富分钟线",
-                lambda: ak.stock_zh_a_hist_min_em(
-                    symbol=normalized_code,
-                    start_date=start,
-                    end_date=end,
-                    period=str(period),
-                    adjust="",
-                ),
-            ),
-        }
-        errors: list[str] = []
-        minute_required = {"datetime", "open", "high", "low", "close", "volume", "amount"}
-        for source in self.intraday_sources:
-            normalized_source = str(source).lower()
-            if normalized_source not in handlers:
-                continue
-            label, operation = handlers[normalized_source]
-            try:
-                raw = self._retry(f"{label} {normalized_code}", operation)
-                result = normalize_frame(raw, MINUTE_RENAME, "datetime")
-                if minute_required.difference(result.columns):
-                    raise ValueError(f"{normalized_code} 分钟线字段不完整")
-                result = result[result["datetime"].dt.strftime("%Y-%m-%d") == day]
-                if result.empty:
-                    raise RuntimeError(f"{normalized_code} 在 {day} 没有有效分钟线")
-                return result.reset_index(drop=True)
-            except Exception as exc:
-                errors.append(f"{normalized_source}: {exc}")
-                LOGGER.warning("%s %s失败，尝试下一个分钟线源: %s", label, normalized_code, exc)
-        raise RuntimeError(f"{normalized_code} 所有分钟线源失败: {' | '.join(errors)}")
-
 
 def history_request_range(cached: pd.DataFrame, end: datetime, lookback_days: int) -> tuple[str, str]:
     """有缓存时只补最近日期并留 5 天重叠，无缓存时拉取完整窗口。"""

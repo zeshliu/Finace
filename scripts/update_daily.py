@@ -1,4 +1,4 @@
-"""每日收盘后更新超跌候选与隔夜历史统计。"""
+"""每日收盘后更新超跌候选。"""
 
 from __future__ import annotations
 
@@ -6,7 +6,6 @@ import logging
 import pandas as pd
 
 from src.industry import enrich_candidate_industries
-from src.overnight_strategy import calculate_gap_statistics
 from src.oversold_strategy import scan_oversold
 from src.pipeline import (
     ROOT,
@@ -83,11 +82,6 @@ def run(config_path=None) -> dict:
 
     output_path = ROOT / "data" / "output" / "oversold_latest.json"
     docs_path = ROOT / "docs" / "data" / "oversold_latest.json"
-    gap_stats = {}
-    for code, history in histories.items():
-        stats = calculate_gap_statistics(history, int(config["data"]["overnight_stat_days"]), int(config["data"]["recent_gap_results"]))
-        if stats.get("sample_count", 0) >= int(config["overnight"]["min_samples"]):
-            gap_stats[code] = stats
     metadata = update_metadata(
         "oversold",
         {
@@ -105,7 +99,6 @@ def run(config_path=None) -> dict:
         {
             output_path: payload,
             docs_path: payload,
-            ROOT / "data" / "output" / "overnight_stats.json": {"trade_date": trade_date, "generated_at": generated_at, "stocks": gap_stats},
             ROOT / "docs" / "data" / "metadata.json": metadata,
         }
     )
