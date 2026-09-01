@@ -1,22 +1,22 @@
 {
-  "latest_trade_date": "2026-08-31",
-  "last_updated": "2026-09-01T01:57:07+08:00",
+  "latest_trade_date": "2026-09-01",
+  "last_updated": "2026-09-01T23:23:52+08:00",
   "success": true,
   "scanned_stocks": 285,
   "candidate_count": 21,
   "last_job": "t0_etf",
   "sections": {
     "oversold": {
-      "latest_trade_date": "2026-08-31",
-      "last_updated": "2026-09-01T01:41:31+08:00",
+      "latest_trade_date": "2026-09-01",
+      "last_updated": "2026-09-01T23:06:04+08:00",
       "success": true,
-      "scanned_stocks": 2962,
-      "candidate_count": 75,
+      "scanned_stocks": 2964,
+      "candidate_count": 50,
       "failed_stocks": 0
     },
     "t0_etf": {
-      "latest_trade_date": "2026-08-31",
-      "last_updated": "2026-09-01T01:57:07+08:00",
+      "latest_trade_date": "2026-09-01",
+      "last_updated": "2026-09-01T23:23:52+08:00",
       "success": true,
       "scanned_stocks": 285,
       "eligible_etfs": 285,
