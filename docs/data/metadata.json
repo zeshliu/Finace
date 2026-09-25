@@ -1,6 +1,6 @@
 {
   "latest_trade_date": "2026-09-24",
-  "last_updated": "2026-09-24T23:24:37+08:00",
+  "last_updated": "2026-09-25T23:27:04+08:00",
   "success": true,
   "scanned_stocks": 2979,
   "candidate_count": 22,
@@ -8,7 +8,7 @@
   "sections": {
     "oversold": {
       "latest_trade_date": "2026-09-24",
-      "last_updated": "2026-09-24T23:24:37+08:00",
+      "last_updated": "2026-09-25T23:27:04+08:00",
       "success": true,
       "scanned_stocks": 2979,
       "candidate_count": 22,
