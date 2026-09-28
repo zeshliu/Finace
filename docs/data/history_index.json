@@ -1,6 +1,12 @@
 {
-  "updated_at": "2026-09-25T15:43:42",
+  "updated_at": "2026-09-28T18:30:40",
   "oversold": [
+    {
+      "filename": "oversold_20260928_183005.json",
+      "trade_date": "2026-09-28",
+      "generated_at": "2026-09-29T02:14:15+08:00",
+      "candidate_count": 28
+    },
     {
       "filename": "oversold_20260925_154302.json",
       "trade_date": "2026-09-24",
