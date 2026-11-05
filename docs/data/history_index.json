@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T18:27:26",
+  "updated_at": "2026-11-05T18:20:19",
   "oversold": [
     {
       "filename": "oversold_20261103_181620.json",
@@ -363,6 +363,12 @@
     }
   ],
   "t0_etf": [
+    {
+      "filename": "t0_etf_20261105_182012.json",
+      "trade_date": "2026-11-05",
+      "generated_at": "2026-11-06T02:18:14+08:00",
+      "candidate_count": 115
+    },
     {
       "filename": "t0_etf_20261104_182716.json",
       "trade_date": "2026-11-04",
