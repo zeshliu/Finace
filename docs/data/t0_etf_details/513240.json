@@ -1,34 +1,9 @@
 {
   "code": "513240",
   "name": "港股通信息技术ETF华安",
-  "trade_date": "2026-11-05",
-  "generated_at": "2026-11-06T02:18:14+08:00",
+  "trade_date": "2026-11-06",
+  "generated_at": "2026-11-07T01:53:32+08:00",
   "chart": [
-    {
-      "date": "2026-05-13",
-      "open": 1.022,
-      "close": 1.04,
-      "low": 1.01,
-      "high": 1.043,
-      "volume": 34156600.0,
-      "ma5": null,
-      "ma10": null,
-      "ma20": null,
-      "ma60": null,
-      "dif": 0.0026,
-      "dea": 0.0011,
-      "macd_hist": 0.0031,
-      "k": 71.1218,
-      "d": 81.3205,
-      "j": 50.7246,
-      "rsi6": null,
-      "boll_upper": null,
-      "boll_mid": null,
-      "boll_lower": null,
-      "atr14": null,
-      "atr_ma20": null,
-      "amplitude_pct": 3.207
-    },
     {
       "date": "2026-05-14",
       "open": 1.066,
@@ -3003,6 +2978,31 @@
       "atr14": 0.0326,
       "atr_ma20": 0.0303,
       "amplitude_pct": 4.7264
+    },
+    {
+      "date": "2026-11-06",
+      "open": 0.795,
+      "close": 0.791,
+      "low": 0.771,
+      "high": 0.813,
+      "volume": 1641124.0,
+      "ma5": 0.7916,
+      "ma10": 0.7944,
+      "ma20": 0.8306,
+      "ma60": 0.9548,
+      "dif": -0.0456,
+      "dea": -0.0487,
+      "macd_hist": 0.0062,
+      "k": 45.1208,
+      "d": 33.4879,
+      "j": 68.3868,
+      "rsi6": 43.5241,
+      "boll_upper": 0.9238,
+      "boll_mid": 0.8306,
+      "boll_lower": 0.7375,
+      "atr14": 0.0333,
+      "atr_ma20": 0.0306,
+      "amplitude_pct": 5.1597
     }
   ]
 }
