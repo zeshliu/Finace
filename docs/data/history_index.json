@@ -1,6 +1,12 @@
 {
-  "updated_at": "2026-11-09T21:15:29",
+  "updated_at": "2026-11-10T18:24:54",
   "oversold": [
+    {
+      "filename": "oversold_20261110_182223.json",
+      "trade_date": "2026-11-10",
+      "generated_at": "2026-11-11T02:05:53+08:00",
+      "candidate_count": 63
+    },
     {
       "filename": "oversold_20261109_211219.json",
       "trade_date": "2026-11-09",
@@ -350,12 +356,6 @@
       "candidate_count": 30
     },
     {
-      "filename": "oversold_20260817_110414.json",
-      "trade_date": "2026-08-17",
-      "generated_at": "2026-08-17T18:47:37+08:00",
-      "candidate_count": 9
-    },
-    {
       "filename": "oversold_20260814_113532.json",
       "trade_date": "2026-08-14",
       "generated_at": "2026-08-14T19:20:01+08:00",
@@ -363,6 +363,12 @@
     }
   ],
   "t0_etf": [
+    {
+      "filename": "t0_etf_20261110_182444.json",
+      "trade_date": "2026-11-10",
+      "generated_at": "2026-11-11T02:22:34+08:00",
+      "candidate_count": 113
+    },
     {
       "filename": "t0_etf_20261109_211521.json",
       "trade_date": "2026-11-09",
