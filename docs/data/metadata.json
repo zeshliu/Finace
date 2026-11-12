@@ -1,17 +1,17 @@
 {
-  "latest_trade_date": "2026-11-10",
-  "last_updated": "2026-11-11T02:22:34+08:00",
+  "latest_trade_date": "2026-11-12",
+  "last_updated": "2026-11-13T02:30:41+08:00",
   "success": true,
-  "scanned_stocks": 291,
-  "candidate_count": 113,
-  "last_job": "t0_etf",
+  "scanned_stocks": 2873,
+  "candidate_count": 10,
+  "last_job": "oversold",
   "sections": {
     "oversold": {
-      "latest_trade_date": "2026-11-10",
-      "last_updated": "2026-11-11T02:05:53+08:00",
+      "latest_trade_date": "2026-11-12",
+      "last_updated": "2026-11-13T02:30:41+08:00",
       "success": true,
       "scanned_stocks": 2873,
-      "candidate_count": 63,
+      "candidate_count": 10,
       "failed_stocks": 0
     },
     "t0_etf": {
